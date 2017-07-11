@@ -1,9 +1,6 @@
-import React, {Component} from 'react'
-
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
-}
+export { SettersBlock } from './controls/SettersBlock/SettersBlock'
+export { Connector } from './controls/Connector/Connector'
+export { default as Input } from './controls/Input/Input'
+export { default as Radio } from './controls/Radio/Radio'
+export { default as Check } from './controls/Check/Check'
+export { extendConnection, mapStateToIds } from './common/utils'
