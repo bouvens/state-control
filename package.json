@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "state-control React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -37,7 +37,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
-  "author": "",
+  "author": "Alexander Demin <web@developr.ru>",
   "homepage": "",
   "license": "MIT",
   "repository": "",
