@@ -10,14 +10,34 @@ const IDS = {
     multiplyTo: '×',
 }
 
-const PRESETS = []
+const PRESETS = [
+    {
+        params: {
+            number: 0,
+            plus: 0,
+            multiplyTo: 0,
+        },
+        text: 'All zeros',
+    },
+    {
+        params: {
+            number: 1,
+            plus: 2,
+            multiplyTo: 3,
+        },
+        text: '1, 2, 3',
+    },
+    {
+        params: {
+            number: 100,
+            plus: 25,
+            multiplyTo: 2,
+        },
+        text: 'Other numbers',
+    },
+]
 
 class Demo extends Component {
-    constructor () {
-        super()
-        this.setState = this.setState.bind(this)
-    }
-
     state = {
         withDefault: true,
         number: 2,
@@ -37,7 +57,7 @@ class Demo extends Component {
                 <h1>{'state-control Demo'}</h1>
                 <SettersBlock
                     setters={PRESETS}
-                    setHandler={this.setState}
+                    setHandler={this.handleSave}
                 />
                 <Connector
                     state={this.state}
