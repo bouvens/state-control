@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import controlled from '../../common/controlled'
 import { noOperation } from '../../common/utils'
-import style from './Input.css'
+import './Input.css'
 
 class Input extends React.PureComponent {
     static propTypes = {
@@ -36,7 +36,7 @@ class Input extends React.PureComponent {
         const Inner = this.props.multiLine ? 'textarea' : 'input'
 
         return (
-            <div className={classNames(style.input, this.props.className)}>
+            <div className={classNames('state-control-input', this.props.className)}>
                 <label htmlFor={this.props.id}>{this.props.label}</label>
                 <Inner
                     id={this.props.id}

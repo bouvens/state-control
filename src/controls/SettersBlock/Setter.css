@@ -1,8 +1,8 @@
-.setter {
+.state-control-setter {
     margin-bottom: 0.6em;
 }
 
-.setter a {
+.state-control-setter a {
     padding-bottom: 1px;
     border-bottom: 1px dashed;
     cursor: pointer;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import controlled from '../../common/controlled'
 import { noOperation } from '../../common/utils'
-import style from './Check.css'
+import './Check.css'
 
 class Check extends React.PureComponent {
     static propTypes = {
@@ -33,7 +33,7 @@ class Check extends React.PureComponent {
 
     render () {
         return (
-            <div className={classNames(style.checkbox, this.props.className)}>
+            <div className={classNames('state-control-checkbox', this.props.className)}>
                 <input
                     id={this.props.id}
                     type="checkbox"

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { noOperation } from '../../common/utils'
-import style from './Setter.css'
+import './Setter.css'
 
 const Setter = ({ text, tabIndex, onClick }) => (
-    <div className={style.setter}>
+    <div className="state-control-setter">
         <a
             role="button"
             onClick={onClick}

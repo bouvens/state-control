@@ -1,17 +1,17 @@
-.input input[readonly] {
-    background-color: #eee;
-}
-
-.input {
+.state-control-input {
     margin-bottom: 0.7em;
 }
 
-.input label {
+.state-control-input label {
     display: inline-block;
     padding-right: 0.3em;
 }
 
-.input textarea {
+.state-control-input input[readonly] {
+    background-color: #eee;
+}
+
+.state-control-input textarea {
     display: inline-block;
     height: 5em;
     vertical-align: top;
