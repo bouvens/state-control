@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import controlled from '../../common/controlled'
 import { noOperation } from '../../common/utils'
-import './Check.css'
+import style from './Check.css'
 
 class Check extends React.PureComponent {
     static propTypes = {
@@ -32,7 +33,7 @@ class Check extends React.PureComponent {
 
     render () {
         return (
-            <div className={`${this.props.className} labeled-check`}>
+            <div className={classNames(style.checkbox, this.props.className)}>
                 <input
                     id={this.props.id}
                     type="checkbox"

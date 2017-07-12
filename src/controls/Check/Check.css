@@ -1,4 +1,4 @@
-input[type=checkbox] {
-    margin-left: 5px;
-    margin-bottom: 0.7em;
+.checkbox input {
+    margin-bottom: 0.8em;
+    margin-left: 1px;
 }

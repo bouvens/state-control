@@ -14,7 +14,7 @@ module.exports = {
             babel: {
                 test: /\.jsx?/
             },
-            'less-css': {
+            css: {
                 modules: true,
                 localIdentName: '[name]__[local]__[hash:base64:5]'
             }

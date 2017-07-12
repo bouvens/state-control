@@ -1,12 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import classNames from 'classnames'
 import { noOperation } from '../../common/utils'
-import './Setter.css'
+import style from './Setter.css'
 
 const Setter = ({ text, tabIndex, onClick }) => (
-    <div className="setter">
-        <a onClick={onClick} tabIndex={tabIndex}>{text}</a>
+    <div className={style.setter}>
+        <a
+            role="button"
+            onClick={onClick}
+            tabIndex={tabIndex}
+        >
+            {text}
+        </a>
     </div>
 )
 
@@ -31,7 +38,7 @@ const setParams = (setHandler, params) => () => {
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
     let index = 0
 
-    return (<div className={`${className} setters-block`}>
+    return (<div className={classNames('setters-block', className)}>
         {setters.map((setter) => {
             index += 1
 

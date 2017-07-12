@@ -1,17 +1,17 @@
-[readonly] {
+.input input[readonly] {
     background-color: #eee;
 }
 
-.labeled-input {
+.input {
     margin-bottom: 0.7em;
 }
 
-.labeled-input label {
+.input label {
     display: inline-block;
     padding-right: 0.3em;
 }
 
-.labeled-input textarea {
+.input textarea {
     display: inline-block;
     height: 5em;
     vertical-align: top;

@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import controlled from '../../common/controlled'
 import { noOperation } from '../../common/utils'
-import './Radio.css'
+import style from './Radio.css'
 
 class Radio extends React.PureComponent {
     static propTypes = {
@@ -29,7 +30,7 @@ class Radio extends React.PureComponent {
     }
 
     render () {
-        return (<div className={`${this.props.className} group`} id={this.props.id}>
+        return (<div className={classNames(style.radioGroup, this.props.className)} id={this.props.id}>
             {this.props.values.map((currentValue) => {
                 const variantId = currentValue.id || currentValue
 
