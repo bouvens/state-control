@@ -38,10 +38,13 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
-  "author": "Alexander Demin <web@developr.ru>",
-  "homepage": "",
+  "author": "Alexander Demin <bouvens@gmail.com> (https://bouvens.github.io/)",
+  "homepage": "https://bouvens.github.io/state-control/",
   "license": "MIT",
-  "repository": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/bouvens/state-control"
+  },
   "keywords": [
     "react-component"
   ]
