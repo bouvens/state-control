@@ -9,12 +9,12 @@ export const Connector = (props) => {
             {React.Children.map(
                 children,
                 (child) => (
-                    typeof child.type === 'function' ?
-                        <child.type
+                    typeof child.type === 'function'
+                        ? <child.type
                             {...passedProps}
                             {...child.props}
-                        /> :
-                        child
+                        />
+                        : child
                 )
             )}
         </div>

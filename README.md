@@ -1,16 +1,15 @@
 # state-control
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+[![npm][npm-badge]][npm]
+[![npm][npm-dt-badge]][npm]
+[![GitHub issues][issues-badge]][issues]
 
 Describe state-control here.
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+[npm-badge]: https://img.shields.io/npm/v/state-control.png?style=flat-square
+[npm]: https://www.npmjs.org/package/state-control
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+[npm-dt-badge]: https://img.shields.io/npm/dt/state-control.png?style=flat-square
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+[issues-badge]: https://img.shields.io/github/issues/bouvens/state-control.svg?style=flat-square
+[issues]: https://github.com/bouvens/state-control/issues
