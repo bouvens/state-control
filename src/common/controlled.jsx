@@ -9,6 +9,7 @@ const controlled = (Child) => class extends React.PureComponent {
         state: PropTypes.object,
         path: PropTypes.string,
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+        values: PropTypes.array,
         defaultNum: PropTypes.number,
         onChange: PropTypes.func,
         decimalMark: PropTypes.string,
@@ -18,6 +19,7 @@ const controlled = (Child) => class extends React.PureComponent {
         state: {},
         path: '',
         value: '',
+        values: null,
         defaultNum: void 0,
         onChange: noOperation,
         decimalMark: '.',
@@ -78,7 +80,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
         switch (typeof value) {
             case 'number':
-                return this.formatNum()
+                return this.props.values ? value : this.formatNum()
             case 'boolean':
             case 'string':
             case 'undefined':

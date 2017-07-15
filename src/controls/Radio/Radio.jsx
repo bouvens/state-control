@@ -32,7 +32,7 @@ class Radio extends React.PureComponent {
     render () {
         return (<div className={classNames('state-control-radio-group', this.props.className)} id={this.props.id}>
             {this.props.values.map((currentValue) => {
-                const variantId = currentValue.id || currentValue
+                const variantId = `${this.props.id}-${currentValue}`
 
                 return (
                     <div key={variantId}>
@@ -41,8 +41,8 @@ class Radio extends React.PureComponent {
                             name={this.props.id}
                             type="radio"
                             ref={this.props.refHandler(this)}
-                            value={variantId}
-                            checked={this.props.value === variantId}
+                            value={currentValue}
+                            checked={this.props.value === currentValue}
                             readOnly={this.props.readOnly}
                             onChange={this.props.onChange}
                             onClick={this.props.onClick(this)}
