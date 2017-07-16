@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "state-control React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -11,9 +11,10 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
+    "build": "nwb build-react-component --copy-files",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
+    "deploy": "nwb build-react-component --copy-files && gh-pages -d demo/dist",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
@@ -34,6 +35,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "gh-pages": "^1.0.0",
     "nwb": "0.18.x",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
@@ -42,8 +44,8 @@
   "homepage": "https://bouvens.github.io/state-control/",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/bouvens/state-control"
+    "type": "git",
+    "url": "https://github.com/bouvens/state-control"
   },
   "keywords": [
     "react-component"
