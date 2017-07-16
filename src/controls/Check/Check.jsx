@@ -8,43 +8,34 @@ import './Check.css'
 class Check extends React.PureComponent {
     static propTypes = {
         className: PropTypes.string,
-        id: PropTypes.string,
-        value: PropTypes.bool,
+        id: PropTypes.string.isRequired,
         label: PropTypes.string,
-        readOnly: PropTypes.bool,
-        onChange: PropTypes.func,
+        refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
-        refHandler: PropTypes.func,
     }
 
     static defaultProps = {
         className: '',
-        id: '',
-        value: false,
         label: '',
-        readOnly: false,
-        onChange: noOperation,
+        refHandler: noOperation,
         onClick: noOperation,
         onFocus: noOperation,
-        multiLine: false,
-        refHandler: noOperation,
     }
 
     render () {
+        const { className, value, refHandler, onClick, onFocus, label, ...passedProps } = this.props
         return (
-            <div className={classNames('state-control-checkbox', this.props.className)}>
+            <div className={classNames('state-control-checkbox', className)}>
                 <input
-                    id={this.props.id}
                     type="checkbox"
-                    ref={this.props.refHandler(this)}
-                    checked={this.props.value}
-                    readOnly={this.props.readOnly}
-                    onChange={this.props.onChange}
-                    onClick={this.props.onClick(this)}
-                    onFocus={this.props.onFocus(this)}
+                    checked={value}
+                    ref={refHandler(this)}
+                    onClick={onClick(this)}
+                    onFocus={onFocus(this)}
+                    {...passedProps}
                 />
-                <label htmlFor={this.props.id}>{this.props.label}</label>
+                <label htmlFor={this.props.id}>{label}</label>
             </div>
         )
     }

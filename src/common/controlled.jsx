@@ -95,7 +95,7 @@ const controlled = (Child) => class extends React.PureComponent {
     }
 
     render () {
-        const passedProps = _.omit(this.props, ['id', 'state', 'path', 'value', 'defaultNum', 'onChange'])
+        const passedProps = _.omit(this.props, ['id', 'state', 'path', 'value', 'defaultNum', 'onChange', 'decimalMark'])
 
         return (
             <Child

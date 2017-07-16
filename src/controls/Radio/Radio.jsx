@@ -11,42 +11,38 @@ class Radio extends React.PureComponent {
         id: PropTypes.string,
         value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         values: PropTypes.array,
-        readOnly: PropTypes.bool,
-        onChange: PropTypes.func,
+        refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
-        refHandler: PropTypes.func,
     }
 
     static defaultProps = {
         id: '',
         value: '',
         values: [],
-        readOnly: false,
-        onChange: noOperation,
+        refHandler: noOperation,
         onClick: noOperation,
         onFocus: noOperation,
-        refHandler: noOperation,
     }
 
     render () {
-        return (<div className={classNames('state-control-radio-group', this.props.className)} id={this.props.id}>
-            {this.props.values.map((currentValue) => {
-                const variantId = `${this.props.id}-${currentValue}`
+        const { className, id, values, value, refHandler, onClick, onFocus, ...passedProps } = this.props
+        return (<div className={classNames('state-control-radio-group', className)} id={id}>
+            {values.map((currentValue) => {
+                const variantId = `${id}-${currentValue}`
 
                 return (
                     <div key={variantId}>
                         <input
                             id={variantId}
-                            name={this.props.id}
+                            name={id}
                             type="radio"
-                            ref={this.props.refHandler(this)}
+                            checked={value === currentValue}
                             value={currentValue}
-                            checked={this.props.value === currentValue}
-                            readOnly={this.props.readOnly}
-                            onChange={this.props.onChange}
-                            onClick={this.props.onClick(this)}
-                            onFocus={this.props.onFocus(this)}
+                            ref={refHandler(this)}
+                            onClick={onClick(this)}
+                            onFocus={onFocus(this)}
+                            {...passedProps}
                         />
                         <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
                     </div>

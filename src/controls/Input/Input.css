@@ -7,7 +7,8 @@
     padding-right: 0.3em;
 }
 
-.state-control-input input[readonly] {
+.state-control-input input[readonly],
+.state-control-input textarea[readonly]{
     background-color: #eee;
 }
 

@@ -8,44 +8,35 @@ import './Input.css'
 class Input extends React.PureComponent {
     static propTypes = {
         className: PropTypes.string,
-        id: PropTypes.string,
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        id: PropTypes.string.isRequired,
         label: PropTypes.string,
-        readOnly: PropTypes.bool,
-        onChange: PropTypes.func,
+        refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
         multiLine: PropTypes.bool,
-        refHandler: PropTypes.func,
     }
 
     static defaultProps = {
         className: '',
-        id: '',
-        value: '',
         label: '',
-        readOnly: false,
-        onChange: noOperation,
+        refHandler: noOperation,
         onClick: noOperation,
         onFocus: noOperation,
         multiLine: false,
-        refHandler: noOperation,
     }
 
     render () {
-        const Inner = this.props.multiLine ? 'textarea' : 'input'
+        const { multiLine, className, label, refHandler, onClick, onFocus, ...passedProps } = this.props
+        const Inner = multiLine ? 'textarea' : 'input'
 
         return (
-            <div className={classNames('state-control-input', this.props.className)}>
-                <label htmlFor={this.props.id}>{this.props.label}</label>
+            <div className={classNames('state-control-input', className)}>
+                <label htmlFor={this.props.id}>{label}</label>
                 <Inner
-                    id={this.props.id}
-                    ref={this.props.refHandler(this)}
-                    value={this.props.value}
-                    readOnly={this.props.readOnly}
-                    onChange={this.props.onChange}
-                    onClick={this.props.onClick(this)}
-                    onFocus={this.props.onFocus(this)}
+                    ref={refHandler(this)}
+                    onClick={onClick(this)}
+                    onFocus={onFocus(this)}
+                    {...passedProps}
                 />
             </div>
         )
