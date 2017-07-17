@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import _ from 'lodash'
 import controlled from '../../common/controlled'
-import { noOperation } from '../../common/utils'
 import './Radio.css'
 
 class Radio extends React.PureComponent {
@@ -20,9 +20,9 @@ class Radio extends React.PureComponent {
         id: '',
         value: '',
         values: [],
-        refHandler: noOperation,
-        onClick: noOperation,
-        onFocus: noOperation,
+        refHandler: _.noop,
+        onClick: _.noop,
+        onFocus: _.noop,
     }
 
     render () {

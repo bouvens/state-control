@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { noOperation } from './utils'
 
 const controlled = (Child) => class extends React.PureComponent {
     static propTypes = {
@@ -21,7 +20,7 @@ const controlled = (Child) => class extends React.PureComponent {
         value: '',
         values: null,
         defaultNum: void 0,
-        onChange: noOperation,
+        onChange: _.noop,
         decimalMark: '.',
     }
 
@@ -30,15 +29,11 @@ const controlled = (Child) => class extends React.PureComponent {
     getPath = () => this.props.path || this.props.id
 
     getValue = () => {
-        if (typeof this.props.value !== 'undefined') {
+        if (!_.isUndefined(this.props.value)) {
             return this.props.value
         }
 
-        if (this.props.state && typeof this.props.state[this.getPath()] !== 'undefined') {
-            return this.props.state[this.getPath()]
-        }
-
-        return void 0
+        return _.get(this.props.state, this.getPath())
     }
 
     prepareNum = (num) => num

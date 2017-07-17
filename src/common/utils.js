@@ -1,7 +1,5 @@
 import _ from 'lodash'
 
-export const noOperation = () => {}
-
 export const extendConnection = (props, IDS) =>
     (state) => _.extend(
         props(state),

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import _ from 'lodash'
 import controlled from '../../common/controlled'
-import { noOperation } from '../../common/utils'
 import './Check.css'
 
 class Check extends React.PureComponent {
@@ -10,6 +10,7 @@ class Check extends React.PureComponent {
         className: PropTypes.string,
         id: PropTypes.string.isRequired,
         label: PropTypes.string,
+        value: PropTypes.bool,
         refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
@@ -18,9 +19,10 @@ class Check extends React.PureComponent {
     static defaultProps = {
         className: '',
         label: '',
-        refHandler: noOperation,
-        onClick: noOperation,
-        onFocus: noOperation,
+        value: false,
+        refHandler: _.noop,
+        onClick: _.noop,
+        onFocus: _.noop,
     }
 
     render () {

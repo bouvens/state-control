@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { noOperation } from '../../common/utils'
 import './Setter.css'
 
 const Setter = ({ text, tabIndex, onClick }) => (
@@ -26,7 +25,7 @@ Setter.propTypes = {
 Setter.defaultProps = {
     text: '',
     tabIndex: -1,
-    onClick: noOperation,
+    onClick: _.noop,
 }
 
 const setParams = (setHandler, params) => () => {
