@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import _ from 'lodash'
+import styled from 'styled-components'
 import controlled from '../../common/controlled'
-import './Check.css'
+
+const Input = styled.input`
+    margin-bottom: 0.8em;
+    margin-left: 1px;
+`
 
 class Check extends React.PureComponent {
     static propTypes = {
@@ -28,8 +32,8 @@ class Check extends React.PureComponent {
     render () {
         const { className, value, refHandler, onClick, onFocus, label, ...passedProps } = this.props
         return (
-            <div className={classNames('state-control-checkbox', className)}>
-                <input
+            <div className={className}>
+                <Input
                     type="checkbox"
                     checked={value}
                     ref={refHandler(this)}

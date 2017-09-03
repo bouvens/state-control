@@ -18,7 +18,7 @@ const IDS = {
 
 const LABELS = {
     [IDS.divider]: '÷',
-    [IDS.decimalMark]: 'Decimal mark for inputs and result',
+    [IDS.decimalMark]: 'Decimal mark for inputs and the result',
 }
 
 const DIVIDERS = [2, 4, 8, 10]
@@ -79,7 +79,7 @@ class Demo extends Component {
 
     render () {
         return (
-            <div className=".example">
+            <div className="example">
                 <h1>{'StateControl Demo'}</h1>
                 <h2>{'Some presets'}</h2>
                 <SettersBlock

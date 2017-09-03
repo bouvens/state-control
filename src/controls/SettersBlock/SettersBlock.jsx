@@ -1,19 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import classNames from 'classnames'
-import './Setter.css'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+    margin-bottom: 0.6em;
+`
+
+const Link = styled.a`
+    padding-bottom: 1px;
+    border-bottom: 1px dashed;
+    cursor: pointer;
+    color: blue;
+`
 
 const Setter = ({ text, tabIndex, onClick }) => (
-    <div className="state-control-setter">
-        <a
+    <Wrapper>
+        <Link
             role="button"
             onClick={onClick}
             tabIndex={tabIndex}
         >
             {text}
-        </a>
-    </div>
+        </Link>
+    </Wrapper>
 )
 
 Setter.propTypes = {
@@ -37,7 +47,7 @@ const setParams = (setHandler, params) => () => {
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
     let index = 0
 
-    return (<div className={classNames('setters-block', className)}>
+    return (<div className={className}>
         {setters.map((setter) => {
             index += 1
 

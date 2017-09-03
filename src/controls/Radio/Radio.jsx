@@ -1,9 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import _ from 'lodash'
+import styled from 'styled-components'
 import controlled from '../../common/controlled'
-import './Radio.css'
+
+const Wrapper = styled.div`
+    margin-bottom: 0.8em;
+`
 
 class Radio extends React.PureComponent {
     static propTypes = {
@@ -27,7 +30,7 @@ class Radio extends React.PureComponent {
 
     render () {
         const { className, id, values, value, refHandler, onClick, onFocus, ...passedProps } = this.props
-        return (<div className={classNames('state-control-radio-group', className)} id={id}>
+        return (<Wrapper className={className} id={id}>
             {values.map((currentValue) => {
                 const variantId = `${id}-${currentValue}`
 
@@ -48,7 +51,7 @@ class Radio extends React.PureComponent {
                     </div>
                 )
             })}
-        </div>)
+        </Wrapper>)
     }
 }
 

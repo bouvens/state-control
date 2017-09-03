@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import _ from 'lodash'
+import styled from 'styled-components'
 import controlled from '../../common/controlled'
-import './Input.css'
+
+const Label = styled.label`
+    display: inline-block;
+    padding-right: 0.3em;
+`
 
 class Input extends React.PureComponent {
     static propTypes = {
@@ -27,11 +31,17 @@ class Input extends React.PureComponent {
 
     render () {
         const { multiLine, className, label, refHandler, onClick, onFocus, ...passedProps } = this.props
-        const Inner = multiLine ? 'textarea' : 'input'
+        const Inner = styled[multiLine ? 'textarea' : 'input']`
+            margin-bottom: 0.7em;
+            background-color: ${({ readOnly }) => readOnly ? '#eee' : 'transparent'};
+            display: inline-block;
+            height: ${() => (multiLine ? '5em' : 'auto')};
+            vertical-align: ${() => (multiLine ? 'top' : 'inherit')};
+        `
 
         return (
-            <div className={classNames('state-control-input', className)}>
-                <label htmlFor={this.props.id}>{label}</label>
+            <div className={className}>
+                <Label htmlFor={this.props.id}>{label}</Label>
                 <Inner
                     ref={refHandler(this)}
                     onClick={onClick(this)}
