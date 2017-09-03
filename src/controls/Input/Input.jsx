@@ -4,6 +4,10 @@ import _ from 'lodash'
 import styled from 'styled-components'
 import controlled from '../../common/controlled'
 
+const Wrapper = styled.div`
+    margin-bottom: 0.7em;
+`
+
 const Label = styled.label`
     display: inline-block;
     padding-right: 0.3em;
@@ -32,15 +36,14 @@ class Input extends React.PureComponent {
     render () {
         const { multiLine, className, label, refHandler, onClick, onFocus, ...passedProps } = this.props
         const Inner = styled[multiLine ? 'textarea' : 'input']`
-            margin-bottom: 0.7em;
-            background-color: ${({ readOnly }) => readOnly ? '#eee' : 'transparent'};
+            background-color: ${({ readOnly }) => readOnly ? '#eee' : 'white'};
             display: inline-block;
             height: ${() => (multiLine ? '5em' : 'auto')};
             vertical-align: ${() => (multiLine ? 'top' : 'inherit')};
         `
 
         return (
-            <div className={className}>
+            <Wrapper className={className}>
                 <Label htmlFor={this.props.id}>{label}</Label>
                 <Inner
                     ref={refHandler(this)}
@@ -48,7 +51,7 @@ class Input extends React.PureComponent {
                     onFocus={onFocus(this)}
                     {...passedProps}
                 />
-            </div>
+            </Wrapper>
         )
     }
 }

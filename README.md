@@ -228,6 +228,10 @@ export default function (state, action) {
 
 ## Changelog
 
+### 0.6.1
+
+Style of `<Input />` fixed.
+
 ### 0.6.0
 
 Nasty global CSS removed, styled-components are in use.
