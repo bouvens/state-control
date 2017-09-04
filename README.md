@@ -23,7 +23,7 @@ import { Check, Connector, Input, Radio, SettersBlock } from 'state-control'
 
 Most likely you will also need an array of identifiers:
 ```
-const IDS = {определять
+const IDS = {
    firstStateParameter: 'firstStateParameter',
    secondStateParameter: 'secondStateParameter',
 }

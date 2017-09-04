@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "state-control React component",
   "main": "lib/index.js",
   "module": "es/index.js",
