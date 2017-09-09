@@ -228,6 +228,14 @@ export default function (state, action) {
 
 ## Changelog
 
+### 0.6.3
+
+Loosing focus fixed.
+
+### 0.6.2
+
+Typo fixed.
+
 ### 0.6.1
 
 Style of `<Input />` fixed.

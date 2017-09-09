@@ -33,14 +33,16 @@ class Input extends React.PureComponent {
         multiLine: false,
     }
 
+    Inner = styled[this.props.multiLine ? 'textarea' : 'input']`
+        background-color: ${({ readOnly }) => (readOnly ? '#eee' : 'white')};
+        display: inline-block;
+        height: ${() => (this.props.multiLine ? '5em' : 'auto')};
+        vertical-align: ${() => (this.props.multiLine ? 'top' : 'inherit')};
+    `
+
     render () {
-        const { multiLine, className, label, refHandler, onClick, onFocus, ...passedProps } = this.props
-        const Inner = styled[multiLine ? 'textarea' : 'input']`
-            background-color: ${({ readOnly }) => readOnly ? '#eee' : 'white'};
-            display: inline-block;
-            height: ${() => (multiLine ? '5em' : 'auto')};
-            vertical-align: ${() => (multiLine ? 'top' : 'inherit')};
-        `
+        const { className, label, refHandler, onClick, onFocus, ...passedProps } = this.props
+        const { Inner } = this
 
         return (
             <Wrapper className={className}>
