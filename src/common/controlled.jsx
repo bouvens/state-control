@@ -33,7 +33,7 @@ const controlled = (Child) => class extends React.PureComponent {
             return this.props.value
         }
 
-        return _.get(this.props.state, this.getPath())
+        return _.get(this.props.state, this.getPath(), '')
     }
 
     prepareNum = (num) => num
@@ -78,7 +78,6 @@ const controlled = (Child) => class extends React.PureComponent {
                 return this.props.values ? value : this.formatNum()
             case 'boolean':
             case 'string':
-            case 'undefined':
                 return value
             default:
                 return value.toString()
