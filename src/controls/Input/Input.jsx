@@ -48,7 +48,7 @@ class Input extends React.PureComponent {
             <Wrapper className={className}>
                 <Label htmlFor={this.props.id}>{label}</Label>
                 <Inner
-                    ref={refHandler(this)}
+                    innerRef={refHandler(this)}
                     onClick={onClick(this)}
                     onFocus={onFocus(this)}
                     {...passedProps}

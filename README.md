@@ -228,6 +228,10 @@ export default function (state, action) {
 
 ## Changelog
 
+### 0.6.5
+
+Event handlers fixed.
+
 ### 0.6.4
 
 Warning about switching between controlled and uncontrolled component fixed.

@@ -36,7 +36,7 @@ class Check extends React.PureComponent {
                 <Input
                     type="checkbox"
                     checked={value}
-                    ref={refHandler(this)}
+                    innerRef={refHandler(this)}
                     onClick={onClick(this)}
                     onFocus={onFocus(this)}
                     {...passedProps}
