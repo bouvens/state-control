@@ -4,25 +4,25 @@ A bunch of lightweight components for simply changing state of stateful root com
 
 This package also provides component for presets of values (`<SettersBlock />`) and helper to reduce your source code size (`<Connector />`). It can be even used with Redux (see below).
 
-## Demo
+## [Demo](https://bouvens.github.io/state-control/)
 
 You can see live demo at [https://bouvens.github.io/state-control/](https://bouvens.github.io/state-control/)
-Source code of this demo available in [the repository](https://github.com/bouvens/state-control/blob/master/demo/src/index.js).
+Source code of this demo is available in [the repository](https://github.com/bouvens/state-control/blob/master/demo/src/index.js).
 
 ## Quick start
 
 Install package to your project:
-```
+```Shell
 npm i state-control
 ```
 
 Include required components to jsx:
-```
+```JSX
 import { Check, Connector, Input, Radio, SettersBlock } from 'state-control'
 ```
 
 Most likely you will also need an array of identifiers:
-```
+```JSX
 const IDS = {
    firstStateParameter: 'firstStateParameter',
    secondStateParameter: 'secondStateParameter',
@@ -30,7 +30,7 @@ const IDS = {
 ```
 
 Use this identifiers as names in state and add a `changeHandler`:
-```
+```JSX
 class Demo extends Component {
     state = {
         [IDS.firstStateParameter] = 1,
@@ -47,7 +47,7 @@ class Demo extends Component {
 ```
 
 And also us the array in `id` of component to connect it to corresponding property of state:
-```
+```JSX
 <Input
     state={this.state}
     onChange={this.changeHandler}
@@ -60,7 +60,7 @@ That's it!
 
 ## <Connector \/>
 You can use `Connector` component for passing common props to all children:
-```
+```JSX
 <Connector
     state={this.state}
     onChange={this.changeHandler}
@@ -78,7 +78,7 @@ You can use `Connector` component for passing common props to all children:
 
 ## <SettersBlock \/>
 This component generates elements for activation of presets:
-```
+```JSX
 <SettersBlock
     setters={SETTERS}
     setHandler={this.changeHandler}
@@ -86,7 +86,7 @@ This component generates elements for activation of presets:
 ```
 
 It uses an array of presets:
-```
+```JSX
 const SETTERS = [
     {
         text: 'Default values',
@@ -106,7 +106,7 @@ const SETTERS = [
 ```
 
 It's good idea to use preset as a default state:
-```
+```JSX
 class Demo extends Component {
     state = SETTERS[0]
 
@@ -137,12 +137,12 @@ class Demo extends Component {
 
 #### Important
 Handler for event will be called and it's return will be called too. First call will be with component as argument. Control component will be passed in `control` property of object. Example for selecting all on focus:
-```
+```JSX
 handleOnFocus = (_this) =>
     () => _this.control.setSelectionRange(0, _this.control.value.length)
 ```
 
-It needs to be changed.
+It needs to be changed for sure.
 
 ### <Input \/>
 <dl>
@@ -173,7 +173,7 @@ It needs to be changed.
 This integration is not very well made, but can be used.
 
 For the beginning create a mapping for identifiers and paths in store:
-```
+```JSX
 const IDS = {
     parameter: 'firstReducer.parameter',
     anotherParameter: 'secondReducer.parameter',
@@ -181,19 +181,19 @@ const IDS = {
 ```
 
 There's two new helpers:
-```
+```JSX
 import { extendConnection, mapStateToIds } from 'state-control'
 ```
 
 Use first helper to add mapped identifiers to connected props:
-```
+```JSX
 mapStateToProps = extendConnection((state) => ({
     thirdParam: state.firstReducer.anotherParameter,
 }), IDS)
 ```
 
 And second helper for pick out props:
-```
+```JSX
 <Connector
     state={mapStateToIds(this.props, IDS)}
     onChange={this.changeHandler}
@@ -201,7 +201,7 @@ And second helper for pick out props:
 ```
 
 In addition, of course, you need appropriate actions and reducers. Example of action:
-```
+```JSX
 import _ from 'lodash'
 
 export const setState = (name, value) => ({
@@ -211,7 +211,7 @@ export const setState = (name, value) => ({
 ```
 
 And reducer:
-```
+```JSX
 export default function (state, action) {
     switch (action.type) {
         case types.SET_STATE:
@@ -228,32 +228,25 @@ export default function (state, action) {
 
 ## Changelog
 
-### 0.6.5
-
+#### 0.6.5
 Event handlers fixed.
 
-### 0.6.4
-
+#### 0.6.4
 Warning about switching between controlled and uncontrolled component fixed.
 
-### 0.6.3
-
+#### 0.6.3
 Loosing focus fixed.
 
-### 0.6.2
-
+#### 0.6.2
 Typo fixed.
 
-### 0.6.1
-
+#### 0.6.1
 Style of `<Input />` fixed.
 
-### 0.6.0
-
+#### 0.6.0
 Nasty global CSS removed, styled-components are in use.
 
-### 0.5.2
-
+#### 0.5.2
 Readme updated, changelog added.
 
 [npm-badge]: https://img.shields.io/npm/v/state-control.png?style=flat-square
