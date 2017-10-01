@@ -227,6 +227,9 @@ export default function (state, action) {
 
 ## Changelog
 
+#### 0.7.1
+Packages updated (including React 16.0.0).
+
 #### 0.7.0
 Click and focus handlers updated. Code linted. `.eslintrc.js` file added.
 
