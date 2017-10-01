@@ -61,10 +61,6 @@ const PRESETS = [
 class Demo extends Component {
     state = PRESETS[0].params
 
-    handleSave = (name, value) => {
-        this.setState({ [name]: value })
-    }
-
     formatNumber = (number) => number.toString().replace('.', this.state.decimalMark)
 
     getCalculated = () => this.formatNumber(
@@ -76,6 +72,14 @@ class Demo extends Component {
         this.formatNumber(this.state.multiplyTo)}) ${LABELS.divider} ${this.formatNumber(this.state.divider)} = ${
         this.getCalculated()}\n${
         this.state.withDefault ? 'Inputs with default numbers' : 'Inputs without default numbers'}`
+
+    handleSave = (name, value) => {
+        this.setState({ [name]: value })
+    }
+
+    handleFocus = (control) => {
+        control.setSelectionRange(0, control.value.length)
+    }
 
     render () {
         return (
@@ -107,6 +111,7 @@ class Demo extends Component {
                             id={id}
                             label={label}
                             readOnly={this.state.isReadonly}
+                            onFocus={this.handleFocus}
                         />
                     ), [])}
                     {LABELS.divider}

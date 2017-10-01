@@ -9,6 +9,8 @@ const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropT
 
 const defaults = {
     onChange: _.noop,
+    onClick: _.noop,
+    onFocus: _.noop,
     decimalMark: '.',
 }
 
@@ -21,6 +23,8 @@ const controlled = (Child) => class extends React.PureComponent {
         values: PropTypes.arrayOf(valueType),
         defaultNum: PropTypes.number,
         onChange: PropTypes.func,
+        onClick: PropTypes.func,
+        onFocus: PropTypes.func,
         decimalMark: PropTypes.string,
     }
 
@@ -68,6 +72,10 @@ const controlled = (Child) => class extends React.PureComponent {
         (this.props.onChange || defaults.onChange)(this.getPath(), valueForReturn)
     }
 
+    clickHandler = (that) => () => (this.props.onClick || defaults.onClick)(that.control)
+
+    focusHandler = (that) => () => (this.props.onFocus || defaults.onFocus)(that.control)
+
     formatNum = (num = this.getValue()) => num.toString().replace('.', this.props.decimalMark || defaults.decimalMark)
 
     showValue = () => {
@@ -85,11 +93,23 @@ const controlled = (Child) => class extends React.PureComponent {
     }
 
     refHandler = (that) => (control) => {
+        // The parameter reassign is needed for simplifying controlled components
+        // eslint-disable-next-line no-param-reassign
         that.control = control
     }
 
     render () {
-        const passedProps = _.omit(this.props, ['id', 'state', 'path', 'value', 'defaultNum', 'onChange', 'decimalMark'])
+        const passedProps = _.omit(this.props, [
+            'id',
+            'state',
+            'path',
+            'value',
+            'defaultNum',
+            'onChange',
+            'onClick',
+            'onFocus',
+            'decimalMark',
+        ])
 
         return (
             <Child
@@ -97,6 +117,8 @@ const controlled = (Child) => class extends React.PureComponent {
                 id={this.getId()}
                 value={this.showValue()}
                 onChange={this.changeHandler}
+                onClick={this.clickHandler}
+                onFocus={this.focusHandler}
                 refHandler={this.refHandler}
             />
         )

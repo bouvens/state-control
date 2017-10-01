@@ -138,8 +138,7 @@ class Demo extends Component {
 #### Important
 Handler for event will be called and it's return will be called too. First call will be with component as argument. Control component will be passed in `control` property of object. Example for selecting all on focus:
 ```JSX
-handleOnFocus = (_this) =>
-    () => _this.control.setSelectionRange(0, _this.control.value.length)
+handleOnFocus = (control) => control.setSelectionRange(0, control.value.length)
 ```
 
 It needs to be changed for sure.
