@@ -63,7 +63,7 @@ export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset })
 
 SettersBlock.propTypes = {
     className: PropTypes.string,
-    setters: PropTypes.array.isRequired,
+    setters: PropTypes.arrayOf(PropTypes.object).isRequired,
     setHandler: PropTypes.func.isRequired,
     tabIndexOffset: PropTypes.number,
 }

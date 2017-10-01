@@ -22,5 +22,5 @@ export const Connector = (props) => {
 }
 
 Connector.propTypes = {
-    children: PropTypes.array.isRequired,
+    children: PropTypes.arrayOf(PropTypes.node).isRequired,
 }

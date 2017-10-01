@@ -1,27 +1,27 @@
+/* eslint-disable react/require-default-props */
+// defaultProps doesn't working properly on proxy components
+// but proxy component is convinient in this case
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
+const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])
+
+const defaults = {
+    onChange: _.noop,
+    decimalMark: '.',
+}
+
 const controlled = (Child) => class extends React.PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
-        state: PropTypes.object,
+        state: PropTypes.objectOf(valueType),
         path: PropTypes.string,
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
-        values: PropTypes.array,
+        value: valueType,
+        values: PropTypes.arrayOf(valueType),
         defaultNum: PropTypes.number,
         onChange: PropTypes.func,
         decimalMark: PropTypes.string,
-    }
-
-    defaultProps = {
-        state: {},
-        path: '',
-        value: '',
-        values: null,
-        defaultNum: void 0,
-        onChange: _.noop,
-        decimalMark: '.',
     }
 
     getId = () => `labeled-control-${this.props.id}`
@@ -33,7 +33,7 @@ const controlled = (Child) => class extends React.PureComponent {
             return this.props.value
         }
 
-        return _.get(this.props.state, this.getPath(), '')
+        return _.get(this.props.state, this.getPath())
     }
 
     prepareNum = (num) => num
@@ -46,7 +46,7 @@ const controlled = (Child) => class extends React.PureComponent {
         const previousType = typeof this.getValue()
 
         if (previousType === 'boolean') {
-            this.props.onChange(this.getPath(), checked)
+            (this.props.onChange || defaults.onChange)(this.getPath(), checked)
 
             return
         }
@@ -65,10 +65,10 @@ const controlled = (Child) => class extends React.PureComponent {
             }
         }
 
-        this.props.onChange(this.getPath(), valueForReturn)
+        (this.props.onChange || defaults.onChange)(this.getPath(), valueForReturn)
     }
 
-    formatNum = (num = this.getValue()) => num.toString().replace('.', this.props.decimalMark)
+    formatNum = (num = this.getValue()) => num.toString().replace('.', this.props.decimalMark || defaults.decimalMark)
 
     showValue = () => {
         const value = this.getValue()
@@ -80,12 +80,12 @@ const controlled = (Child) => class extends React.PureComponent {
             case 'string':
                 return value
             default:
-                return value.toString()
+                return _.isUndefined(value) ? value : value.toString()
         }
     }
 
-    refHandler = (_this) => (control) => {
-        _this.control = control
+    refHandler = (that) => (control) => {
+        that.control = control
     }
 
     render () {

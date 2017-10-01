@@ -8,18 +8,21 @@ const Wrapper = styled.div`
     margin-bottom: 0.8em;
 `
 
+const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+
 class Radio extends React.PureComponent {
     static propTypes = {
         className: PropTypes.string,
         id: PropTypes.string,
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        values: PropTypes.array,
+        value: valueType,
+        values: PropTypes.arrayOf(valueType),
         refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
     }
 
     static defaultProps = {
+        className: '',
         id: '',
         value: '',
         values: [],
