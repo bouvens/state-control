@@ -61,10 +61,8 @@ const PRESETS = [
 class Demo extends Component {
     state = PRESETS[0].params
 
-    formatNumber = (number) => number.toString().replace('.', this.state.decimalMark)
-
     getCalculated = () => this.formatNumber(
-        (this.state.number + this.state.plus * this.state.multiplyTo) / this.state.divider
+        (this.state.number + (this.state.plus * this.state.multiplyTo)) / this.state.divider
     )
 
     getResult = () => `(${this.formatNumber(this.state.number)} ${LABELS_FOR_ITERATIONS.plus} ${
@@ -72,6 +70,8 @@ class Demo extends Component {
         this.formatNumber(this.state.multiplyTo)}) ${LABELS.divider} ${this.formatNumber(this.state.divider)} = ${
         this.getCalculated()}\n${
         this.state.withDefault ? 'Inputs with default numbers' : 'Inputs without default numbers'}`
+
+    formatNumber = (number) => number.toString().replace('.', this.state.decimalMark)
 
     handleSave = (name, value) => {
         this.setState({ [name]: value })

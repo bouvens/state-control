@@ -1,22 +1,22 @@
 module.exports = {
     type: 'react-component',
     npm: {
-        esModules: true
+        esModules: true,
     },
     webpack: {
         rules: {
             babel: {
-                test: /\.jsx?/
-            }
+                test: /\.jsx?/,
+            },
         },
         extra: {
             resolve: {
-                extensions: ['.js', '.jsx', '.json']
+                extensions: ['.js', '.jsx', '.json'],
             },
             node: {
-                process: false
-            }
+                process: false,
+            },
         },
-        publicPath: ''
-    }
+        publicPath: '',
+    },
 }

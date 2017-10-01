@@ -4,8 +4,8 @@
 /lib
 /node_modules
 /reports
+/tests
 /umd
-npm-debug.log*
 
-# Intellij
-.idea
+*.test.js
+*.test.jsx

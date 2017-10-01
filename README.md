@@ -227,6 +227,9 @@ export default function (state, action) {
 
 ## Changelog
 
+#### 0.7.0
+Click and focus handlers updated. Code linted. `.eslintrc.js` file added.
+
 #### 0.6.5
 Event handlers fixed.
 
