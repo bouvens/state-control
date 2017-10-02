@@ -227,6 +227,9 @@ export default function (state, action) {
 
 ## Changelog
 
+#### 0.7.2
+`<Input />` fixed for float numbers like `3.02`.
+
 #### 0.7.1
 Packages updated (including React 16.0.0).
 

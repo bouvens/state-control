@@ -42,7 +42,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
     prepareNum = (num) => num
         .replace(' ', '')
-        .replace(',', '.')
+        .replace(this.props.decimalMark || defaults.decimalMark, '.')
 
     changeHandler = (event) => {
         let valueForReturn = event.target.value
@@ -59,13 +59,10 @@ const controlled = (Child) => class extends React.PureComponent {
 
         if ((!isNaN(valueForCheck) && valueForCheck.length)
             || (previousType === 'number' && !valueForCheck.length && this.props.defaultNum)) {
-            valueForReturn = valueForCheck
-            if (valueForReturn.toString()[valueForReturn.toString().length - 1] !== '.') {
-                const parseFunc = valueForReturn.indexOf('.') === -1 ? parseInt : parseFloat
+            if (!/(\.|\.[0-9]*0)$/.test(valueForCheck)) {
+                const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
 
-                valueForReturn = parseFunc(valueForReturn, 10) || this.props.defaultNum || 0
-            } else {
-                valueForReturn = this.formatNum(valueForReturn)
+                valueForReturn = parseFunc(valueForCheck, 10) || this.props.defaultNum || 0
             }
         }
 
