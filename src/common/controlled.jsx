@@ -5,6 +5,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
+const thousandsSeparatorsByDecimalMarks = {
+    '.': [',', '\'', '’'],
+    ',': ['.', ' '],
+}
+
 const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])
 
 const defaults = {
@@ -32,17 +37,23 @@ const controlled = (Child) => class extends React.PureComponent {
 
     getPath = () => this.props.path || this.props.id
 
-    getValue = () => {
-        if (!_.isUndefined(this.props.value)) {
-            return this.props.value
-        }
+    getValue = () => (
+        !_.isUndefined(this.props.value)
+            ? this.props.value
+            : _.get(this.props.state, this.getPath())
+    )
 
-        return _.get(this.props.state, this.getPath())
-    }
+    getDecimalMark = () => this.props.decimalMark || defaults.decimalMark
 
-    prepareNum = (num) => num
-        .replace(' ', '')
-        .replace(this.props.decimalMark || defaults.decimalMark, '.')
+    prepareNum = (num) => _(num)
+        .reduce(
+            (cleaned, char) => _.concat(cleaned, _.indexOf(
+                thousandsSeparatorsByDecimalMarks[this.getDecimalMark()], char
+            ) === -1 ? char : ''),
+            []
+        )
+        .join('')
+        .replace(this.getDecimalMark(), '.')
 
     changeHandler = (event) => {
         let valueForReturn = event.target.value
@@ -73,7 +84,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
     focusHandler = (that) => () => (this.props.onFocus || defaults.onFocus)(that.control)
 
-    formatNum = (num = this.getValue()) => num.toString().replace('.', this.props.decimalMark || defaults.decimalMark)
+    formatNum = (num = this.getValue()) => num.toString().replace('.', this.getDecimalMark())
 
     showValue = () => {
         const value = this.getValue()

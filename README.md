@@ -227,6 +227,9 @@ export default function (state, action) {
 
 ## Changelog
 
+#### 0.8.0
+Removing of symbols `,`, `'`, `’` added for `.` as decimal mark and `.`, spaces for ','. It helps on pasting in `<Input />` numbers like `5,000,777.15`.
+
 #### 0.7.2
 `<Input />` fixed for float numbers like `3.02`.
 
