@@ -136,12 +136,10 @@ class Demo extends Component {
 </dl>
 
 #### Important
-Handler for event will be called and it's return will be called too. First call will be with component as argument. Control component will be passed in `control` property of object. Example for selecting all on focus:
+Handler for event will be called with input component as argument. Example for selecting all on focus:
 ```JSX
 handleOnFocus = (control) => control.setSelectionRange(0, control.value.length)
 ```
-
-It needs to be changed for sure.
 
 ### <Input \/>
 <dl>
@@ -163,6 +161,8 @@ It needs to be changed for sure.
 
 ### <Radio \/>
 <dl>
+    <dt>label</dt>
+    <dd>Is a label for the element.</dd>
     <dt>values</dt>
     <dd>Is an array of available values.</dd>
 </dl>
@@ -226,6 +226,9 @@ export default function (state, action) {
 * [Red Squares](https://github.com/bouvens/red-squares)
 
 ## Changelog
+
+#### 0.9.0
+Label prop added to `<Radio />`.
 
 #### 0.8.0
 Removing of symbols `,`, `'`, `’` added for `.` as decimal mark and `.`, spaces for ','. It helps on pasting in `<Input />` numbers like `5,000,777.15`.

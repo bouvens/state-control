@@ -114,14 +114,14 @@ class Demo extends Component {
                             onFocus={this.handleFocus}
                         />
                     ), [])}
-                    {LABELS.divider}
                     <Radio
                         id={IDS.divider}
+                        label={LABELS.divider}
                         values={DIVIDERS}
                     />
-                    {LABELS.decimalMark}
                     <Radio
                         id={IDS.decimalMark}
+                        label={LABELS.decimalMark}
                         values={DECIMAL_MARKS}
                     />
                 </Connector>

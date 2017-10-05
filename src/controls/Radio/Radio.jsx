@@ -14,6 +14,7 @@ class Radio extends React.PureComponent {
     static propTypes = {
         className: PropTypes.string,
         id: PropTypes.string,
+        label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
         value: valueType,
         values: PropTypes.arrayOf(valueType),
         refHandler: PropTypes.func,
@@ -24,6 +25,7 @@ class Radio extends React.PureComponent {
     static defaultProps = {
         className: '',
         id: '',
+        label: '',
         value: '',
         values: [],
         refHandler: _.noop,
@@ -32,8 +34,9 @@ class Radio extends React.PureComponent {
     }
 
     render () {
-        const { className, id, values, value, refHandler, onClick, onFocus, ...passedProps } = this.props
+        const { className, id, label, values, value, refHandler, onClick, onFocus, ...passedProps } = this.props
         return (<Wrapper className={className} id={id}>
+            {label}
             {values.map((currentValue) => {
                 const variantId = `${id}-${currentValue}`
 
