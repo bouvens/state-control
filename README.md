@@ -1,4 +1,4 @@
-# React state control &middot; [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
+# React state-control &middot; [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
 
 A bunch of lightweight components for simply changing state of stateful root component. It fits to strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
 
@@ -6,7 +6,7 @@ This package also provides component for presets of values (`<SettersBlock />`) 
 
 ## [Demo](https://bouvens.github.io/state-control/)
 
-You can see live demo at [https://bouvens.github.io/state-control/](https://bouvens.github.io/state-control/)
+You are able to see live demo at [https://bouvens.github.io/state-control/](https://bouvens.github.io/state-control/)
 Source code of this demo is available in [the repository](https://github.com/bouvens/state-control/blob/master/demo/src/index.js).
 
 ## Quick start
@@ -145,7 +145,7 @@ Handler for onFocus event.
 
 **Important:** Handler for event will be called with input component as argument. Example for selecting all on focus:
 ```JSX
-handleOnFocus = (control) => control.setSelectionRange(0, control.value.length)
+handleFocus = (control) => control.setSelectionRange(0, control.value.length)
 ```
 
 ### <Input \/>
@@ -223,7 +223,7 @@ export default function (state, action) {
 }
 ```
 
-## More examples of state control
+## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
 * [Red Squares](https://github.com/bouvens/red-squares)
 
