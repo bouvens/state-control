@@ -118,54 +118,56 @@ class Demo extends Component {
 
 ### Common for control components
 
-<dl>
-    <dt>id</dt>
-    <dd>Is a name of property of state and identifier for element.</dd>
-    <dt>state</dt>
-    <dd>Is a state that we want to change.</dd>
-    <dt>value</dt>
-    <dd>Will be used instead of state[id] if passed.</dd>
-    <dt>readOnly</dt>
-    <dd>Is control read only.</dd>
-    <dt>className</dt>
-    <dd>Is passed to wrapper div tag.</dd>
-    <dt>onClick</dt>
-    <dd>Is a handler for onClick event.</dd>
-    <dt>onFocus</dt>
-    <dd>Is a handler for onFocus event.</dd>
-</dl>
+#### `id`: PropTypes.string.isRequired
+Name of property of state and identifier for element.
 
-#### Important
-Handler for event will be called with input component as argument. Example for selecting all on focus:
+#### `state`: PropTypes.object
+State that we want to change.
+
+#### `label`: PropTypes.string
+Label for the element.
+
+#### `value`: PropTypes.oneOfType(string, number, bool)
+Value will be used instead of state[id] if passed.
+
+#### `readOnly`: PropTypes.bool
+Control read only.
+
+#### `className`: PropTypes.string
+Classname passed to wrapper div tag.
+
+#### `onClick`: PropTypes.func
+Handler for onClick event.
+
+#### `onFocus`: PropTypes.func
+Handler for onFocus event.
+
+
+**Important:** Handler for event will be called with input component as argument. Example for selecting all on focus:
 ```JSX
 handleOnFocus = (control) => control.setSelectionRange(0, control.value.length)
 ```
 
 ### <Input \/>
-<dl>
-    <dt>label</dt>
-    <dd>Is a label for the element.</dd>
-    <dt>multiLine</dt>
-    <dd>Can change input tag to textarea.</dd>
-    <dt>defaultNum</dt>
-    <dd>Will replace empty value if passed. Use it if you need default numeric values.</dd>
-    <dt>decimalMark</dt>
-    <dd>Is a symbol to use as decimal mark.</dd>
-</dl>
+
+#### `multiLine`: PropTypes.bool
+Flag can change input tag to textarea.
+
+#### `defaultNum`: PropTypes.number
+Number will replace empty value if passed. Use it if you need default numeric values.
+
+#### `decimalMark`: PropTypes.string
+Symbol to use as decimal mark.
+
 
 ### <Check \/>
-<dl>
-    <dt>label</dt>
-    <dd>Is a label for the element.</dd>
-</dl>
+No special properties.
 
 ### <Radio \/>
-<dl>
-    <dt>label</dt>
-    <dd>Is a label for the element.</dd>
-    <dt>values</dt>
-    <dd>Is an array of available values.</dd>
-</dl>
+
+#### `values`: PropTypes.array
+Array of available values.
+
 
 ## Using with Redux
 
@@ -224,44 +226,6 @@ export default function (state, action) {
 ## More examples of state control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
 * [Red Squares](https://github.com/bouvens/red-squares)
-
-## Changelog
-
-#### 0.9.0
-Label prop added to `<Radio />`.
-
-#### 0.8.0
-Removing of symbols `,`, `'`, `’` added for `.` as decimal mark and `.`, spaces for ','. It helps on pasting in `<Input />` numbers like `5,000,777.15`.
-
-#### 0.7.2
-`<Input />` fixed for float numbers like `3.02`.
-
-#### 0.7.1
-Packages updated (including React 16.0.0).
-
-#### 0.7.0
-Click and focus handlers updated. Code linted. `.eslintrc.js` file added.
-
-#### 0.6.5
-Event handlers fixed.
-
-#### 0.6.4
-Warning about switching between controlled and uncontrolled component fixed.
-
-#### 0.6.3
-Loosing focus fixed.
-
-#### 0.6.2
-Typo fixed.
-
-#### 0.6.1
-Style of `<Input />` fixed.
-
-#### 0.6.0
-Nasty global CSS removed, styled-components are in use.
-
-#### 0.5.2
-Readme updated, changelog added.
 
 [npm-badge]: https://img.shields.io/npm/v/state-control.png?style=flat-square
 [npm]: https://www.npmjs.org/package/state-control
