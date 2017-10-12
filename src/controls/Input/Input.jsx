@@ -41,7 +41,7 @@ class Input extends React.PureComponent {
     `
 
     render () {
-        const { className, label, refHandler, onClick, onFocus, ...passedProps } = this.props
+        const { className, label, refHandler, onClick, onFocus, value, ...passedProps } = this.props
         const { Inner } = this
 
         return (
@@ -51,6 +51,7 @@ class Input extends React.PureComponent {
                     innerRef={refHandler(this)}
                     onClick={onClick(this)}
                     onFocus={onFocus(this)}
+                    value={value || ''}
                     {...passedProps}
                 />
             </Wrapper>

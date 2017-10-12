@@ -1,7 +1,7 @@
 {
   "name": "state-control",
-  "version": "1.0.0",
-  "description": "state-control React component",
+  "version": "1.0.1",
+  "description": "Small npm package for simple changing state of React components",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [

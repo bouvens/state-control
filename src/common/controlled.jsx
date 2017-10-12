@@ -60,7 +60,7 @@ const controlled = (Child) => class extends React.PureComponent {
         const { checked } = event.target
         const previousType = typeof this.getValue()
 
-        if (previousType === 'boolean') {
+        if (previousType === 'boolean' || event.target.type === 'checkbox') {
             (this.props.onChange || defaults.onChange)(this.getPath(), checked)
 
             return
