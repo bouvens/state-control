@@ -108,7 +108,7 @@ const SETTERS = [
 It's good idea to use preset as a default state:
 ```JSX
 class Demo extends Component {
-    state = SETTERS[0]
+    state = SETTERS[0].params
 
     ...
 }
