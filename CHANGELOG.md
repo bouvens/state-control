@@ -1,3 +1,6 @@
+## 1.0.1 (October 15, 2017)
+Not fully controlled state are acceptable now. Packages updated.
+
 ## 1.0.0 (October 5, 2017)
 First stable version. README updated.
 
@@ -5,7 +8,7 @@ First stable version. README updated.
 Label prop added to `<Radio />`.
 
 ## 0.8.0
-Removing of symbols `,`, `'`, `’` added for `.` as decimal mark and `.`, spaces for ','. It helps on pasting in `<Input />` numbers like `5,000,777.15`.
+Removing of symbols `,`, `'`, `’` added for `.` as decimal mark and `.`, spaces for `,`. It helps on pasting in `<Input />` numbers like `5,000,777.15`.
 
 ## 0.7.2
 `<Input />` fixed for float numbers like `3.02`.
