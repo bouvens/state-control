@@ -22,7 +22,8 @@ const defaults = {
 const controlled = (Child) => class extends React.PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
-        state: PropTypes.objectOf(valueType),
+        // state may contain not controlled parameters too
+        state: PropTypes.objectOf(PropTypes.any),
         path: PropTypes.string,
         value: valueType,
         values: PropTypes.arrayOf(valueType),
