@@ -1,3 +1,6 @@
+## 1.1.1 (October 28, 2017)
+* Text input fixed
+
 ## 1.1.0 (October 28, 2017)
 * Alternate decimal marks supported now, that can be useful on pasting values from clipboard.
 * Also
