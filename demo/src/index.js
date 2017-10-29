@@ -61,9 +61,8 @@ const PRESETS = [
 class Demo extends Component {
     state = PRESETS[0].params
 
-    getCalculated = () => this.formatNumber(
-        (this.state.number + (this.state.plus * this.state.multiplyTo)) / this.state.divider
-    )
+    getCalculated = () => this.formatNumber((this.state.number +
+        (this.state.plus * this.state.multiplyTo)) / this.state.divider)
 
     getResult = () => `(${this.formatNumber(this.state.number)} ${LABELS_FOR_ITERATIONS.plus} ${
         this.formatNumber(this.state.plus)} ${LABELS_FOR_ITERATIONS.multiplyTo} ${
@@ -84,13 +83,13 @@ class Demo extends Component {
     render () {
         return (
             <div className="example">
-                <h1>{'StateControl Demo'}</h1>
-                <h2>{'Some presets'}</h2>
+                <h1>StateControl Demo</h1>
+                <h2>Some presets</h2>
                 <SettersBlock
                     setters={PRESETS}
                     setHandler={this.handleSave}
                 />
-                <h2>{'State control'}</h2>
+                <h2>State control</h2>
                 <Connector
                     state={this.state}
                     onChange={this.handleSave}
@@ -105,15 +104,13 @@ class Demo extends Component {
                         id="withDefault"
                         label="Inputs with default numbers = 1"
                     />
-                    {_.reduce(LABELS_FOR_ITERATIONS, (result, label, id) => result.concat(
-                        <Input
-                            key={id}
-                            id={id}
-                            label={label}
-                            readOnly={this.state.isReadonly}
-                            onFocus={this.handleFocus}
-                        />
-                    ), [])}
+                    {_.reduce(LABELS_FOR_ITERATIONS, (result, label, id) => result.concat(<Input
+                        key={id}
+                        id={id}
+                        label={label}
+                        readOnly={this.state.isReadonly}
+                        onFocus={this.handleFocus}
+                    />), [])}
                     <Radio
                         id={IDS.divider}
                         label={LABELS.divider}
@@ -125,7 +122,7 @@ class Demo extends Component {
                         values={DECIMAL_MARKS}
                     />
                 </Connector>
-                <h2>{'Result'}</h2>
+                <h2>Result</h2>
                 <Input
                     id="isReadonly"
                     multiLine
@@ -133,10 +130,10 @@ class Demo extends Component {
                     readOnly
                     style={{ width: '300px' }}
                 />
-                <h2>{'Source code and documentation'}</h2>
+                <h2>Source code and documentation</h2>
                 <ul>
-                    <li><a href="https://github.com/bouvens/state-control">{'GitHub'}</a></li>
-                    <li><a href="https://www.npmjs.com/package/state-control">{'npm'}</a></li>
+                    <li><a href="https://github.com/bouvens/state-control">GitHub</a></li>
+                    <li><a href="https://www.npmjs.com/package/state-control">npm</a></li>
                 </ul>
 
                 <a href="https://github.com/bouvens/state-control">

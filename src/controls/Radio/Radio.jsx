@@ -35,29 +35,31 @@ class Radio extends React.PureComponent {
 
     render () {
         const { className, id, label, values, value, refHandler, onClick, onFocus, ...passedProps } = this.props
-        return (<Wrapper className={className} id={id}>
-            {label}
-            {values.map((currentValue) => {
-                const variantId = `${id}-${currentValue}`
+        return (
+            <Wrapper className={className} id={id}>
+                {label}
+                {values.map((currentValue) => {
+                    const variantId = `${id}-${currentValue}`
 
-                return (
-                    <div key={variantId}>
-                        <input
-                            id={variantId}
-                            name={id}
-                            type="radio"
-                            checked={value === currentValue}
-                            value={currentValue}
-                            ref={refHandler(this)}
-                            onClick={onClick(this)}
-                            onFocus={onFocus(this)}
-                            {...passedProps}
-                        />
-                        <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
-                    </div>
-                )
-            })}
-        </Wrapper>)
+                    return (
+                        <div key={variantId}>
+                            <input
+                                id={variantId}
+                                name={id}
+                                type="radio"
+                                checked={value === currentValue}
+                                value={currentValue}
+                                ref={refHandler(this)}
+                                onClick={onClick(this)}
+                                onFocus={onFocus(this)}
+                                {...passedProps}
+                            />
+                            <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
+                        </div>
+                    )
+                })}
+            </Wrapper>
+        )
     }
 }
 

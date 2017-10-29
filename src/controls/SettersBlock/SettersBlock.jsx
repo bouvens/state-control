@@ -7,7 +7,7 @@ const Wrapper = styled.div`
     margin-bottom: 0.6em;
 `
 
-const Link = styled.a`
+const A = styled.a`
     padding-bottom: 1px;
     border-bottom: 1px dashed;
     cursor: pointer;
@@ -16,13 +16,13 @@ const Link = styled.a`
 
 const Setter = ({ text, tabIndex, onClick }) => (
     <Wrapper>
-        <Link
+        <A
             role="button"
             onClick={onClick}
             tabIndex={tabIndex}
         >
             {text}
-        </Link>
+        </A>
     </Wrapper>
 )
 
@@ -47,18 +47,20 @@ const setParams = (setHandler, params) => () => {
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
     let index = 0
 
-    return (<div className={className}>
-        {setters.map((setter) => {
-            index += 1
+    return (
+        <div className={className}>
+            {setters.map((setter) => {
+                index += 1
 
-            return (<Setter
-                onClick={setParams(setHandler, setter.params)}
-                key={index}
-                tabIndex={index + tabIndexOffset}
-                text={setter.text}
-            />)
-        })}
-    </div>)
+                return (<Setter
+                    onClick={setParams(setHandler, setter.params)}
+                    key={index}
+                    tabIndex={index + tabIndexOffset}
+                    text={setter.text}
+                />)
+            })}
+        </div>
+    )
 }
 
 SettersBlock.propTypes = {

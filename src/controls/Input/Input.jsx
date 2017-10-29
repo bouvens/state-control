@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
+import { VALUE_TYPE } from '../../common/constants'
 import controlled from '../../common/controlled'
 
 const Wrapper = styled.div`
@@ -21,6 +22,7 @@ class Input extends React.PureComponent {
         refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
+        value: VALUE_TYPE,
         multiLine: PropTypes.bool,
     }
 
@@ -30,6 +32,7 @@ class Input extends React.PureComponent {
         refHandler: _.noop,
         onClick: _.noop,
         onFocus: _.noop,
+        value: '',
         multiLine: false,
     }
 
@@ -51,7 +54,7 @@ class Input extends React.PureComponent {
                     innerRef={refHandler(this)}
                     onClick={onClick(this)}
                     onFocus={onFocus(this)}
-                    value={value || ''}
+                    value={value}
                     {...passedProps}
                 />
             </Wrapper>

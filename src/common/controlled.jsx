@@ -4,9 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-
-const VALUE_TYPE = PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])
-const MARK_TYPE = PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+import { VALUE_TYPE, MARK_TYPE } from './constants'
 
 const DEFAULTS = {
     onChange: _.noop,
@@ -82,7 +80,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
         const valueForCheck = this.prepareNum(valueForReturn)
 
-        if ((!isNaN(valueForCheck) && valueForCheck.length)
+        if ((!Number.isNaN(valueForCheck) && valueForCheck.length)
             || (previousType === 'number' && !valueForCheck.length && this.props.defaultNum)) {
             if (!/(\.|\.[0-9]*0)$/.test(valueForCheck)) {
                 const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
