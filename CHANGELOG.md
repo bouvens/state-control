@@ -1,8 +1,14 @@
+## 1.1.0 (October 28, 2017)
+* Alternate decimal marks supported now, that can be useful on pasting values from clipboard.
+* Also
+    * `<Connector />` assepts one node now
+    * Eslint style updated
+
 ## 1.0.1 (October 15, 2017)
-Not fully controlled state are acceptable now. Packages updated.
+* Not fully controlled state are acceptable now. Packages updated.
 
 ## 1.0.0 (October 5, 2017)
-First stable version. README updated.
+* First stable version. README updated.
 
 ## 0.9.0
 Label prop added to `<Radio />`.

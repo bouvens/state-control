@@ -103,7 +103,7 @@ class Demo extends Component {
                     />
                     <Check
                         id="withDefault"
-                        label="Inputs with default numbers"
+                        label="Inputs with default numbers = 1"
                     />
                     {_.reduce(LABELS_FOR_ITERATIONS, (result, label, id) => result.concat(
                         <Input

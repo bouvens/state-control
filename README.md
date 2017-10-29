@@ -157,8 +157,13 @@ Flag can change input tag to textarea.
 Number will replace empty value if passed. Use it if you need default numeric values.
 
 #### `decimalMark`: PropTypes.string
-Symbol to use as decimal mark.
+Symbol for using as decimal mark.
 
+#### `thousandsSeparator`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+Symbol or array of symbols for using as thousands separator for removing.
+
+#### `alternateDecimalMark`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+Symbol or array of symbols for replacing to decimal mark after removing all thousand separator symbols.
 
 ### <Check \/>
 No special properties.
