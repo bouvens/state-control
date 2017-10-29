@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Small npm package for simple changing state of React components",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,21 +25,21 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "styled-components": "^2.2.1"
+    "styled-components": "^2.2.2"
   },
   "peerDependencies": {
     "react": "16.x"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb": "^15.1.0",
+    "eslint": "^4.10.0",
+    "eslint-config-airbnb": "^16.1.0",
     "eslint-import-resolver-webpack": "^0.8.3",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
     "gh-pages": "^1.0.0",
-    "nwb": "0.18.x",
+    "nwb": "0.19.x",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
@@ -51,6 +51,11 @@
     "url": "https://github.com/bouvens/state-control"
   },
   "keywords": [
-    "react-component"
+    "react",
+    "react-component",
+    "npm",
+    "component-library",
+    "state-management",
+    "presets"
   ]
 }
