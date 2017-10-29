@@ -1,22 +1,32 @@
 /* eslint-disable react/require-default-props */
-// defaultProps don't work properly on proxy components
+// defaultProps doesn't work properly on proxy components
 // but proxy component is convenient in this case
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 
-const thousandsSeparatorsByDecimalMarks = {
-    '.': [',', '\'', '’'],
-    ',': ['.', ' '],
-}
+const VALUE_TYPE = PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])
+const MARK_TYPE = PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 
-const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool])
-
-const defaults = {
+const DEFAULTS = {
     onChange: _.noop,
     onClick: _.noop,
     onFocus: _.noop,
     decimalMark: '.',
+    thousandsSeparator: {
+        '.': [',', '\'', '’'],
+        ',': ' ',
+    },
+    alternateDecimalMark: ',',
+}
+
+// Helper function for using in _.reduce()
+function replaceAll (from, to) {
+    return (cleaned, char) => (
+        typeof from === 'string'
+            ? cleaned.concat(from === char ? to : char)
+            : cleaned.concat(_.indexOf(from, char) === -1 ? char : to)
+    )
 }
 
 const controlled = (Child) => class extends React.PureComponent {
@@ -25,13 +35,15 @@ const controlled = (Child) => class extends React.PureComponent {
         // state may contain not controlled parameters too
         state: PropTypes.objectOf(PropTypes.any),
         path: PropTypes.string,
-        value: valueType,
-        values: PropTypes.arrayOf(valueType),
+        value: VALUE_TYPE,
+        values: PropTypes.arrayOf(VALUE_TYPE),
         defaultNum: PropTypes.number,
         onChange: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
         decimalMark: PropTypes.string,
+        thousandsSeparator: MARK_TYPE,
+        alternateDecimalMark: MARK_TYPE,
     }
 
     getId = () => `labeled-control-${this.props.id}`
@@ -44,15 +56,16 @@ const controlled = (Child) => class extends React.PureComponent {
             : _.get(this.props.state, this.getPath())
     )
 
-    getDecimalMark = () => this.props.decimalMark || defaults.decimalMark
+    getDecimalMark = () => this.props.decimalMark || DEFAULTS.decimalMark
+
+    getThousandsSeparator = () =>
+        this.props.thousandsSeparator || DEFAULTS.thousandsSeparator[this.getDecimalMark()]
+
+    getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
 
     prepareNum = (num) => _(num)
-        .reduce(
-            (cleaned, char) => _.concat(cleaned, _.indexOf(
-                thousandsSeparatorsByDecimalMarks[this.getDecimalMark()], char
-            ) === -1 ? char : ''),
-            []
-        )
+        .reduce(replaceAll(this.getThousandsSeparator(), ''), _(''))
+        .reduce(replaceAll(this.getAlternateDecimalMarks(), '.'), _(''))
         .join('')
         .replace(this.getDecimalMark(), '.')
 
@@ -62,7 +75,7 @@ const controlled = (Child) => class extends React.PureComponent {
         const previousType = typeof this.getValue()
 
         if (previousType === 'boolean' || event.target.type === 'checkbox') {
-            (this.props.onChange || defaults.onChange)(this.getPath(), checked)
+            (this.props.onChange || DEFAULTS.onChange)(this.getPath(), checked)
 
             return
         }
@@ -78,12 +91,12 @@ const controlled = (Child) => class extends React.PureComponent {
             }
         }
 
-        (this.props.onChange || defaults.onChange)(this.getPath(), valueForReturn)
+        (this.props.onChange || DEFAULTS.onChange)(this.getPath(), valueForReturn)
     }
 
-    clickHandler = (that) => () => (this.props.onClick || defaults.onClick)(that.control)
+    clickHandler = (that) => () => (this.props.onClick || DEFAULTS.onClick)(that.control)
 
-    focusHandler = (that) => () => (this.props.onFocus || defaults.onFocus)(that.control)
+    focusHandler = (that) => () => (this.props.onFocus || DEFAULTS.onFocus)(that.control)
 
     formatNum = (num = this.getValue()) => num.toString().replace('.', this.getDecimalMark())
 
