@@ -85,11 +85,25 @@ This component generates elements for activation of presets:
 />
 ```
 
-It uses an array of presets:
+It uses an object of presets:
+```JSX
+const SETTERS = [
+    'Default': {
+        [IDS.firstStateParameter]: 1,
+        [IDS.secondStateParameter]: 'second',
+    },
+    'This text will be used as a label': {
+        [IDS.firstStateParameter]: 'first',
+        [IDS.secondStateParameter]: 2,
+    },
+]
+```
+
+It also accepts array of presets:
 ```JSX
 const SETTERS = [
     {
-        text: 'Default values',
+        text: 'Default',
         params: {
             [IDS.firstStateParameter]: 1,
             [IDS.secondStateParameter]: 'second',
@@ -108,7 +122,10 @@ const SETTERS = [
 It's good idea to use preset as a default state:
 ```JSX
 class Demo extends Component {
-    state = SETTERS[0].params
+    state = SETTERS.Default
+
+    // For array setters there will be
+    // state = SETTERS[0].params
 
     ...
 }
