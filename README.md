@@ -88,7 +88,7 @@ This component generates elements for activation of presets:
 It uses an object of presets:
 ```JSX
 const SETTERS = [
-    'Default': {
+    Default: {
         [IDS.firstStateParameter]: 1,
         [IDS.secondStateParameter]: 'second',
     },

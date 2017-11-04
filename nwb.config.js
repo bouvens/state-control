@@ -4,6 +4,9 @@ module.exports = {
         esModules: true,
     },
     webpack: {
+        html: {
+            template: 'src/index.html',
+        },
         rules: {
             babel: {
                 test: /\.jsx?/,
