@@ -1,3 +1,6 @@
+## 1.2.0 (November 4, 2017)
+* Object setters allowed
+
 ## 1.1.1 (October 28, 2017)
 * Text input fixed
 
