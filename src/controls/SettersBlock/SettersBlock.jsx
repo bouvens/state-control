@@ -46,17 +46,23 @@ const setParams = (setHandler, params) => () => {
 
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
     let index = 0
+    const settersArray = _.isArray(setters)
+        ? setters.map((setter) => [
+            setter.text,
+            setter.params,
+        ])
+        : _.toPairs(setters)
 
     return (
         <div className={className}>
-            {setters.map((setter) => {
+            {settersArray.map((setter) => {
                 index += 1
 
                 return (<Setter
-                    onClick={setParams(setHandler, setter.params)}
+                    onClick={setParams(setHandler, setter[1])}
                     key={index}
                     tabIndex={index + tabIndexOffset}
-                    text={setter.text}
+                    text={setter[0]}
                 />)
             })}
         </div>
@@ -65,7 +71,7 @@ export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset })
 
 SettersBlock.propTypes = {
     className: PropTypes.string,
-    setters: PropTypes.arrayOf(PropTypes.object).isRequired,
+    setters: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
     setHandler: PropTypes.func.isRequired,
     tabIndexOffset: PropTypes.number,
 }

@@ -25,41 +25,32 @@ const DIVIDERS = [2, 4, 8, 10]
 
 const DECIMAL_MARKS = ['.', ',', '·']
 
-const PRESETS = [
-    {
-        text: 'Default',
-        params: {
-            isReadonly: false,
-            withDefault: true,
-            number: 2,
-            plus: 3.6,
-            multiplyTo: 4,
-            [IDS.divider]: DIVIDERS[0],
-            [IDS.decimalMark]: DECIMAL_MARKS[0],
-        },
+const PRESETS = {
+    Default: {
+        isReadonly: false,
+        withDefault: true,
+        number: 2,
+        plus: 3.6,
+        multiplyTo: 4,
+        [IDS.divider]: DIVIDERS[0],
+        [IDS.decimalMark]: DECIMAL_MARKS[0],
     },
-    {
-        text: '1, 2, 3, 4',
-        params: {
-            number: 1,
-            plus: 2,
-            multiplyTo: 3,
-            [IDS.divider]: DIVIDERS[1],
-        },
+    '1, 2, 3, 4': {
+        number: 1,
+        plus: 2,
+        multiplyTo: 3,
+        [IDS.divider]: DIVIDERS[1],
     },
-    {
-        text: 'Other numbers',
-        params: {
-            number: 100,
-            plus: 25,
-            multiplyTo: 2,
-            [IDS.divider]: DIVIDERS[3],
-        },
+    'Other numbers': {
+        number: 100,
+        plus: 25,
+        multiplyTo: 2,
+        [IDS.divider]: DIVIDERS[3],
     },
-]
+}
 
 class Demo extends Component {
-    state = PRESETS[0].params
+    state = PRESETS.Default
 
     getCalculated = () => this.formatNumber((this.state.number +
         (this.state.plus * this.state.multiplyTo)) / this.state.divider)

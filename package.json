@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Small npm package for simple changing state of React components",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,7 +25,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "styled-components": "^2.2.2"
+    "styled-components": "^2.2.3"
   },
   "peerDependencies": {
     "react": "16.x"
