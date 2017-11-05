@@ -248,6 +248,7 @@ export default function (state, action) {
 ## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
 * [Red Squares](https://github.com/bouvens/red-squares)
+* [Griffeath’s machine](https://github.com/bouvens/griffeath-machine)
 
 [npm-badge]: https://img.shields.io/npm/v/state-control.png?style=flat-square
 [npm]: https://www.npmjs.org/package/state-control
