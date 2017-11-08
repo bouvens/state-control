@@ -4,6 +4,7 @@ import { render } from 'react-dom'
 import _ from 'lodash'
 
 import { Check, Connector, Input, Radio, SettersBlock } from '../../src'
+import { selectAll } from '../../src/common/utils'
 import './style.css'
 
 const LABELS_FOR_ITERATIONS = {
@@ -68,10 +69,6 @@ class Demo extends Component {
         this.setState({ [name]: value })
     }
 
-    handleFocus = (control) => {
-        control.setSelectionRange(0, control.value.length)
-    }
-
     render () {
         return (
             <div className="example">
@@ -100,7 +97,7 @@ class Demo extends Component {
                         id={id}
                         label={label}
                         readOnly={this.state.isReadonly}
-                        onFocus={this.handleFocus}
+                        onFocus={selectAll}
                     />), [])}
                     <Radio
                         id={IDS.divider}

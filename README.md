@@ -16,9 +16,9 @@ Install package to your project:
 npm i state-control
 ```
 
-Include required components to jsx:
+Include required components and helpers to jsx:
 ```JSX
-import { Check, Connector, Input, Radio, SettersBlock } from 'state-control'
+import { Check, Connector, Input, Radio, SettersBlock, selectAll } from 'state-control'
 ```
 
 Most likely you will also need an array of identifiers:
@@ -157,12 +157,17 @@ Classname passed to wrapper div tag.
 Handler for onClick event.
 
 #### `onFocus`: PropTypes.func
-Handler for onFocus event.
-
-
-**Important:** Handler for event will be called with input component as argument. Example for selecting all on focus:
+Handler for onFocus event. Handler will be called with input component as argument. Example for selecting all on focus:
 ```JSX
 handleFocus = (control) => control.setSelectionRange(0, control.value.length)
+
+// or just include and use prepared handler
+import { selectAll } from 'state-control'
+<Input
+    onFocus={selectAll}
+    ...
+/>
+
 ```
 
 ### <Input \/>

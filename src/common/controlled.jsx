@@ -56,8 +56,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
     getDecimalMark = () => this.props.decimalMark || DEFAULTS.decimalMark
 
-    getThousandsSeparator = () =>
-        this.props.thousandsSeparator || DEFAULTS.thousandsSeparator[this.getDecimalMark()]
+    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULTS.thousandsSeparator[this.getDecimalMark()]
 
     getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
 
