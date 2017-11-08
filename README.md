@@ -119,17 +119,17 @@ const SETTERS = [
 ]
 ```
 
-It's good idea to use preset as a default state:
-```JSX
-class Demo extends Component {
-    state = SETTERS.Default
-
-    // For array setters there will be
-    // state = SETTERS[0].params
-
-    ...
-}
-```
+> It's good idea to use preset as a default state:
+> ```JSX
+> class Demo extends Component {
+>     state = SETTERS.Default
+>
+>     // For array setters there will be
+>     // state = SETTERS[0].params
+>
+>     ...
+> }
+> ```
 
 ## Properties
 
@@ -157,18 +157,19 @@ Classname passed to wrapper div tag.
 Handler for onClick event.
 
 #### `onFocus`: PropTypes.func
-Handler for onFocus event. Handler will be called with input component as argument. Example for selecting all on focus:
-```JSX
-handleFocus = (control) => control.setSelectionRange(0, control.value.length)
+Handler for onFocus event. Handler will be called with input component as argument.
 
-// or just include and use prepared handler
-import { selectAll } from 'state-control'
-<Input
-    onFocus={selectAll}
-    ...
-/>
-
-```
+> Example for selecting all on focus:
+> ```JSX
+> handleFocus = (control) => control.setSelectionRange(0, control.value.length)
+>
+> // or just include and use prepared handler
+> import { selectAll } from 'state-control'
+> <Input
+>     onFocus={selectAll}
+>     ...
+> />
+> ```
 
 ### <Input \/>
 
@@ -186,6 +187,14 @@ Symbol or array of symbols for using as thousands separator for removing.
 
 #### `alternateDecimalMark`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 Symbol or array of symbols for replacing to decimal mark after removing all thousand separator symbols.
+
+> All props will be passed to an inner element such as `<input />`. So type may be passed for entering only integer numbers:
+> ```
+> <Input
+>     type="number"
+>     ...
+> />
+> ```
 
 ### <Check \/>
 No special properties.
