@@ -1,3 +1,6 @@
+## 1.3.0 (November 9, 2017)
+* Add `selectAll` handler
+
 ## 1.2.0 (November 4, 2017)
 * Object setters allowed
 
