@@ -16,9 +16,9 @@ Install package to your project:
 npm i state-control
 ```
 
-Include required components to jsx:
+Include required components and helpers to jsx:
 ```JSX
-import { Check, Connector, Input, Radio, SettersBlock } from 'state-control'
+import { Check, Connector, Input, Radio, SettersBlock, selectAll } from 'state-control'
 ```
 
 Most likely you will also need an array of identifiers:
@@ -88,7 +88,7 @@ This component generates elements for activation of presets:
 It uses an object of presets:
 ```JSX
 const SETTERS = [
-    'Default': {
+    Default: {
         [IDS.firstStateParameter]: 1,
         [IDS.secondStateParameter]: 'second',
     },
@@ -119,17 +119,17 @@ const SETTERS = [
 ]
 ```
 
-It's good idea to use preset as a default state:
-```JSX
-class Demo extends Component {
-    state = SETTERS.Default
-
-    // For array setters there will be
-    // state = SETTERS[0].params
-
-    ...
-}
-```
+> It's good idea to use preset as a default state:
+> ```JSX
+> class Demo extends Component {
+>     state = SETTERS.Default
+>
+>     // For array setters there will be
+>     // state = SETTERS[0].params
+>
+>     ...
+> }
+> ```
 
 ## Properties
 
@@ -157,13 +157,19 @@ Classname passed to wrapper div tag.
 Handler for onClick event.
 
 #### `onFocus`: PropTypes.func
-Handler for onFocus event.
+Handler for onFocus event. Handler will be called with input component as argument.
 
-
-**Important:** Handler for event will be called with input component as argument. Example for selecting all on focus:
-```JSX
-handleFocus = (control) => control.setSelectionRange(0, control.value.length)
-```
+> Example for selecting all on focus:
+> ```JSX
+> handleFocus = (control) => control.setSelectionRange(0, control.value.length)
+>
+> // or just include and use prepared handler
+> import { selectAll } from 'state-control'
+> <Input
+>     onFocus={selectAll}
+>     ...
+> />
+> ```
 
 ### <Input \/>
 
@@ -181,6 +187,14 @@ Symbol or array of symbols for using as thousands separator for removing.
 
 #### `alternateDecimalMark`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 Symbol or array of symbols for replacing to decimal mark after removing all thousand separator symbols.
+
+> All props will be passed to an inner element such as `<input />`. So type may be passed for entering only integer numbers:
+> ```
+> <Input
+>     type="number"
+>     ...
+> />
+> ```
 
 ### <Check \/>
 No special properties.
@@ -248,6 +262,7 @@ export default function (state, action) {
 ## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
 * [Red Squares](https://github.com/bouvens/red-squares)
+* [Griffeath’s machine](https://github.com/bouvens/griffeath-machine)
 
 [npm-badge]: https://img.shields.io/npm/v/state-control.png?style=flat-square
 [npm]: https://www.npmjs.org/package/state-control
