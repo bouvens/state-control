@@ -1,8 +1,9 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { Connector, Check, Input } from '../index'
+import { Check, Connector, Input } from '../index'
 
 const IDS = {
+    isReadonly: 'isReadonly',
     withDefault: 'withDefault',
     number: 'number',
     divider: 'divider',
@@ -44,13 +45,23 @@ describe('Connector', () => {
 
 describe('Check', () => {
     const wrapper = mount(
-        <Check
-            id={IDS.withDefault}
-            state={STATE}
-        />
+        <div>
+            <Check
+                id={IDS.isReadonly}
+                state={STATE}
+            />
+            <Check
+                id={IDS.withDefault}
+                state={STATE}
+            />
+        </div>
     )
 
+    it('shows falsy value', () => {
+        expect(wrapper.find(`input[type="checkbox"][id="labeled-control-${IDS.isReadonly}"]`).prop('checked')).toBeFalsy()
+    })
+
     it('shows truthy value', () => {
-        expect(wrapper.find('input[type="checkbox"]').prop('checked')).toBeTruthy()
+        expect(wrapper.find(`input[type="checkbox"][id="labeled-control-${IDS.withDefault}"]`).prop('checked')).toBeTruthy()
     })
 })
