@@ -33,13 +33,18 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.12.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
+    "jasmine": "^2.8.0",
     "gh-pages": "^1.1.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-diff-reporter": "^1.1.1",
     "nwb": "0.20.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
