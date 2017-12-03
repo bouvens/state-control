@@ -23,6 +23,11 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "jasmine": "^2.8.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-diff-reporter": "^1.1.1",
     "lodash": "^4.17.4",
     "npm": "^5.5.1",
     "prop-types": "^15.6.0",

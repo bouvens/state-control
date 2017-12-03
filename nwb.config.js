@@ -16,10 +16,16 @@ module.exports = {
             resolve: {
                 extensions: ['.js', '.jsx', '.json'],
             },
-            node: {
-                process: false,
-            },
         },
         publicPath: '',
+    },
+    karma: {
+        // browsers: ['Chrome'],
+        frameworks: ['jasmine'],
+        plugins: [
+            require('karma-jasmine'),
+        ],
+        reportersList: ['progress', 'jasmine-diff'],
+        // testContext: 'setupTests.js',
     },
 }

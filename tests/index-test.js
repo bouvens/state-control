@@ -1,10 +1,18 @@
-import expect from 'expect'
 import React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { unmountComponentAtNode } from 'react-dom'
+import { Check, Connector } from '../src'
+import { mount } from 'enzyme'
 
-import { Input } from '../src'
+import { configure } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
 
-describe('Component', () => {
+configure({ adapter: new Adapter() })
+
+const STATE = {
+    value: 'test value',
+}
+
+describe('Connector', () => {
     let node
 
     beforeEach(() => {
@@ -15,9 +23,12 @@ describe('Component', () => {
         unmountComponentAtNode(node)
     })
 
-    it('displays a welcome message', () => {
-        render(<Input />, node, () => {
-            expect(node.innerHTML).toContain('Welcome to React components')
-        })
+    it('passes props to children', () => {
+        const wrapper = mount(
+            <Connector state={STATE}>
+                <Check id="Testing check" />
+            </Connector>
+        )
+        expect(wrapper.find(Check).props().state).toEqual(STATE)
     })
 })
