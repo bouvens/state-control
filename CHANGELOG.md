@@ -1,4 +1,4 @@
-## 1.3.1 (November 26, 2017)
+## 1.3.2 (December 3, 2017)
 * Bug fix
 
 ## 1.3.0 (November 9, 2017)
