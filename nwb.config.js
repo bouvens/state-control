@@ -26,6 +26,6 @@ module.exports = {
             require('karma-jasmine'),
         ],
         reportersList: ['progress', 'jasmine-diff'],
-        // testContext: 'setupTests.js',
+        testContext: 'setupTests.js',
     },
 }

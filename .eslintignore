@@ -4,8 +4,6 @@
 /lib
 /node_modules
 /reports
-/tests
 /umd
 
-*.test.js
-*.test.jsx
+/setupTests.js

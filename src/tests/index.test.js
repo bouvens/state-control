@@ -1,12 +1,7 @@
 import React from 'react'
 import { unmountComponentAtNode } from 'react-dom'
-import { Check, Connector } from '../src'
 import { mount } from 'enzyme'
-
-import { configure } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-
-configure({ adapter: new Adapter() })
+import { Check, Connector } from '../index'
 
 const STATE = {
     value: 'test value',
