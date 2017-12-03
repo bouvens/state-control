@@ -9,7 +9,7 @@ export const Connector = (props) => {
             {React.Children.map(
                 children,
                 (child) => (
-                    typeof child.type === 'function'
+                    child && typeof child.type === 'function'
                         ? <child.type
                             {...passedProps}
                             {...child.props}

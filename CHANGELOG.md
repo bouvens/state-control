@@ -1,3 +1,6 @@
+## 1.3.1 (November 26, 2017)
+* Bug fix
+
 ## 1.3.0 (November 9, 2017)
 * Add `selectAll` handler
 
