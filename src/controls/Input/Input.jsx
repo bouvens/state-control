@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
-import { VALUE_TYPE } from '../../common/constants'
+import { NUMBER_COLOR_TYPE, VALUE_TYPE } from '../../common/constants'
 import controlled from '../../common/controlled'
 
 const Wrapper = styled.div`
@@ -27,7 +27,7 @@ class Input extends React.PureComponent {
         value: VALUE_TYPE,
         multiLine: PropTypes.bool,
         readOnly: PropTypes.bool,
-        numberColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+        numberColor: NUMBER_COLOR_TYPE,
     }
 
     static defaultProps = {
@@ -61,7 +61,7 @@ class Input extends React.PureComponent {
     `
 
     render () {
-        const { className, label, refHandler, onClick, onFocus, value, readOnly, numberColor, ...passedProps } = this.props
+        const { className, label, refHandler, onClick, onFocus, value, ...passedProps } = this.props
         const { Inner } = this
 
         return (

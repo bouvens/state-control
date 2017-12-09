@@ -4,7 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { MARK_TYPE, VALUE_TYPE } from './constants'
+import { MARK_TYPE, NUMBER_COLOR_TYPE, VALUE_TYPE } from './constants'
 
 const DEFAULTS = {
     onChange: _.noop,
@@ -41,9 +41,9 @@ const controlled = (Child) => class extends React.PureComponent {
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
         decimalMark: PropTypes.string,
+        numberColor: NUMBER_COLOR_TYPE,
         thousandsSeparator: MARK_TYPE,
         alternateDecimalMark: MARK_TYPE,
-        numberColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     }
 
     getId = () => `labeled-control-${this.props.id}`
@@ -62,12 +62,12 @@ const controlled = (Child) => class extends React.PureComponent {
 
     getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
 
-    getColorizeNumber = () => (_.isUndefined(this.props.numberColor)
+    getNumberColor = () => (_.isUndefined(this.props.numberColor)
         ? DEFAULTS.numberColor
         : this.props.numberColor)
 
-    getIsNumber = () => (typeof this.getValue() === 'number'
-        ? this.getColorizeNumber()
+    getColorIfNumber = () => (typeof this.getValue() === 'number'
+        ? this.getNumberColor()
         : void 0)
 
     prepareNum = (num) => _(num)
@@ -148,7 +148,7 @@ const controlled = (Child) => class extends React.PureComponent {
                 onClick={this.clickHandler}
                 onFocus={this.focusHandler}
                 refHandler={this.refHandler}
-                numberColor={this.getIsNumber()}
+                numberColor={this.getColorIfNumber()}
             />
         )
     }
