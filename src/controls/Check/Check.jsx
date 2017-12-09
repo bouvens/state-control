@@ -18,6 +18,7 @@ class Check extends React.PureComponent {
         refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
+        readOnly: PropTypes.bool,
     }
 
     static defaultProps = {
@@ -27,10 +28,11 @@ class Check extends React.PureComponent {
         refHandler: _.noop,
         onClick: _.noop,
         onFocus: _.noop,
+        readOnly: false,
     }
 
     render () {
-        const { className, value, refHandler, onClick, onFocus, label, ...passedProps } = this.props
+        const { className, value, refHandler, onClick, onFocus, label, readOnly, ...passedProps } = this.props
         return (
             <div className={className}>
                 <Input
@@ -39,8 +41,10 @@ class Check extends React.PureComponent {
                     innerRef={refHandler(this)}
                     onClick={onClick(this)}
                     onFocus={onFocus(this)}
+                    disabled={readOnly}
                     {...passedProps}
                 />
+                {/* eslint-disable jsx-a11y/label-has-for */}
                 <label htmlFor={this.props.id}>{label}</label>
             </div>
         )
