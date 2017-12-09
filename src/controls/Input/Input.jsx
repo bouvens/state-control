@@ -46,6 +46,8 @@ class Input extends React.PureComponent {
         display: inline-block;
         height: ${() => (this.props.multiLine ? '5em' : 'auto')};
         vertical-align: ${() => (this.props.multiLine ? 'top' : 'inherit')};
+        padding: 0.1em 0.2em;
+        border: 1px solid darkgrey;
         background-color: ${() => {
         const { readOnly, numberColor } = this.props
 
