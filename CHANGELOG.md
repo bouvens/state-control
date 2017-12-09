@@ -1,3 +1,6 @@
+## 1.4.0 (December 9, 2017)
+* Add `numberColor` property
+
 ## 1.3.2 (December 3, 2017)
 * Bug fix
 
