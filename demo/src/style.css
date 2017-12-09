@@ -3,3 +3,7 @@ body {
     font-family: sans-serif;
     margin: 1em 2em;
 }
+
+.inputs label {
+    width: 0.8em;
+}

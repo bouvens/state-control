@@ -31,6 +31,7 @@ const PRESETS = {
     Default: {
         isReadonly: false,
         withDefault: true,
+        numberColor: false,
         number: 2,
         plus: 3.6,
         multiplyTo: 4,
@@ -60,8 +61,7 @@ class Demo extends Component {
     getResult = () => `(${this.formatNumber(this.state.number)} ${LABELS_FOR_ITERATIONS.plus} ${
         this.formatNumber(this.state.plus)} ${LABELS_FOR_ITERATIONS.multiplyTo} ${
         this.formatNumber(this.state.multiplyTo)}) ${LABELS.divider} ${this.formatNumber(this.state.divider)} = ${
-        this.getCalculated()}\n${
-        this.state.withDefault ? 'Inputs with default numbers' : 'Inputs without default numbers'}`
+        this.getCalculated()}\n${this.state.withDefault ? 'With default numbers' : 'Without default numbers'}`
 
     formatNumber = (number) => number.toString().replace('.', this.state.decimalMark)
 
@@ -83,32 +83,42 @@ class Demo extends Component {
                     onChange={this.handleSave}
                     defaultNum={this.state.withDefault ? 1 : null}
                     decimalMark={this.state.decimalMark}
-                    numberColor
+                    numberColor={this.state.numberColor}
                 >
                     <Check
                         id="isReadonly"
-                        label="Readonly inputs"
+                        label="Readonly controls"
                     />
                     <Check
                         id="withDefault"
                         label="Inputs with default numbers = 1"
+                        readOnly={this.state.isReadonly}
                     />
+                    <Check
+                        id="numberColor"
+                        label="Colorize inputs with parsed numbers"
+                        readOnly={this.state.isReadonly}
+                    />
+                    <br />
                     {_.reduce(LABELS_FOR_ITERATIONS, (result, label, id) => result.concat(<Input
                         key={id}
                         id={id}
                         label={label}
                         readOnly={this.state.isReadonly}
                         onFocus={selectAll}
+                        className="inputs"
                     />), [])}
                     <Radio
                         id={IDS.divider}
                         label={LABELS.divider}
                         values={DIVIDERS}
+                        readOnly={this.state.isReadonly}
                     />
                     <Radio
                         id={IDS.decimalMark}
                         label={LABELS.decimalMark}
                         values={DECIMAL_MARKS}
+                        readOnly={this.state.isReadonly}
                     />
                 </Connector>
                 <h2>Result</h2>

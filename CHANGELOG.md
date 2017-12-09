@@ -1,3 +1,7 @@
+## 1.4.1 (December 9, 2017)
+* Look of `<Input />` with background color improved
+* `readOnly` prop in `<Check />` and `<Radio />` fixed
+
 ## 1.4.0 (December 9, 2017)
 * Add `numberColor` property
 

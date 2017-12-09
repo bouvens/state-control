@@ -24,6 +24,7 @@ class Radio extends React.PureComponent {
         refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
+        readOnly: PropTypes.bool,
     }
 
     static defaultProps = {
@@ -35,10 +36,11 @@ class Radio extends React.PureComponent {
         refHandler: _.noop,
         onClick: _.noop,
         onFocus: _.noop,
+        readOnly: false,
     }
 
     render () {
-        const { className, id, label, values, value, refHandler, onClick, onFocus, ...passedProps } = this.props
+        const { className, id, label, values, value, refHandler, onClick, onFocus, readOnly, ...passedProps } = this.props
 
         return (
             <Wrapper className={className} id={id}>
@@ -57,8 +59,10 @@ class Radio extends React.PureComponent {
                                 ref={refHandler(this)}
                                 onClick={onClick(this)}
                                 onFocus={onFocus(this)}
+                                disabled={readOnly}
                                 {...passedProps}
                             />
+                            {/* eslint-disable jsx-a11y/label-has-for */}
                             <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
                         </div>
                     )
