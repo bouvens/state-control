@@ -1,11 +1,12 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { mount, render, shallow } from 'enzyme'
 import { Check, Connector, Input } from '../index'
 
 const IDS = {
     isReadonly: 'isReadonly',
     withDefault: 'withDefault',
     number: 'number',
+    string: 'string',
     divider: 'divider',
     decimalMark: 'decimalMark',
 }
@@ -18,14 +19,38 @@ const STATE = {
     isReadonly: false,
     withDefault: true,
     number: 2,
+    string: 'text',
     plus: 3.6,
     multiplyTo: 4,
     [IDS.divider]: DIVIDERS[0],
     [IDS.decimalMark]: DECIMAL_MARKS[0],
 }
 
+describe('Check', () => {
+    const wrapper = render(
+        <div>
+            <Check
+                id={IDS.isReadonly}
+                state={STATE}
+            />
+            <Check
+                id={IDS.withDefault}
+                state={STATE}
+            />
+        </div>
+    )
+
+    it('shows falsy value', () => {
+        expect(wrapper.find(`input[type="checkbox"][id="labeled-control-${IDS.isReadonly}"]`).prop('checked')).toBeFalsy()
+    })
+
+    it('shows truthy value', () => {
+        expect(wrapper.find(`input[type="checkbox"][id="labeled-control-${IDS.withDefault}"]`).prop('checked')).toBeTruthy()
+    })
+})
+
 describe('Connector', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
         <Connector state={STATE}>
             <Check id={IDS.withDefault} />
             <Input id={IDS.number} />
@@ -45,25 +70,26 @@ describe('Connector', () => {
     })
 })
 
-describe('Check', () => {
-    const wrapper = mount(
-        <div>
-            <Check
-                id={IDS.isReadonly}
-                state={STATE}
-            />
-            <Check
-                id={IDS.withDefault}
-                state={STATE}
-            />
-        </div>
+describe('Input', () => {
+    const oneLineWrapper = mount(
+        <Input
+            id={IDS.number}
+            state={STATE}
+        />
+    )
+    const multiLineWrapper = mount(
+        <Input
+            id={IDS.string}
+            state={STATE}
+            multiLine
+        />
     )
 
-    it('shows falsy value', () => {
-        expect(wrapper.find(`input[type="checkbox"][id="labeled-control-${IDS.isReadonly}"]`).prop('checked')).toBeFalsy()
+    it('render input', () => {
+        expect(oneLineWrapper.find(`input[id="labeled-control-${IDS.number}"]`).length).toEqual(1)
     })
 
-    it('shows truthy value', () => {
-        expect(wrapper.find(`input[type="checkbox"][id="labeled-control-${IDS.withDefault}"]`).prop('checked')).toBeTruthy()
+    it('render textarea', () => {
+        expect(multiLineWrapper.find(`textarea[id="labeled-control-${IDS.string}"]`).length).toEqual(1)
     })
 })
