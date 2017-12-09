@@ -188,6 +188,9 @@ Symbol or array of symbols for using as thousands separator for removing.
 #### `alternateDecimalMark`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 Symbol or array of symbols for replacing to decimal mark after removing all thousand separator symbols.
 
+#### `numberColor`: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+String for background color or just flag for coloring fields where numbers had been parsed. It makes the implicit explicit.
+
 > All props will be passed to an inner element such as `<input />`. So type may be passed for entering only integer numbers:
 > ```
 > <Input

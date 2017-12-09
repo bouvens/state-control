@@ -83,6 +83,7 @@ class Demo extends Component {
                     onChange={this.handleSave}
                     defaultNum={this.state.withDefault ? 1 : null}
                     decimalMark={this.state.decimalMark}
+                    numberColor
                 >
                     <Check
                         id="isReadonly"

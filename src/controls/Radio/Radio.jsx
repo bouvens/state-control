@@ -8,6 +8,10 @@ const Wrapper = styled.div`
     margin-bottom: 0.8em;
 `
 
+const Input = styled.input`
+    margin: 3px 3px 2px 5px;
+`
+
 const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
 class Radio extends React.PureComponent {
@@ -35,6 +39,7 @@ class Radio extends React.PureComponent {
 
     render () {
         const { className, id, label, values, value, refHandler, onClick, onFocus, ...passedProps } = this.props
+
         return (
             <Wrapper className={className} id={id}>
                 {label}
@@ -43,7 +48,7 @@ class Radio extends React.PureComponent {
 
                     return (
                         <div key={variantId}>
-                            <input
+                            <Input
                                 id={variantId}
                                 name={id}
                                 type="radio"
