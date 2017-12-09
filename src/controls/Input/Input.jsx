@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
-import { VALUE_TYPE } from '../../common/constants'
+import { NUMBER_COLOR_TYPE, VALUE_TYPE } from '../../common/constants'
 import controlled from '../../common/controlled'
 
 const Wrapper = styled.div`
@@ -14,6 +14,8 @@ const Label = styled.label`
     padding-right: 0.3em;
 `
 
+const defaultNumberColor = '#cfffcf'
+
 class Input extends React.PureComponent {
     static propTypes = {
         className: PropTypes.string,
@@ -24,6 +26,8 @@ class Input extends React.PureComponent {
         onFocus: PropTypes.func,
         value: VALUE_TYPE,
         multiLine: PropTypes.bool,
+        readOnly: PropTypes.bool,
+        numberColor: NUMBER_COLOR_TYPE,
     }
 
     static defaultProps = {
@@ -34,13 +38,26 @@ class Input extends React.PureComponent {
         onFocus: _.noop,
         value: '',
         multiLine: false,
+        readOnly: false,
+        numberColor: false,
     }
 
     Inner = styled[this.props.multiLine ? 'textarea' : 'input']`
-        background-color: ${({ readOnly }) => (readOnly ? '#eee' : 'white')};
         display: inline-block;
         height: ${() => (this.props.multiLine ? '5em' : 'auto')};
         vertical-align: ${() => (this.props.multiLine ? 'top' : 'inherit')};
+        background-color: ${() => {
+        const { readOnly, numberColor } = this.props
+
+        if (readOnly) {
+            return '#eee'
+        }
+        if (numberColor) {
+            return numberColor.length ? numberColor : defaultNumberColor
+        }
+
+        return 'white'
+    }};
     `
 
     render () {

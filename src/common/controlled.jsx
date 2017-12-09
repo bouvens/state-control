@@ -4,7 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { VALUE_TYPE, MARK_TYPE } from './constants'
+import { MARK_TYPE, NUMBER_COLOR_TYPE, VALUE_TYPE } from './constants'
 
 const DEFAULTS = {
     onChange: _.noop,
@@ -16,6 +16,7 @@ const DEFAULTS = {
         ',': ' ',
     },
     alternateDecimalMark: ',',
+    numberColor: false,
 }
 
 // Helper function for using in _.reduce()
@@ -40,6 +41,7 @@ const controlled = (Child) => class extends React.PureComponent {
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
         decimalMark: PropTypes.string,
+        numberColor: NUMBER_COLOR_TYPE,
         thousandsSeparator: MARK_TYPE,
         alternateDecimalMark: MARK_TYPE,
     }
@@ -60,6 +62,14 @@ const controlled = (Child) => class extends React.PureComponent {
 
     getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
 
+    getNumberColor = () => (_.isUndefined(this.props.numberColor)
+        ? DEFAULTS.numberColor
+        : this.props.numberColor)
+
+    getColorIfNumber = () => (typeof this.getValue() === 'number'
+        ? this.getNumberColor()
+        : void 0)
+
     prepareNum = (num) => _(num)
         .reduce(replaceAll(this.getThousandsSeparator(), ''), _(''))
         .reduce(replaceAll(this.getAlternateDecimalMarks(), '.'), _(''))
@@ -79,13 +89,11 @@ const controlled = (Child) => class extends React.PureComponent {
 
         const valueForCheck = this.prepareNum(valueForReturn)
 
-        if ((!_.isNaN(Number(valueForCheck)) && valueForCheck.length)
-            || (previousType === 'number' && !valueForCheck.length && this.props.defaultNum)) {
-            if (!/(\.|\s|\.[0-9]*0)$/.test(valueForCheck)) {
-                const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
-
-                valueForReturn = parseFunc(valueForCheck, 10) || this.props.defaultNum || 0
-            }
+        if (((!_.isNaN(Number(valueForCheck)) && valueForCheck.length)
+                || (previousType === 'number' && !valueForCheck.length && this.props.defaultNum))
+            && !/(\.|\s|\.[0-9]*0)$/.test(valueForCheck)) {
+            const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
+            valueForReturn = parseFunc(valueForCheck, 10) || this.props.defaultNum || 0
         }
 
         (this.props.onChange || DEFAULTS.onChange)(this.getPath(), valueForReturn)
@@ -128,6 +136,7 @@ const controlled = (Child) => class extends React.PureComponent {
             'onClick',
             'onFocus',
             'decimalMark',
+            'numberColor',
         ])
 
         return (
@@ -139,6 +148,7 @@ const controlled = (Child) => class extends React.PureComponent {
                 onClick={this.clickHandler}
                 onFocus={this.focusHandler}
                 refHandler={this.refHandler}
+                numberColor={this.getColorIfNumber()}
             />
         )
     }
