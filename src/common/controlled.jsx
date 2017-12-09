@@ -4,7 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { VALUE_TYPE, MARK_TYPE } from './constants'
+import { MARK_TYPE, VALUE_TYPE } from './constants'
 
 const DEFAULTS = {
     onChange: _.noop,
@@ -16,6 +16,7 @@ const DEFAULTS = {
         ',': ' ',
     },
     alternateDecimalMark: ',',
+    numberColor: false,
 }
 
 // Helper function for using in _.reduce()
@@ -42,6 +43,7 @@ const controlled = (Child) => class extends React.PureComponent {
         decimalMark: PropTypes.string,
         thousandsSeparator: MARK_TYPE,
         alternateDecimalMark: MARK_TYPE,
+        numberColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     }
 
     getId = () => `labeled-control-${this.props.id}`
@@ -59,6 +61,14 @@ const controlled = (Child) => class extends React.PureComponent {
     getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULTS.thousandsSeparator[this.getDecimalMark()]
 
     getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
+
+    getColorizeNumber = () => (_.isUndefined(this.props.numberColor)
+        ? DEFAULTS.numberColor
+        : this.props.numberColor)
+
+    getIsNumber = () => (typeof this.getValue() === 'number'
+        ? this.getColorizeNumber()
+        : void 0)
 
     prepareNum = (num) => _(num)
         .reduce(replaceAll(this.getThousandsSeparator(), ''), _(''))
@@ -128,6 +138,7 @@ const controlled = (Child) => class extends React.PureComponent {
             'onClick',
             'onFocus',
             'decimalMark',
+            'numberColor',
         ])
 
         return (
@@ -139,6 +150,7 @@ const controlled = (Child) => class extends React.PureComponent {
                 onClick={this.clickHandler}
                 onFocus={this.focusHandler}
                 refHandler={this.refHandler}
+                numberColor={this.getIsNumber()}
             />
         )
     }

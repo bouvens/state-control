@@ -14,6 +14,8 @@ const Label = styled.label`
     padding-right: 0.3em;
 `
 
+const defaultNumberColor = '#cfffcf'
+
 class Input extends React.PureComponent {
     static propTypes = {
         className: PropTypes.string,
@@ -24,6 +26,8 @@ class Input extends React.PureComponent {
         onFocus: PropTypes.func,
         value: VALUE_TYPE,
         multiLine: PropTypes.bool,
+        readOnly: PropTypes.bool,
+        numberColor: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     }
 
     static defaultProps = {
@@ -34,17 +38,30 @@ class Input extends React.PureComponent {
         onFocus: _.noop,
         value: '',
         multiLine: false,
+        readOnly: false,
+        numberColor: false,
     }
 
     Inner = styled[this.props.multiLine ? 'textarea' : 'input']`
-        background-color: ${({ readOnly }) => (readOnly ? '#eee' : 'white')};
         display: inline-block;
         height: ${() => (this.props.multiLine ? '5em' : 'auto')};
         vertical-align: ${() => (this.props.multiLine ? 'top' : 'inherit')};
+        background-color: ${() => {
+        const { readOnly, numberColor } = this.props
+
+        if (readOnly) {
+            return '#eee'
+        }
+        if (numberColor) {
+            return numberColor.length ? numberColor : defaultNumberColor
+        }
+
+        return 'white'
+    }};
     `
 
     render () {
-        const { className, label, refHandler, onClick, onFocus, value, ...passedProps } = this.props
+        const { className, label, refHandler, onClick, onFocus, value, readOnly, numberColor, ...passedProps } = this.props
         const { Inner } = this
 
         return (
