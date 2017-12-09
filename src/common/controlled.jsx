@@ -89,13 +89,11 @@ const controlled = (Child) => class extends React.PureComponent {
 
         const valueForCheck = this.prepareNum(valueForReturn)
 
-        if ((!_.isNaN(Number(valueForCheck)) && valueForCheck.length)
-            || (previousType === 'number' && !valueForCheck.length && this.props.defaultNum)) {
-            if (!/(\.|\s|\.[0-9]*0)$/.test(valueForCheck)) {
-                const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
-
-                valueForReturn = parseFunc(valueForCheck, 10) || this.props.defaultNum || 0
-            }
+        if (((!_.isNaN(Number(valueForCheck)) && valueForCheck.length)
+                || (previousType === 'number' && !valueForCheck.length && this.props.defaultNum))
+            && !/(\.|\s|\.[0-9]*0)$/.test(valueForCheck)) {
+            const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
+            valueForReturn = parseFunc(valueForCheck, 10) || this.props.defaultNum || 0
         }
 
         (this.props.onChange || DEFAULTS.onChange)(this.getPath(), valueForReturn)
