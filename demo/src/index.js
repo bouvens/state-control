@@ -8,9 +8,18 @@ import { selectAll } from '../../src/common/utils'
 import './style.css'
 
 const LABELS_FOR_ITERATIONS = {
-    number: 'N',
-    plus: '+',
-    multiplyTo: '×',
+    number: {
+        label: 'N',
+        suffix: '+',
+    },
+    plus: {
+        label: '+',
+        suffix: '×',
+    },
+    multiplyTo: {
+        label: '×',
+        suffix: '÷',
+    },
 }
 
 const IDS = {
@@ -58,8 +67,8 @@ class Demo extends Component {
     getCalculated = () => this.formatNumber((this.state.number +
         (this.state.plus * this.state.multiplyTo)) / this.state.divider)
 
-    getResult = () => `(${this.formatNumber(this.state.number)} ${LABELS_FOR_ITERATIONS.plus} ${
-        this.formatNumber(this.state.plus)} ${LABELS_FOR_ITERATIONS.multiplyTo} ${
+    getResult = () => `(${this.formatNumber(this.state.number)} ${LABELS_FOR_ITERATIONS.plus.label} ${
+        this.formatNumber(this.state.plus)} ${LABELS_FOR_ITERATIONS.multiplyTo.label} ${
         this.formatNumber(this.state.multiplyTo)}) ${LABELS.divider} ${this.formatNumber(this.state.divider)} = ${
         this.getCalculated()}\n${this.state.withDefault ? 'With default numbers' : 'Without default numbers'}`
 
@@ -100,10 +109,11 @@ class Demo extends Component {
                         readOnly={this.state.isReadonly}
                     />
                     <br />
-                    {_.reduce(LABELS_FOR_ITERATIONS, (result, label, id) => result.concat(<Input
+                    {_.reduce(LABELS_FOR_ITERATIONS, (result, strings, id) => result.concat(<Input
                         key={id}
                         id={id}
-                        label={label}
+                        label={strings.label}
+                        suffix={strings.suffix}
                         readOnly={this.state.isReadonly}
                         onFocus={selectAll}
                         className="inputs"
