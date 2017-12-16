@@ -11,6 +11,11 @@ const IDS = {
     decimalMark: 'decimalMark',
 }
 
+const DESCRIPTIONS = {
+    label: 'N',
+    suffix: '+',
+}
+
 const DIVIDERS = [2, 4, 8, 10]
 
 const DECIMAL_MARKS = ['.', ',', '·']
@@ -75,6 +80,8 @@ describe('Input', () => {
         <Input
             id={IDS.number}
             state={STATE}
+            label={DESCRIPTIONS.label}
+            suffix={DESCRIPTIONS.suffix}
         />
     )
     const multiLineWrapper = mount(
@@ -91,5 +98,13 @@ describe('Input', () => {
 
     it('render textarea', () => {
         expect(multiLineWrapper.find(`textarea[id="labeled-control-${IDS.string}"]`).length).toEqual(1)
+    })
+
+    it('render label', () => {
+        expect(oneLineWrapper.find('label').text()).toEqual(DESCRIPTIONS.label)
+    })
+
+    it('render suffix', () => {
+        expect(oneLineWrapper.find('span').text()).toEqual(DESCRIPTIONS.suffix)
     })
 })
