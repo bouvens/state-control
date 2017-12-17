@@ -127,6 +127,7 @@ class Demo extends Component {
                     <Radio
                         id={IDS.decimalMark}
                         label={LABELS.decimalMark}
+                        suffix="Decimal mark is used for inputs and formatting in result"
                         values={DECIMAL_MARKS}
                         readOnly={this.state.isReadonly}
                     />
