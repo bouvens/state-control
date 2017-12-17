@@ -13,6 +13,9 @@ const Label = styled.label`
     display: inline-block;
     padding-right: 0.3em;
 `
+const Suffix = styled.span`
+    padding-left: 0.3em;
+`
 
 const defaultNumberColor = '#cfffcf'
 
@@ -21,6 +24,7 @@ class Input extends React.PureComponent {
         className: PropTypes.string,
         id: PropTypes.string.isRequired,
         label: PropTypes.string,
+        suffix: PropTypes.string,
         refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
@@ -33,6 +37,7 @@ class Input extends React.PureComponent {
     static defaultProps = {
         className: '',
         label: '',
+        suffix: '',
         refHandler: _.noop,
         onClick: _.noop,
         onFocus: _.noop,
@@ -76,6 +81,7 @@ class Input extends React.PureComponent {
                     value={value}
                     {...passedProps}
                 />
+                <Suffix>{this.props.suffix}</Suffix>
             </Wrapper>
         )
     }
