@@ -142,7 +142,7 @@ Name of property of state and identifier for element.
 State that we want to change.
 
 #### `label`: PropTypes.string
-Label for the element.
+Label for the element. It able to have a node type in `<Radio />`.
 
 #### `value`: PropTypes.oneOfType(string, number, bool)
 Value will be used instead of state[id] if passed.
@@ -173,6 +173,9 @@ Handler for onFocus event. Handler will be called with input component as argume
 
 ### <Input \/>
 
+#### `suffix`: PropTypes.oneOfType(string, node)
+Text for showing after input field.
+
 #### `multiLine`: PropTypes.bool
 Flag can change input tag to textarea.
 
@@ -191,7 +194,7 @@ Symbol or array of symbols for replacing to decimal mark after removing all thou
 #### `numberColor`: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 String for background color or just flag for coloring fields where numbers had been parsed. It makes the implicit explicit.
 
-> All props will be passed to an inner element such as `<input />`. So type may be passed for entering only integer numbers:
+> All props will be passed to an inner element, and specifically to `<input />`. So type may be passed for entering only integer numbers:
 > ```
 > <Input
 >     type="number"
@@ -207,6 +210,8 @@ No special properties.
 #### `values`: PropTypes.array
 Array of available values.
 
+#### `suffix`: PropTypes.oneOfType(string, node)
+Text for showing after radio buttons.
 
 ## Using with Redux
 

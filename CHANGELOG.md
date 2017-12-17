@@ -1,3 +1,7 @@
+## 1.5.0 (December 17, 2017)
+* `suffix` property added
+* More unit tests had been written
+
 ## 1.4.1 (December 9, 2017)
 * Look of `<Input />` with background color improved
 * `readOnly` prop in `<Check />` and `<Radio />` fixed
