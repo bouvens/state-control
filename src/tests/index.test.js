@@ -1,6 +1,6 @@
 import React from 'react'
-import { mount, render, shallow } from 'enzyme'
-import { Check, Connector, Input } from '../index'
+import { mount, render } from 'enzyme'
+import { Check, Input } from '../index'
 
 const IDS = {
     isReadonly: 'isReadonly',
@@ -9,6 +9,11 @@ const IDS = {
     string: 'string',
     divider: 'divider',
     decimalMark: 'decimalMark',
+}
+
+const DESCRIPTIONS = {
+    label: 'N',
+    suffix: '+',
 }
 
 const DIVIDERS = [2, 4, 8, 10]
@@ -27,7 +32,7 @@ const STATE = {
 }
 
 describe('Check', () => {
-    const wrapper = render(
+    const checks = (
         <div>
             <Check
                 id={IDS.isReadonly}
@@ -39,6 +44,7 @@ describe('Check', () => {
             />
         </div>
     )
+    const wrapper = render(checks)
 
     it('shows falsy value', () => {
         expect(wrapper.find(`input[type="checkbox"][id="labeled-control-${IDS.isReadonly}"]`).prop('checked')).toBeFalsy()
@@ -49,41 +55,24 @@ describe('Check', () => {
     })
 })
 
-describe('Connector', () => {
-    const wrapper = shallow(
-        <Connector state={STATE}>
-            <Check id={IDS.withDefault} />
-            <Input id={IDS.number} />
-            {false &&
-            <Input id={IDS.plus} />}
-        </Connector>
-    )
-
-    it('passes new props to children', () => {
-        expect(wrapper.find(Check).props().state).toEqual(STATE)
-        expect(wrapper.find(Input).props().state).toEqual(STATE)
-    })
-
-    it('saves own props of children', () => {
-        expect(wrapper.find(Check).props().id).toEqual(IDS.withDefault)
-        expect(wrapper.find(Input).props().id).toEqual(IDS.number)
-    })
-})
-
 describe('Input', () => {
-    const oneLineWrapper = mount(
+    const oneLine = (
         <Input
             id={IDS.number}
             state={STATE}
+            label={DESCRIPTIONS.label}
+            suffix={DESCRIPTIONS.suffix}
         />
     )
-    const multiLineWrapper = mount(
+    const oneLineWrapper = mount(oneLine)
+    const multiLine = (
         <Input
             id={IDS.string}
             state={STATE}
             multiLine
         />
     )
+    const multiLineWrapper = mount(multiLine)
 
     it('render input', () => {
         expect(oneLineWrapper.find(`input[id="labeled-control-${IDS.number}"]`).length).toEqual(1)
@@ -91,5 +80,13 @@ describe('Input', () => {
 
     it('render textarea', () => {
         expect(multiLineWrapper.find(`textarea[id="labeled-control-${IDS.string}"]`).length).toEqual(1)
+    })
+
+    it('render label', () => {
+        expect(oneLineWrapper.find('label').text()).toEqual(DESCRIPTIONS.label)
+    })
+
+    it('render suffix', () => {
+        expect(oneLineWrapper.find('span').text()).toEqual(DESCRIPTIONS.suffix)
     })
 })
