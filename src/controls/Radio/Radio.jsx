@@ -19,6 +19,7 @@ class Radio extends React.PureComponent {
         className: PropTypes.string,
         id: PropTypes.string,
         label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+        suffix: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
         value: valueType,
         values: PropTypes.arrayOf(valueType),
         refHandler: PropTypes.func,
@@ -31,6 +32,7 @@ class Radio extends React.PureComponent {
         className: '',
         id: '',
         label: '',
+        suffix: '',
         value: '',
         values: [],
         refHandler: _.noop,
@@ -40,7 +42,19 @@ class Radio extends React.PureComponent {
     }
 
     render () {
-        const { className, id, label, values, value, refHandler, onClick, onFocus, readOnly, ...passedProps } = this.props
+        const {
+            className,
+            id,
+            label,
+            suffix,
+            values,
+            value,
+            refHandler,
+            onClick,
+            onFocus,
+            readOnly,
+            ...passedProps
+        } = this.props
 
         return (
             <Wrapper className={className} id={id}>
@@ -67,6 +81,7 @@ class Radio extends React.PureComponent {
                         </div>
                     )
                 })}
+                {suffix}
             </Wrapper>
         )
     }
