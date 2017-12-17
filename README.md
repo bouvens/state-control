@@ -173,7 +173,7 @@ Handler for onFocus event. Handler will be called with input component as argume
 
 ### <Input \/>
 
-#### `suffix`: PropTypes.oneOfType(string, node)
+#### `suffix`: PropTypes.string
 Text for showing after input field.
 
 #### `multiLine`: PropTypes.bool
