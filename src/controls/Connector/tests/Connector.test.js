@@ -15,7 +15,7 @@ const STATE = {
 }
 
 describe('Connector', () => {
-    const wrapper = shallow(
+    const connector = (
         <Connector state={STATE}>
             <Check id={IDS.withDefault} />
             <Input id={IDS.number} />
@@ -23,6 +23,7 @@ describe('Connector', () => {
             <Input id={IDS.plus} />}
         </Connector>
     )
+    const wrapper = shallow(connector)
 
     it('passes new props to children', () => {
         expect(wrapper.find(Check).props().state).toEqual(STATE)
