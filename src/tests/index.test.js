@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount, render } from 'enzyme'
-import { Check, Input } from '../index'
+import { Check, Input } from '../'
 
 const IDS = {
     isReadonly: 'isReadonly',

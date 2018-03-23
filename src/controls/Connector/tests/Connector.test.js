@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { Check, Connector, Input } from '../../../index'
+import { Check, Connector, Input } from '../../../'
 
 const IDS = {
     withDefault: 'withDefault',
