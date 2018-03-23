@@ -28,6 +28,40 @@ function replaceAll (from, to) {
     )
 }
 
+function saveCursorPosition ({ target }) {
+    if (target.selectionStart) {
+        return target.selectionStart
+    } else if (document.selection) { // IE support
+        target.focus()
+        // To get cursor position, get empty selection range
+        const selectionRange = document.selection.createRange()
+        // Move selection start to 0 position
+        selectionRange.moveStart('character', -target.value.length)
+        // The cursor position is selection length
+        return selectionRange.text.length
+    }
+
+    return 0
+}
+
+function restoreCursorPosition (target, cursorPosition) {
+    if (!target || _.isNil(cursorPosition)) {
+        return
+    }
+
+    if ((target.type === 'text' || target.type === 'textarea') && target === document.activeElement) {
+        if (target.setSelectionRange) {
+            target.setSelectionRange(cursorPosition, cursorPosition)
+        } else if (target.createTextRange) {
+            const range = target.createTextRange()
+            range.collapse(true)
+            range.moveStart('character', cursorPosition)
+            range.moveEnd('character', cursorPosition)
+            range.select()
+        }
+    }
+}
+
 const controlled = (Child) => class extends React.PureComponent {
     static propTypes = {
         id: PropTypes.string.isRequired,
@@ -44,6 +78,10 @@ const controlled = (Child) => class extends React.PureComponent {
         numberColor: NUMBER_COLOR_TYPE,
         thousandsSeparator: MARK_TYPE,
         alternateDecimalMark: MARK_TYPE,
+    }
+
+    componentDidUpdate () {
+        restoreCursorPosition(this.target, this.cursorPosition)
     }
 
     getId = () => `labeled-control-${this.props.id}`
@@ -70,6 +108,9 @@ const controlled = (Child) => class extends React.PureComponent {
         ? this.getNumberColor()
         : void 0)
 
+    cursorPosition = null
+    target = null
+
     prepareNum = (num) => _(num)
         .reduce(replaceAll(this.getThousandsSeparator(), ''), _(''))
         .reduce(replaceAll(this.getAlternateDecimalMarks(), '.'), _(''))
@@ -77,6 +118,9 @@ const controlled = (Child) => class extends React.PureComponent {
         .replace(this.getDecimalMark(), '.')
 
     changeHandler = (event) => {
+        this.target = event.target
+        this.cursorPosition = saveCursorPosition(event)
+
         let valueForReturn = event.target.value
         const { checked } = event.target
         const previousType = typeof this.getValue()
