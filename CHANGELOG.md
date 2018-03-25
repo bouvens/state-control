@@ -1,3 +1,8 @@
+## 1.5.1 (March 25, 2018)
+* Caret moving to the end of input field on automatic replaces and removes fixed
+* Name added to `controlled()` HOC for easy debugging
+* Dependencies is updated
+
 ## 1.5.0 (December 17, 2017)
 * `suffix` property added
 * More unit tests had been written

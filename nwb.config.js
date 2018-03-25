@@ -1,3 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
+const karmaJasmine = require('karma-jasmine')
+
 module.exports = {
     type: 'react-component',
     npm: {
@@ -23,9 +26,9 @@ module.exports = {
         // browsers: ['Chrome'],
         frameworks: ['jasmine'],
         plugins: [
-            require('karma-jasmine'),
+            karmaJasmine,
         ],
-        reportersList: ['progress', 'jasmine-diff'],
+        reporters: ['progress'],
         testContext: 'setupTests.js',
     },
 }

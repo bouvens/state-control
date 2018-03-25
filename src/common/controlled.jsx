@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
-// defaultProps doesn't work properly on proxy components
-// but proxy component is convenient in this case
+// defaultProps doesn't work properly on HOCs. Using recompose like `compose(defaultProps(DEFAULTS), withControl)`
+// clashes with <Connector /> and it's React.Children.map()
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
@@ -11,12 +11,13 @@ const DEFAULTS = {
     onClick: _.noop,
     onFocus: _.noop,
     decimalMark: '.',
-    thousandsSeparator: {
-        '.': [',', '\'', '’'],
-        ',': ' ',
-    },
-    alternateDecimalMark: ',',
     numberColor: false,
+    alternateDecimalMark: ',',
+}
+
+const DEFAULT_SEPARATORS = {
+    '.': [',', '\'', '’'],
+    ',': ' ',
 }
 
 // Helper function for using in _.reduce()
@@ -28,7 +29,7 @@ function replaceAll (from, to) {
     )
 }
 
-const controlled = (Child) => class extends React.PureComponent {
+const withControl = (Child) => class controlled extends React.Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         // state may contain not controlled parameters too
@@ -58,7 +59,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
     getDecimalMark = () => this.props.decimalMark || DEFAULTS.decimalMark
 
-    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULTS.thousandsSeparator[this.getDecimalMark()]
+    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.getDecimalMark()]
 
     getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
 
@@ -76,6 +77,17 @@ const controlled = (Child) => class extends React.PureComponent {
         .join('')
         .replace(this.getDecimalMark(), '.')
 
+    wasNumber = (valueForCheck, previousType) =>
+        (
+            !_.isNaN(Number(valueForCheck))
+            && valueForCheck.length
+        )
+        || (
+            previousType === 'number'
+            && !valueForCheck.length
+            && this.props.defaultNum
+        )
+
     changeHandler = (event) => {
         let valueForReturn = event.target.value
         const { checked } = event.target
@@ -89,9 +101,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
         const valueForCheck = this.prepareNum(valueForReturn)
 
-        if (((!_.isNaN(Number(valueForCheck)) && valueForCheck.length)
-                || (previousType === 'number' && !valueForCheck.length && this.props.defaultNum))
-            && !/(\.|\s|\.[0-9]*0)$/.test(valueForCheck)) {
+        if (this.wasNumber(valueForCheck, previousType) && !/(\.|\s|\.[0-9]*0)$/.test(valueForCheck)) {
             const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
             valueForReturn = parseFunc(valueForCheck, 10) || this.props.defaultNum || 0
         }
@@ -137,6 +147,8 @@ const controlled = (Child) => class extends React.PureComponent {
             'onFocus',
             'decimalMark',
             'numberColor',
+            'thousandsSeparator',
+            'alternateDecimalMark',
         ])
 
         return (
@@ -154,4 +166,4 @@ const controlled = (Child) => class extends React.PureComponent {
     }
 }
 
-export default controlled
+export default withControl
