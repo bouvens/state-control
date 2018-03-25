@@ -6,6 +6,7 @@
 /reports
 /umd
 npm-debug.log*
+yarn-error.log
 
 # Intellij
 .idea

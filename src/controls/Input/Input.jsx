@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
 import { NUMBER_COLOR_TYPE, VALUE_TYPE } from '../../common/constants'
+import { saveCursorPosition, restoreCursorPosition } from '../../common/utils'
 import controlled from '../../common/controlled'
 
 const Wrapper = styled.div`
@@ -19,7 +20,7 @@ const Suffix = styled.span`
 
 const defaultNumberColor = '#cfffcf'
 
-class Input extends React.PureComponent {
+class Input extends React.Component {
     static propTypes = {
         className: PropTypes.string,
         id: PropTypes.string.isRequired,
@@ -28,6 +29,7 @@ class Input extends React.PureComponent {
         refHandler: PropTypes.func,
         onClick: PropTypes.func,
         onFocus: PropTypes.func,
+        onChange: PropTypes.func,
         value: VALUE_TYPE,
         multiLine: PropTypes.bool,
         readOnly: PropTypes.bool,
@@ -41,10 +43,21 @@ class Input extends React.PureComponent {
         refHandler: _.noop,
         onClick: _.noop,
         onFocus: _.noop,
+        onChange: _.noop,
         value: '',
         multiLine: false,
         readOnly: false,
         numberColor: false,
+    }
+
+    componentWillReceiveProps (nextProps) {
+        if (this.props.value === nextProps.value && this.target === document.activeElement) {
+            this.cursorPosition -= 1
+        }
+    }
+
+    componentDidUpdate () {
+        restoreCursorPosition(this.target, this.cursorPosition)
     }
 
     Inner = styled[this.props.multiLine ? 'textarea' : 'input']`
@@ -67,18 +80,28 @@ class Input extends React.PureComponent {
     }};
     `
 
+    handleRef = (cb) => (element) => {
+        this.target = element
+        cb(element)
+    }
+
+    changeHandler = (cb) => (event) => {
+        this.cursorPosition = saveCursorPosition(event)
+        cb(event)
+    }
+
     render () {
-        const { className, label, refHandler, onClick, onFocus, value, ...passedProps } = this.props
+        const { className, label, refHandler, onClick, onFocus, onChange, ...passedProps } = this.props
         const { Inner } = this
 
         return (
             <Wrapper className={className}>
                 <Label htmlFor={this.props.id}>{label}</Label>
                 <Inner
-                    innerRef={refHandler(this)}
+                    innerRef={this.handleRef(refHandler(this))}
                     onClick={onClick(this)}
                     onFocus={onFocus(this)}
-                    value={value}
+                    onChange={this.changeHandler(onChange)}
                     {...passedProps}
                 />
                 <Suffix>{this.props.suffix}</Suffix>
