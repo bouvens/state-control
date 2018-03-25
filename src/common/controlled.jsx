@@ -1,5 +1,6 @@
 /* eslint-disable react/require-default-props */
-// defaultProps doesn't work properly on HOCs
+// defaultProps doesn't work properly on HOCs. Using recompose like `compose(defaultProps(DEFAULTS), withControl)`
+// clashes with <Connector /> and it's React.Children.map()
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
@@ -10,12 +11,13 @@ const DEFAULTS = {
     onClick: _.noop,
     onFocus: _.noop,
     decimalMark: '.',
-    thousandsSeparator: {
-        '.': [',', '\'', '’'],
-        ',': ' ',
-    },
-    alternateDecimalMark: ',',
     numberColor: false,
+    alternateDecimalMark: ',',
+}
+
+const DEFAULT_SEPARATORS = {
+    '.': [',', '\'', '’'],
+    ',': ' ',
 }
 
 // Helper function for using in _.reduce()
@@ -27,7 +29,7 @@ function replaceAll (from, to) {
     )
 }
 
-const controlled = (Child) => class extends React.PureComponent {
+const withControl = (Child) => class controlled extends React.Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         // state may contain not controlled parameters too
@@ -57,7 +59,7 @@ const controlled = (Child) => class extends React.PureComponent {
 
     getDecimalMark = () => this.props.decimalMark || DEFAULTS.decimalMark
 
-    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULTS.thousandsSeparator[this.getDecimalMark()]
+    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.getDecimalMark()]
 
     getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
 
@@ -145,6 +147,8 @@ const controlled = (Child) => class extends React.PureComponent {
             'onFocus',
             'decimalMark',
             'numberColor',
+            'thousandsSeparator',
+            'alternateDecimalMark',
         ])
 
         return (
@@ -162,4 +166,4 @@ const controlled = (Child) => class extends React.PureComponent {
     }
 }
 
-export default controlled
+export default withControl
