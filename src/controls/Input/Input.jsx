@@ -56,7 +56,6 @@ class Input extends React.Component {
         }
     }
 
-
     componentDidUpdate () {
         restoreCursorPosition(this.target, this.cursorPosition)
     }
