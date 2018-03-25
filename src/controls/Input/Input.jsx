@@ -19,7 +19,7 @@ const Suffix = styled.span`
 
 const defaultNumberColor = '#cfffcf'
 
-class Input extends React.PureComponent {
+class Input extends React.Component {
     static propTypes = {
         className: PropTypes.string,
         id: PropTypes.string.isRequired,

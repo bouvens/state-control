@@ -1,6 +1,5 @@
 /* eslint-disable react/require-default-props */
-// defaultProps doesn't work properly on proxy components
-// but proxy component is convenient in this case
+// defaultProps doesn't work properly on HOCs
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
