@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import { ALLOW_SET_SELECTION_RANGE } from './constants'
+
+const ALLOW_SET_SELECTION_RANGE = ['text', 'search', 'URL', 'tel', 'password']
 
 export const selectAll = (control) => {
     if (_.includes(ALLOW_SET_SELECTION_RANGE, control.type)) {
