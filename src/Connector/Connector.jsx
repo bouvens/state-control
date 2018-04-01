@@ -11,8 +11,8 @@ export const Connector = (props) => {
                 (child) => (
                     child && typeof child.type === 'function'
                         ? <child.type
-                            {...passedProps}
                             {...child.props}
+                            {...passedProps}
                         />
                         : child
                 )

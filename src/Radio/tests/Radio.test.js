@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { Radio } from '../../../'
+import { Radio } from '../../'
 
 const IDS = {
     isReadonly: 'isReadonly',

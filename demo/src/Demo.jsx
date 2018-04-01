@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 
-import { Check, Connector, Input, Radio, SettersBlock } from '../../src'
-import { selectAll } from '../../src/common/utils'
+import { Check, Connector, Input, Radio, selectAll, SettersBlock } from '../../src'
 import './style.css'
 
 const LABELS_FOR_ITERATIONS = {

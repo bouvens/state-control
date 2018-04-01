@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
-import controlled from '../../common/controlled'
+import controlled from '../common/controlled'
 
 const Wrapper = styled.div`
     margin-bottom: 0.8em;

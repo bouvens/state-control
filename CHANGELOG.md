@@ -1,3 +1,6 @@
+## 1.6.0 (April 1, 2018)
+* It's possible now to import separate components like `import Input from 'state-control/Input'`
+
 ## 1.5.1 (March 25, 2018)
 * Caret moving to the end of input field on automatic replaces and removes fixed
 * Name added to `controlled()` HOC for easy debugging
