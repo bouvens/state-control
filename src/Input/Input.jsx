@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
-import { NUMBER_COLOR_TYPE, VALUE_TYPE } from '../../common/constants'
-import { saveCursorPosition, restoreCursorPosition } from '../../common/utils'
-import controlled from '../../common/controlled'
+import { NUMBER_COLOR_TYPE, VALUE_TYPE } from '../common/constants'
+import { saveCursorPosition, restoreCursorPosition } from '../common/utils'
+import controlled from '../common/controlled'
 
 const Wrapper = styled.div`
     margin-bottom: 0.7em;
