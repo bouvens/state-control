@@ -1,6 +1,6 @@
 # React state-control &middot; [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
 
-A bunch of lightweight components for simply updating Model stored in React’s state of stateful root component. It fits to strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
+A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. It fits to strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
 
 This package also provides component for presets of values (`<SettersBlock />`) and helper to reduce your source code size (`<Connector />`). It can be even used with Redux (see below).
 

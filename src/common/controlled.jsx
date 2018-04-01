@@ -1,12 +1,12 @@
-/* eslint-disable react/require-default-props */
-// defaultProps doesn't work properly on HOCs. Using recompose like `compose(defaultProps(DEFAULTS), withControl)`
-// clashes with <Connector /> and it's React.Children.map()
+/* eslint-disable react/require-default-props, comment: defaultProps coming from recompose library */
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import compose from 'recompose/compose'
+import defaultProps from 'recompose/defaultProps'
 import { MARK_TYPE, NUMBER_COLOR_TYPE, VALUE_TYPE } from './constants'
 
-const DEFAULTS = {
+const DEFAULT_PROPS = {
     onChange: _.noop,
     onClick: _.noop,
     onFocus: _.noop,
@@ -57,25 +57,17 @@ const withControl = (Child) => class controlled extends React.Component {
             : _.get(this.props.state, this.getPath())
     )
 
-    getDecimalMark = () => this.props.decimalMark || DEFAULTS.decimalMark
-
-    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.getDecimalMark()]
-
-    getAlternateDecimalMarks = () => this.props.alternateDecimalMark || DEFAULTS.alternateDecimalMark
-
-    getNumberColor = () => (_.isUndefined(this.props.numberColor)
-        ? DEFAULTS.numberColor
-        : this.props.numberColor)
+    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.props.decimalMark]
 
     getColorIfNumber = () => (typeof this.getValue() === 'number'
-        ? this.getNumberColor()
+        ? this.props.numberColor
         : void 0)
 
     prepareNum = (num) => _(num)
         .reduce(replaceAll(this.getThousandsSeparator(), ''), _(''))
-        .reduce(replaceAll(this.getAlternateDecimalMarks(), '.'), _(''))
+        .reduce(replaceAll(this.props.alternateDecimalMark, '.'), _(''))
         .join('')
-        .replace(this.getDecimalMark(), '.')
+        .replace(this.props.decimalMark, '.')
 
     wasNumber = (valueForCheck, previousType) =>
         (
@@ -94,7 +86,7 @@ const withControl = (Child) => class controlled extends React.Component {
         const previousType = typeof this.getValue()
 
         if (previousType === 'boolean' || event.target.type === 'checkbox') {
-            (this.props.onChange || DEFAULTS.onChange)(this.getPath(), checked)
+            this.props.onChange(this.getPath(), checked)
 
             return
         }
@@ -106,14 +98,14 @@ const withControl = (Child) => class controlled extends React.Component {
             valueForReturn = parseFunc(valueForCheck, 10) || this.props.defaultNum || 0
         }
 
-        (this.props.onChange || DEFAULTS.onChange)(this.getPath(), valueForReturn)
+        this.props.onChange(this.getPath(), valueForReturn)
     }
 
-    clickHandler = (that) => () => (this.props.onClick || DEFAULTS.onClick)(that.control)
+    clickHandler = (that) => () => this.props.onClick(that.control)
 
-    focusHandler = (that) => () => (this.props.onFocus || DEFAULTS.onFocus)(that.control)
+    focusHandler = (that) => () => this.props.onFocus(that.control)
 
-    formatNum = (num = this.getValue()) => num.toString().replace('.', this.getDecimalMark())
+    formatNum = (num = this.getValue()) => num.toString().replace('.', this.props.decimalMark)
 
     showValue = () => {
         const value = this.getValue()
@@ -166,4 +158,4 @@ const withControl = (Child) => class controlled extends React.Component {
     }
 }
 
-export default withControl
+export default compose(defaultProps(DEFAULT_PROPS), withControl)
