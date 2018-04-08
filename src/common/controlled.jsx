@@ -13,6 +13,7 @@ const DEFAULT_PROPS = {
     decimalMark: '.',
     numberColor: false,
     alternateDecimalMark: ',',
+    trimOnPaste: true,
 }
 
 const DEFAULT_SEPARATORS = {
@@ -25,7 +26,7 @@ function replaceAll (from, to) {
     return (cleaned, char) => (
         typeof from === 'string'
             ? cleaned.concat(from === char ? to : char)
-            : cleaned.concat(_.indexOf(from, char) === -1 ? char : to)
+            : cleaned.concat(from.indexOf(char) >= 0 ? to : char)
     )
 }
 
@@ -45,6 +46,7 @@ const withControl = (Child) => class controlled extends React.Component {
         numberColor: NUMBER_COLOR_TYPE,
         thousandsSeparator: MARK_TYPE,
         alternateDecimalMark: MARK_TYPE,
+        trimOnPaste: PropTypes.bool,
     }
 
     getId = () => `labeled-control-${this.props.id}`
@@ -80,12 +82,11 @@ const withControl = (Child) => class controlled extends React.Component {
             && this.props.defaultNum
         )
 
-    changeHandler = (event) => {
-        let valueForReturn = event.target.value
-        const { checked } = event.target
+    processNewValue = ({ value, checked, type }) => {
+        let valueForReturn = value
         const previousType = typeof this.getValue()
 
-        if (previousType === 'boolean' || event.target.type === 'checkbox') {
+        if (previousType === 'boolean' || type === 'checkbox') {
             this.props.onChange(this.getPath(), checked)
 
             return
@@ -99,6 +100,23 @@ const withControl = (Child) => class controlled extends React.Component {
         }
 
         this.props.onChange(this.getPath(), valueForReturn)
+    }
+
+    changeHandler = ({ target }) => {
+        const { value, checked, type } = target
+        this.processNewValue({ value, checked, type })
+    }
+
+    pasteHandler = (event) => {
+        event.preventDefault()
+
+        const { checked, type } = event.target
+        let value = event.clipboardData.getData('Text')
+        if (this.props.trimOnPaste) {
+            value = _.trim(value, ' \t\n')
+        }
+
+        this.processNewValue({ value, checked, type })
     }
 
     clickHandler = (that) => () => this.props.onClick(that.control)
@@ -149,6 +167,7 @@ const withControl = (Child) => class controlled extends React.Component {
                 id={this.getId()}
                 value={this.showValue()}
                 onChange={this.changeHandler}
+                onPaste={this.pasteHandler}
                 onClick={this.clickHandler}
                 onFocus={this.focusHandler}
                 refHandler={this.refHandler}
