@@ -1,4 +1,4 @@
-# React state-control &middot; [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
+# React's state-control [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
 
 A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. It fits to strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
 
@@ -7,7 +7,7 @@ This package also provides component for presets of values (`<SettersBlock />`) 
 ## [Demo](https://bouvens.github.io/state-control/)
 
 You are able to see live demo at [https://bouvens.github.io/state-control/](https://bouvens.github.io/state-control/)
-Source code of this demo is available in [the repository](https://github.com/bouvens/state-control/blob/master/demo/src/index.js).
+Source code of this demo is available in [the repository](https://github.com/bouvens/state-control/blob/master/demo/src).
 
 ## Quick start
 
@@ -158,6 +158,9 @@ Handler for onClick event.
 
 #### `onFocus`: PropTypes.func
 Handler for onFocus event. Handler will be called with input component as argument.
+
+#### `trimOnPaste`: PropTypes.bool
+Flag turns on trimming spaces, tabs and new line characters on paste. True on default.
 
 > Example for selecting all on focus:
 > ```JSX

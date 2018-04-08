@@ -1,3 +1,6 @@
+## 1.7.0 (April 8, 2018)
+* `trimOnPaste` property added
+
 ## 1.6.1 (April 1, 2018)
 * Misspelling fixed
 
