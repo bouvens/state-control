@@ -1,5 +1,8 @@
+## 1.7.2 (April 21, 2018)
+* Replaces of thousand separators fixed
+
 ## 1.7.1 (April 21, 2018)
-* Fix build
+* Build fixed
 
 ## 1.7.0 (April 8, 2018)
 * `trimOnPaste` property added

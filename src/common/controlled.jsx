@@ -18,17 +18,10 @@ const DEFAULT_PROPS = {
 
 const DEFAULT_SEPARATORS = {
     '.': [',', '\'', '’'],
-    ',': ' ',
+    ',': [' '],
 }
 
-// Helper function for using in _.reduce()
-function replaceAll (from, to) {
-    return (cleaned, char) => (
-        typeof from === 'string'
-            ? cleaned.concat(from === char ? to : char)
-            : cleaned.concat(from.indexOf(char) >= 0 ? to : char)
-    )
-}
+const makeRegexp = (str) => new RegExp(`[${str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&').replace(' ', '\\s')}]`, 'g')
 
 const withControl = (Child) => class controlled extends React.Component {
     static propTypes = {
@@ -59,16 +52,15 @@ const withControl = (Child) => class controlled extends React.Component {
             : _.get(this.props.state, this.getPath())
     )
 
-    getThousandsSeparator = () => this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.props.decimalMark]
+    getThousandsSeparator = () => (this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.props.decimalMark]).join('')
 
     getColorIfNumber = () => (typeof this.getValue() === 'number'
         ? this.props.numberColor
         : void 0)
 
-    prepareNum = (num) => _(num)
-        .reduce(replaceAll(this.getThousandsSeparator(), ''), _(''))
-        .reduce(replaceAll(this.props.alternateDecimalMark, '.'), _(''))
-        .join('')
+    prepareNum = (num) => num
+        .replace(makeRegexp(this.getThousandsSeparator()), '')
+        .replace(this.props.alternateDecimalMark, '.')
         .replace(this.props.decimalMark, '.')
 
     wasNumber = (valueForCheck, previousType) =>
