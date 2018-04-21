@@ -1,3 +1,6 @@
+## 1.7.1 (April 21, 2018)
+* Fix build
+
 ## 1.7.0 (April 8, 2018)
 * `trimOnPaste` property added
 
