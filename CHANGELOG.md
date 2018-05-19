@@ -1,3 +1,6 @@
+## 1.8.0 (May 19, 2018)
+* `trimOnPaste` property expanded with removing of unsignificant zeros on the end of number
+
 ## 1.7.2 (April 21, 2018)
 * Replaces of thousand separators fixed
 

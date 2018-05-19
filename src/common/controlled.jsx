@@ -74,9 +74,9 @@ const withControl = (Child) => class controlled extends React.Component {
             && this.props.defaultNum
         )
 
-    processNewValue = ({ value, checked, type }) => {
-        let valueForReturn = value
+    processNewValue = ({ value, checked, type }, isRemoveZeros) => {
         const previousType = typeof this.getValue()
+        let valueForReturn = value
 
         if (previousType === 'boolean' || type === 'checkbox') {
             this.props.onChange(this.getPath(), checked)
@@ -84,7 +84,16 @@ const withControl = (Child) => class controlled extends React.Component {
             return
         }
 
-        const valueForCheck = this.prepareNum(valueForReturn)
+        let valueForCheck = this.prepareNum(valueForReturn)
+        if (isRemoveZeros) {
+            const match = new RegExp('^(\\d+\\.(?:0*[1-9]+)?)0*$').exec(valueForCheck)
+            if (match && match[1]) {
+                [, valueForCheck] = match
+                if (/\.$/.test(valueForCheck)) {
+                    valueForCheck = valueForCheck.slice(0, -1)
+                }
+            }
+        }
 
         if (this.wasNumber(valueForCheck, previousType) && !/(\.|\s|\.[0-9]*0)$/.test(valueForCheck)) {
             const parseFunc = /\./.test(valueForCheck) ? parseFloat : parseInt
@@ -108,7 +117,7 @@ const withControl = (Child) => class controlled extends React.Component {
             value = _.trim(value, ' \t\n')
         }
 
-        this.processNewValue({ value, checked, type })
+        this.processNewValue({ value, checked, type }, this.props.trimOnPaste)
     }
 
     clickHandler = (that) => () => this.props.onClick(that.control)
