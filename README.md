@@ -160,7 +160,7 @@ Handler for onClick event.
 Handler for onFocus event. Handler will be called with input component as argument.
 
 #### `trimOnPaste`: PropTypes.bool
-Flag turns on trimming spaces, tabs and new line characters on paste. True on default.
+Flag turns on trimming spaces, tabs and new line characters on paste. It also removes trailing zeros on pasting numbers. True by default.
 
 > Example for selecting all on focus:
 > ```JSX
