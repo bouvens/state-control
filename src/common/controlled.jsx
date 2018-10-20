@@ -86,7 +86,7 @@ const withControl = (Child) => class controlled extends React.Component {
 
         let valueForCheck = this.prepareNum(valueForReturn)
         if (isRemoveZeros) {
-            const match = new RegExp('^(\\d+\\.(?:0*[1-9]+)?)0*$').exec(valueForCheck)
+            const match = new RegExp('^(\\d+\\.(?:0*(?:\\d?[1-9])+)?)0*$').exec(valueForCheck)
             if (match && match[1]) {
                 [, valueForCheck] = match
                 if (/\.$/.test(valueForCheck)) {
