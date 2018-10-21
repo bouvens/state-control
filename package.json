@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Small npm package for simple changing state of React components",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -25,26 +25,26 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "recompose": "^0.26.0",
-    "styled-components": "^2.2.3"
+    "recompose": "^0.30.0",
+    "styled-components": "^4.0.2"
   },
   "peerDependencies": {
     "react": "16.x"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.2",
+    "babel-eslint": "^10.0.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "eslint": "^4.12.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
-    "gh-pages": "^1.1.0",
-    "jasmine": "^2.8.0",
+    "gh-pages": "^2.0.1",
+    "jasmine": "^3.2.0",
     "karma-jasmine": "^1.1.1",
-    "nwb": "0.21.5",
+    "nwb": "0.23.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },

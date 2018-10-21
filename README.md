@@ -24,35 +24,35 @@ import { Check, Connector, Input, Radio, SettersBlock, selectAll } from 'state-c
 Most likely you will also need an array of identifiers:
 ```JSX
 const IDS = {
-   firstStateParameter: 'firstStateParameter',
-   secondStateParameter: 'secondStateParameter',
+  firstStateParameter: 'firstStateParameter',
+  secondStateParameter: 'secondStateParameter',
 }
 ```
 
 Use this identifiers as names in state and add a `changeHandler`:
 ```JSX
 class Demo extends Component {
-    state = {
-        [IDS.firstStateParameter] = 1,
-        [IDS.secondStateParameter] = 'second',
-    }
+  state = {
+    [IDS.firstStateParameter] = 1,
+    [IDS.secondStateParameter] = 'second',
+  }
 
-    changeHandler = (name, value) => {
-        // input value may be proceded here
-        this.setState({ [name]: value })
-    }
+  changeHandler = (name, value) => {
+    // input value may be proceded here
+    this.setState({ [name]: value })
+  }
 
-    ...
+  ...
 }
 ```
 
 And also us the array in `id` of component to connect it to corresponding property of state:
 ```JSX
 <Input
-    state={this.state}
-    onChange={this.changeHandler}
-    id={IDS.firstStateParameter}
-    label={'First state parameter'}
+  state={this.state}
+  onChange={this.changeHandler}
+  id={IDS.firstStateParameter}
+  label={'First state parameter'}
 />
 ```
 
@@ -62,17 +62,17 @@ That's it!
 You can use `Connector` component for passing common props to all children:
 ```JSX
 <Connector
-    state={this.state}
-    onChange={this.changeHandler}
+  state={this.state}
+  onChange={this.changeHandler}
 >
-    <Input
-        id={IDS.firstStateParameter}
-        label={'First state parameter'}
-    />
-    <Input
-        id={IDS.secondStateParameter}
-        label={'Second state parameter'}
-    />
+  <Input
+    id={IDS.firstStateParameter}
+    label={'First state parameter'}
+  />
+  <Input
+    id={IDS.secondStateParameter}
+    label={'Second state parameter'}
+  />
 </Connector>
 ```
 
@@ -80,54 +80,54 @@ You can use `Connector` component for passing common props to all children:
 This component generates elements for activation of presets:
 ```JSX
 <SettersBlock
-    setters={SETTERS}
-    setHandler={this.changeHandler}
+  setters={SETTERS}
+  setHandler={this.changeHandler}
 />
 ```
 
 It uses an object of presets:
 ```JSX
 const SETTERS = [
-    Default: {
-        [IDS.firstStateParameter]: 1,
-        [IDS.secondStateParameter]: 'second',
-    },
-    'This text will be used as a label': {
-        [IDS.firstStateParameter]: 'first',
-        [IDS.secondStateParameter]: 2,
-    },
+  Default: {
+    [IDS.firstStateParameter]: 1,
+    [IDS.secondStateParameter]: 'second',
+  },
+  'This text will be used as a label': {
+    [IDS.firstStateParameter]: 'first',
+    [IDS.secondStateParameter]: 2,
+  },
 ]
 ```
 
 It also accepts array of presets:
 ```JSX
 const SETTERS = [
-    {
-        text: 'Default',
-        params: {
-            [IDS.firstStateParameter]: 1,
-            [IDS.secondStateParameter]: 'second',
-        },
+  {
+    text: 'Default',
+    params: {
+      [IDS.firstStateParameter]: 1,
+      [IDS.secondStateParameter]: 'second',
     },
-    {
-        text: 'This text will be used as a label',
-        params: {
-            [IDS.firstStateParameter]: 'first',
-            [IDS.secondStateParameter]: 2,
-        },
+  },
+  {
+    text: 'This text will be used as a label',
+    params: {
+      [IDS.firstStateParameter]: 'first',
+      [IDS.secondStateParameter]: 2,
     },
+  },
 ]
 ```
 
 > It's good idea to use preset as a default state:
 > ```JSX
 > class Demo extends Component {
->     state = SETTERS.Default
+>   state = SETTERS.Default
 >
->     // For array setters there will be
->     // state = SETTERS[0].params
+>   // For array setters there will be
+>   // state = SETTERS[0].params
 >
->     ...
+>   ...
 > }
 > ```
 
@@ -159,20 +159,22 @@ Handler for onClick event.
 #### `onFocus`: PropTypes.func
 Handler for onFocus event. Handler will be called with input component as argument.
 
-#### `trimOnPaste`: PropTypes.bool
-Flag turns on trimming spaces, tabs and new line characters on paste. It also removes trailing zeros on pasting numbers. True by default.
-
 > Example for selecting all on focus:
 > ```JSX
-> handleFocus = (control) => control.setSelectionRange(0, control.value.length)
+> handleFocus = (control) => {
+>   control.setSelectionRange(0, control.value.length)
+> }
 >
-> // or just include and use prepared handler
+> // or just include and use predefined handler
 > import { selectAll } from 'state-control'
 > <Input
->     onFocus={selectAll}
->     ...
+>   onFocus={selectAll}
+>   ...
 > />
 > ```
+
+#### `trimOnPaste`: PropTypes.bool
+Flag turns on trimming spaces, tabs and new line characters on paste. It also removes trailing zeros on pasting numbers. True by default.
 
 ### <Input \/>
 
@@ -200,8 +202,8 @@ String for background color or just flag for coloring fields where numbers had b
 > All props will be passed to an inner element, and specifically to `<input />`. So type may be passed for entering only integer numbers:
 > ```
 > <Input
->     type="number"
->     ...
+>   type="number"
+>   ...
 > />
 > ```
 
@@ -223,8 +225,8 @@ This integration is not very well made, but can be used.
 For the beginning create a mapping for identifiers and paths in store:
 ```JSX
 const IDS = {
-    parameter: 'firstReducer.parameter',
-    anotherParameter: 'secondReducer.parameter',
+  parameter: 'firstReducer.parameter',
+  anotherParameter: 'secondReducer.parameter',
 }
 ```
 
@@ -236,15 +238,15 @@ import { extendConnection, mapStateToIds } from 'state-control'
 Use first helper to add mapped identifiers to connected props:
 ```JSX
 mapStateToProps = extendConnection((state) => ({
-    thirdParam: state.firstReducer.anotherParameter,
+  thirdParam: state.firstReducer.anotherParameter,
 }), IDS)
 ```
 
 And second helper for pick out props:
 ```JSX
 <Connector
-    state={mapStateToIds(this.props, IDS)}
-    onChange={this.changeHandler}
+  state={mapStateToIds(this.props, IDS)}
+  onChange={this.changeHandler}
 />
 ```
 
@@ -253,20 +255,20 @@ In addition, of course, you need appropriate actions and reducers. Example of ac
 import _ from 'lodash'
 
 export const setState = (name, value) => ({
-    type: types.SET_STATE,
-    data: { [name]: value },
+  type: types.SET_STATE,
+  data: { [name]: value },
 })
 ```
 
 And reducer:
 ```JSX
 export default function (state, action) {
-    switch (action.type) {
-        case types.SET_STATE:
-            return _.extend({}, state, action.data.firstReducer)
-        default:
-            return state
-    }
+  switch (action.type) {
+    case types.SET_STATE:
+      return _.extend({}, state, action.data.firstReducer)
+    default:
+      return state
+  }
 }
 ```
 
