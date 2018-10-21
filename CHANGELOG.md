@@ -1,3 +1,9 @@
+## 1.9.0 (October 21, 2018)
+* Updates for <React.StrictMode />
+* Fix for zeros' trimming on pasting numbers like 3.6020
+* Dependencies updates
+* Code reformatting
+
 ## 1.8.0 (May 19, 2018)
 * `trimOnPaste` property expanded with removing of unsignificant zeros on the end of number
 
