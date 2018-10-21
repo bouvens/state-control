@@ -2,33 +2,33 @@
 const karmaJasmine = require('karma-jasmine')
 
 module.exports = {
-    type: 'react-component',
-    npm: {
-        esModules: true,
+  type: 'react-component',
+  npm: {
+    esModules: true,
+  },
+  webpack: {
+    html: {
+      template: 'src/index.html',
     },
-    webpack: {
-        html: {
-            template: 'src/index.html',
-        },
-        rules: {
-            babel: {
-                test: /\.jsx?/,
-            },
-        },
-        extra: {
-            resolve: {
-                extensions: ['.js', '.jsx', '.json'],
-            },
-        },
-        publicPath: '',
+    rules: {
+      babel: {
+        test: /\.jsx?/,
+      },
     },
-    karma: {
-        // browsers: ['Chrome'],
-        frameworks: ['jasmine'],
-        plugins: [
-            karmaJasmine,
-        ],
-        reporters: ['progress'],
-        testContext: 'setupTests.js',
+    extra: {
+      resolve: {
+        extensions: ['.js', '.jsx', '.json'],
+      },
     },
+    publicPath: '',
+  },
+  karma: {
+    // browsers: ['Chrome'],
+    frameworks: ['jasmine'],
+    plugins: [
+      karmaJasmine,
+    ],
+    reporters: ['progress'],
+    testContext: 'setupTests.js',
+  },
 }

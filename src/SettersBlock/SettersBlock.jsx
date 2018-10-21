@@ -15,68 +15,70 @@ const A = styled.a`
 `
 
 const Setter = ({ text, tabIndex, onClick }) => (
-    <Wrapper>
-        <A
-            role="button"
-            onClick={onClick}
-            tabIndex={tabIndex}
-        >
-            {text}
-        </A>
-    </Wrapper>
+  <Wrapper>
+    <A
+      role="button"
+      onClick={onClick}
+      tabIndex={tabIndex}
+    >
+      {text}
+    </A>
+  </Wrapper>
 )
 
 Setter.propTypes = {
-    text: PropTypes.string,
-    tabIndex: PropTypes.number,
-    onClick: PropTypes.func,
+  text: PropTypes.string,
+  tabIndex: PropTypes.number,
+  onClick: PropTypes.func,
 }
 
 Setter.defaultProps = {
-    text: '',
-    tabIndex: -1,
-    onClick: _.noop,
+  text: '',
+  tabIndex: -1,
+  onClick: _.noop,
 }
 
 const setParams = (setHandler, params) => () => {
-    _.each(params, (value, name) => {
-        setHandler(name, value)
-    })
+  _.each(params, (value, name) => {
+    setHandler(name, value)
+  })
 }
 
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
-    let index = 0
-    const settersArray = _.isArray(setters)
-        ? setters.map((setter) => [
-            setter.text,
-            setter.params,
-        ])
-        : _.toPairs(setters)
+  let index = 0
+  const settersArray = _.isArray(setters)
+    ? setters.map((setter) => [
+      setter.text,
+      setter.params,
+    ])
+    : _.toPairs(setters)
 
-    return (
-        <div className={className}>
-            {settersArray.map((setter) => {
-                index += 1
+  return (
+    <div className={className}>
+      {settersArray.map((setter) => {
+        index += 1
 
-                return (<Setter
-                    onClick={setParams(setHandler, setter[1])}
-                    key={index}
-                    tabIndex={index + tabIndexOffset}
-                    text={setter[0]}
-                />)
-            })}
-        </div>
-    )
+        return (
+          <Setter
+            onClick={setParams(setHandler, setter[1])}
+            key={index}
+            tabIndex={index + tabIndexOffset}
+            text={setter[0]}
+          />
+        )
+      })}
+    </div>
+  )
 }
 
 SettersBlock.propTypes = {
-    className: PropTypes.string,
-    setters: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-    setHandler: PropTypes.func.isRequired,
-    tabIndexOffset: PropTypes.number,
+  className: PropTypes.string,
+  setters: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+  setHandler: PropTypes.func.isRequired,
+  tabIndexOffset: PropTypes.number,
 }
 
 SettersBlock.defaultProps = {
-    className: '',
-    tabIndexOffset: 1,
+  className: '',
+  tabIndexOffset: 1,
 }
