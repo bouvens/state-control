@@ -70,13 +70,10 @@ class Input extends React.Component {
   }};
     `
 
-  componentWillReceiveProps (nextProps) {
+  componentDidUpdate (nextProps) {
     if (this.props.value === nextProps.value && this.target === document.activeElement) {
       this.cursorPosition -= 1
     }
-  }
-
-  componentDidUpdate () {
     restoreCursorPosition(this.target, this.cursorPosition)
   }
 

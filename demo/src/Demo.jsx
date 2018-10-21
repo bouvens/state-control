@@ -29,6 +29,8 @@ const LABELS = {
   [IDS.decimalMark]: 'Decimal mark for inputs and the result',
 }
 
+const DEFAULT_NUMBER = 1
+
 const DIVIDERS = [2, 4, 8, 10]
 
 const DECIMAL_MARKS = ['.', ',', '·']
@@ -77,7 +79,7 @@ export default class Demo extends Component {
 
   render () {
     return (
-      <div className="example">
+      <React.StrictMode>
         <h2>Some presets</h2>
         <SettersBlock
           setters={PRESETS}
@@ -87,7 +89,7 @@ export default class Demo extends Component {
         <Connector
           state={this.state}
           onChange={this.handleSave}
-          defaultNum={this.state.withDefault ? 1 : null}
+          defaultNum={this.state.withDefault ? DEFAULT_NUMBER : null}
           decimalMark={this.state.decimalMark}
           numberColor={this.state.numberColor}
         >
@@ -97,7 +99,7 @@ export default class Demo extends Component {
           />
           <Check
             id="withDefault"
-            label="Inputs with default numbers = 1"
+            label={`Inputs with default numbers = ${DEFAULT_NUMBER}`}
             readOnly={this.state.isReadonly}
           />
           <Check
@@ -137,7 +139,7 @@ export default class Demo extends Component {
           readOnly
           style={{ width: '300px' }}
         />
-      </div>
+      </React.StrictMode>
     )
   }
 }
