@@ -1,3 +1,8 @@
+## 1.10.0 (December 1, 2018)
+* Selection is saved now on clicks, focus, and keyboard events if state updating continuously
+* Selection is saved instead of caret position
+* Dependencies updates
+
 ## 1.9.0 (October 21, 2018)
 * Updates for <React.StrictMode />
 * Fix for zeros' trimming on pasting numbers like 3.6020
