@@ -41,6 +41,7 @@ const PRESETS = {
     withDefault: true,
     numberColor: false,
     number: 2,
+    selectAllOnFocus: false,
     plus: 3.6,
     multiplyTo: 4,
     [IDS.divider]: DIVIDERS[0],
@@ -78,6 +79,8 @@ export default class Demo extends Component {
   }
 
   render () {
+    const { withDefault, decimalMark, numberColor, isReadonly, selectAllOnFocus } = this.state
+
     return (
       <React.StrictMode>
         <h2>Some presets</h2>
@@ -89,9 +92,9 @@ export default class Demo extends Component {
         <Connector
           state={this.state}
           onChange={this.handleSave}
-          defaultNum={this.state.withDefault ? DEFAULT_NUMBER : null}
-          decimalMark={this.state.decimalMark}
-          numberColor={this.state.numberColor}
+          defaultNum={withDefault ? DEFAULT_NUMBER : null}
+          decimalMark={decimalMark}
+          numberColor={numberColor}
         >
           <Check
             id="isReadonly"
@@ -100,12 +103,17 @@ export default class Demo extends Component {
           <Check
             id="withDefault"
             label={`Inputs with default numbers = ${DEFAULT_NUMBER}`}
-            readOnly={this.state.isReadonly}
+            readOnly={isReadonly}
           />
           <Check
             id="numberColor"
             label="Colorize inputs with parsed numbers"
-            readOnly={this.state.isReadonly}
+            readOnly={isReadonly}
+          />
+          <Check
+            id="selectAllOnFocus"
+            label="Select all on focus"
+            readOnly={isReadonly}
           />
           <br />
           {_.reduce(LABELS_FOR_ITERATIONS, (result, strings, id) => result.concat(<Input
@@ -113,22 +121,22 @@ export default class Demo extends Component {
             id={id}
             label={strings.label}
             suffix={strings.suffix}
-            readOnly={this.state.isReadonly}
-            onFocus={selectAll}
+            readOnly={isReadonly}
+            onFocus={selectAllOnFocus ? selectAll : void 0}
             className="inputs"
           />), [])}
           <Radio
             id={IDS.divider}
             label={LABELS.divider}
             values={DIVIDERS}
-            readOnly={this.state.isReadonly}
+            readOnly={isReadonly}
           />
           <Radio
             id={IDS.decimalMark}
             label={LABELS.decimalMark}
             suffix="Decimal mark is used for inputs and formatting in result"
             values={DECIMAL_MARKS}
-            readOnly={this.state.isReadonly}
+            readOnly={isReadonly}
           />
         </Connector>
         <h2>Result</h2>

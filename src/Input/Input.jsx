@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import styled from 'styled-components'
 import { NUMBER_COLOR_TYPE, VALUE_TYPE } from '../common/constants'
-import { restoreCursorPosition, saveCursorPosition } from '../common/utils'
+import { restoreSelection, saveSelection } from '../common/utils'
 import controlled from '../common/controlled'
 
 const Wrapper = styled.div`
@@ -70,11 +70,13 @@ class Input extends React.Component {
   }};
     `
 
-  componentDidUpdate (nextProps) {
-    if (this.props.value === nextProps.value && this.target === document.activeElement) {
-      this.cursorPosition -= 1
-    }
-    restoreCursorPosition(this.target, this.cursorPosition)
+  componentDidUpdate () {
+    restoreSelection(this.target, this.selection)
+  }
+
+  getSnapshotBeforeUpdate () {
+    this.selection = saveSelection(this.target)
+    return this.selection
   }
 
   handleRef = (cb) => (element) => {
@@ -82,13 +84,13 @@ class Input extends React.Component {
     cb(element)
   }
 
-  changeHandler = (cb) => (event) => {
-    this.cursorPosition = saveCursorPosition(event)
-    cb(event)
+  eventHandler = (processor) => (event) => {
+    processor(this)(event)
+    this.selection = saveSelection(this.target)
   }
 
   render () {
-    const { className, label, refHandler, onClick, onFocus, onChange, ...passedProps } = this.props
+    const { className, label, refHandler, onFocus, ...passedProps } = this.props
     const { Inner } = this
 
     return (
@@ -96,9 +98,7 @@ class Input extends React.Component {
         <Label htmlFor={this.props.id}>{label}</Label>
         <Inner
           ref={this.handleRef(refHandler(this))}
-          onClick={onClick(this)}
-          onFocus={onFocus(this)}
-          onChange={this.changeHandler(onChange)}
+          onFocus={this.eventHandler(onFocus)}
           {...passedProps}
         />
         <Suffix>{this.props.suffix}</Suffix>
