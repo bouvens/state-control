@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 export function saveCursorPosition ({ target }) {
-  if (target.selectionStart) {
+  if (target.selectionStart !== void 0) {
     return target.selectionStart
   }
 
