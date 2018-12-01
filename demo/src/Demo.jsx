@@ -41,6 +41,7 @@ const PRESETS = {
     withDefault: true,
     numberColor: false,
     number: 2,
+    selectAllOnFocus: false,
     plus: 3.6,
     multiplyTo: 4,
     [IDS.divider]: DIVIDERS[0],
@@ -107,6 +108,11 @@ export default class Demo extends Component {
             label="Colorize inputs with parsed numbers"
             readOnly={this.state.isReadonly}
           />
+          <Check
+            id="selectAllOnFocus"
+            label="Select all on focus"
+            readOnly={this.state.isReadonly}
+          />
           <br />
           {_.reduce(LABELS_FOR_ITERATIONS, (result, strings, id) => result.concat(<Input
             key={id}
@@ -114,7 +120,7 @@ export default class Demo extends Component {
             label={strings.label}
             suffix={strings.suffix}
             readOnly={this.state.isReadonly}
-            onFocus={selectAll}
+            onFocus={this.state.selectAllOnFocus ? selectAll : void 0}
             className="inputs"
           />), [])}
           <Radio
