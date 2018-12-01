@@ -1,8 +1,11 @@
 import _ from 'lodash'
 
-export function saveCursorPosition ({ target }) {
+export function saveSelection (target) {
   if (target.selectionStart !== void 0) {
-    return target.selectionStart
+    return {
+      start: target.selectionStart,
+      end: target.selectionEnd,
+    }
   }
 
   if (document.selection) { // IE support
@@ -12,25 +15,27 @@ export function saveCursorPosition ({ target }) {
     // Move selection start to 0 position
     selectionRange.moveStart('character', -target.value.length)
     // The cursor position is selection length
-    return selectionRange.text.length
+    const start = selectionRange.text.length
+
+    return { start, end: start }
   }
 
-  return 0
+  return { start: 0, end: 0 }
 }
 
-export function restoreCursorPosition (target, cursorPosition) {
-  if (!target || _.isNil(cursorPosition)) {
+export function restoreSelection (target, { start, end }) {
+  if (!target || _.isNil(start)) {
     return
   }
 
   if ((target.type === 'text' || target.type === 'textarea') && target === document.activeElement) {
     if (target.setSelectionRange) {
-      target.setSelectionRange(cursorPosition, cursorPosition)
+      target.setSelectionRange(start, end)
     } else if (target.createTextRange) {
       const range = target.createTextRange()
       range.collapse(true)
-      range.moveStart('character', cursorPosition)
-      range.moveEnd('character', cursorPosition)
+      range.moveStart('character', start)
+      range.moveEnd('character', end)
       range.select()
     }
   }
