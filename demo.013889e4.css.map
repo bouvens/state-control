@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./demo/src/style.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;;AAEA;AACA;AACA","file":"demo.013889e4.css","sourcesContent":["body {\n  color: #333;\n  font-family: sans-serif;\n  margin: 1em 2em;\n}\n\n.inputs label {\n  width: 0.8em;\n}\n"],"sourceRoot":""}
