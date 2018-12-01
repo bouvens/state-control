@@ -272,6 +272,18 @@ export default function (state, action) {
 }
 ```
 
+## How to run locally
+
+Run in bash:
+```Shell
+git clone git@github.com:bouvens/state-control.git
+cd state-control
+yarn
+yarn run start
+```
+
+For sure you can use npm instead of yarn. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
+
 ## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
 * [Red Squares](https://github.com/bouvens/red-squares)
