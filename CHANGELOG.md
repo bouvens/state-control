@@ -1,3 +1,6 @@
+## 1.10.1 (December 15, 2018)
+* Just a readme updates
+
 ## 1.10.0 (December 1, 2018)
 * Selection is saved now on clicks, focus, and keyboard events if state updating continuously
 * Selection is saved instead of caret position
@@ -10,7 +13,7 @@
 * Code reformatting
 
 ## 1.8.0 (May 19, 2018)
-* `trimOnPaste` property expanded with removing of unsignificant zeros on the end of number
+* `trimOnPaste` property expanded with removing of insignificant zeros on the end of a number
 
 ## 1.7.2 (April 21, 2018)
 * Replaces of thousand separators fixed
@@ -28,7 +31,7 @@
 * It's possible now to import separate components like `import Input from 'state-control/lib/Input'`
 
 ## 1.5.1 (March 25, 2018)
-* Caret moving to the end of input field on automatic replaces and removes fixed
+* Caret moving to the end of the input field on automatic replaces and removes fixed
 * Name added to `controlled()` HOC for easy debugging
 * Dependencies is updated
 
@@ -56,13 +59,13 @@
 * Text input fixed
 
 ## 1.1.0 (October 28, 2017)
-* Alternate decimal marks supported now, that can be useful on pasting values from clipboard.
+* Alternate decimal marks supported now, that can be useful on values pasting from a clipboard.
 * Also
     * `<Connector />` assepts one node now
     * Eslint style updated
 
 ## 1.0.1 (October 15, 2017)
-* Not fully controlled state are acceptable now. Packages updated.
+* Not fully controlled state is acceptable now. Packages updated.
 
 ## 1.0.0 (October 5, 2017)
 * First stable version. README updated.
@@ -80,7 +83,7 @@ Removing of symbols `,`, `'`, `’` added for `.` as decimal mark and `.`, space
 Packages updated (including React 16.0.0).
 
 ## 0.7.0
-Click and focus handlers updated. Code linted. `.eslintrc.js` file added.
+Click and focus handlers updated. The code is linted. `.eslintrc.js` file added.
 
 ## 0.6.5
 Event handlers fixed.
@@ -89,7 +92,7 @@ Event handlers fixed.
 Warning about switching between controlled and uncontrolled component fixed.
 
 ## 0.6.3
-Loosing focus fixed.
+Losing focus fixed.
 
 ## 0.6.2
 Typo fixed.
