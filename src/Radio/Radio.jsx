@@ -76,7 +76,6 @@ class Radio extends React.PureComponent {
                 disabled={readOnly}
                 {...passedProps}
               />
-              {/* eslint-disable jsx-a11y/label-has-for */}
               <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
             </div>
           )

@@ -44,7 +44,6 @@ class Check extends React.PureComponent {
           disabled={readOnly}
           {...passedProps}
         />
-        {/* eslint-disable jsx-a11y/label-has-for */}
         <label htmlFor={this.props.id}>{label}</label>
       </div>
     )
