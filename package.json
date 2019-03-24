@@ -49,7 +49,7 @@
     "react-dom": "^16.6.3"
   },
   "author": "Alexander Demin <bouvens@gmail.com> (https://bouvens.github.io/)",
-  "homepage": "https://bouvens.github.io/state-control/",
+  "homepage": "https://github.com/bouvens/state-control#readme",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -291,7 +291,7 @@ yarn run start
 
 Then open [http://localhost:3000](http://localhost:3000)
 
-For sure you can use npm instead of yarn. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
+For sure you can use `npm` instead of `yarn`. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
 
 ## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
