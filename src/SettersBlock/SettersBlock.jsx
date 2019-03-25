@@ -4,19 +4,13 @@ import _ from 'lodash'
 
 const Setter = ({ text, tabIndex, onClick }) => (
   <div style={{ marginBottom: '0.6em' }}>
-    <a
-      role="button"
+    <button
+      type="button"
       onClick={onClick}
       tabIndex={tabIndex}
-      style={{
-        paddingBottom: '1px',
-        borderBottom: '1px dashed',
-        cursor: 'pointer',
-        color: 'blue',
-      }}
     >
       {text}
-    </a>
+    </button>
   </div>
 )
 
@@ -39,7 +33,6 @@ const setParams = (setHandler, params) => () => {
 }
 
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
-  let index = 0
   const settersArray = _.isArray(setters)
     ? setters.map((setter) => [
       setter.text,
@@ -49,18 +42,14 @@ export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset })
 
   return (
     <div className={className}>
-      {settersArray.map((setter) => {
-        index += 1
-
-        return (
-          <Setter
-            onClick={setParams(setHandler, setter[1])}
-            key={index}
-            tabIndex={index + tabIndexOffset}
-            text={setter[0]}
-          />
-        )
-      })}
+      {settersArray.map(([text, params], index) => (
+        <Setter
+          onClick={setParams(setHandler, params)}
+          key={text}
+          tabIndex={index + tabIndexOffset}
+          text={text}
+        />
+      ))}
     </div>
   )
 }
