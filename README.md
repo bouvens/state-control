@@ -160,6 +160,9 @@ Sets read only of control.
 #### `className`: PropTypes.string
 Classname passed to wrapper div tag.
 
+#### `style`: PropTypes.object
+Overrides default styles or resets it on `style={{}}`.
+
 #### `onClick`: PropTypes.func
 Handler for onClick event.
 
