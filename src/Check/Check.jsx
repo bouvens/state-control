@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import styled from 'styled-components'
 import controlled from '../common/controlled'
-
-const Input = styled.input`
-    margin-bottom: 0.8em;
-    margin-left: 1px;
-`
 
 class Check extends React.PureComponent {
   static propTypes = {
@@ -35,7 +29,7 @@ class Check extends React.PureComponent {
     const { className, value, refHandler, onClick, onFocus, label, readOnly, ...passedProps } = this.props
     return (
       <div className={className}>
-        <Input
+        <input
           type="checkbox"
           checked={value}
           ref={refHandler(this)}
@@ -43,6 +37,10 @@ class Check extends React.PureComponent {
           onFocus={onFocus(this)}
           disabled={readOnly}
           {...passedProps}
+          style={{
+            marginBottom: '0.8em',
+            marginLeft: '1px',
+          }}
         />
         <label htmlFor={this.props.id}>{label}</label>
       </div>

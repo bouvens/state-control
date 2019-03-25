@@ -1,29 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import styled from 'styled-components'
-
-const Wrapper = styled.div`
-    margin-bottom: 0.6em;
-`
-
-const A = styled.a`
-    padding-bottom: 1px;
-    border-bottom: 1px dashed;
-    cursor: pointer;
-    color: blue;
-`
 
 const Setter = ({ text, tabIndex, onClick }) => (
-  <Wrapper>
-    <A
+  <div style={{ marginBottom: '0.6em' }}>
+    <a
       role="button"
       onClick={onClick}
       tabIndex={tabIndex}
+      style={{
+        paddingBottom: '1px',
+        borderBottom: '1px dashed',
+        cursor: 'pointer',
+        color: 'blue',
+      }}
     >
       {text}
-    </A>
-  </Wrapper>
+    </a>
+  </div>
 )
 
 Setter.propTypes = {

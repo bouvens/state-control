@@ -1,16 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import styled from 'styled-components'
 import controlled from '../common/controlled'
-
-const Wrapper = styled.div`
-    margin-bottom: 0.8em;
-`
-
-const Input = styled.input`
-    margin: 3px 3px 2px 5px;
-`
 
 const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
@@ -57,14 +48,14 @@ class Radio extends React.PureComponent {
     } = this.props
 
     return (
-      <Wrapper className={className} id={id}>
+      <div className={className} id={id} style={{ marginBottom: '0.8em' }}>
         {label}
         {values.map((currentValue) => {
           const variantId = `${id}-${currentValue}`
 
           return (
             <div key={variantId}>
-              <Input
+              <input
                 id={variantId}
                 name={id}
                 type="radio"
@@ -74,6 +65,7 @@ class Radio extends React.PureComponent {
                 onClick={onClick(this)}
                 onFocus={onFocus(this)}
                 disabled={readOnly}
+                style={{ margin: '3px 3px 2px 5px' }}
                 {...passedProps}
               />
               <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
@@ -81,7 +73,7 @@ class Radio extends React.PureComponent {
           )
         })}
         {suffix}
-      </Wrapper>
+      </div>
     )
   }
 }
