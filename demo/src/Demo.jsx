@@ -142,11 +142,11 @@ export default class Demo extends Component {
         </Connector>
         <h2>Result</h2>
         <Input
+          className="multiline"
           id="isReadonly"
           multiLine
           value={this.getResult()}
           readOnly
-          style={{ width: '300px' }}
         />
       </React.StrictMode>
     )
