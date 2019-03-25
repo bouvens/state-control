@@ -87,6 +87,7 @@ export default class Demo extends Component {
         <SettersBlock
           setters={PRESETS}
           setHandler={this.handleSave}
+          tabIndexOffset={3}
         />
         <h2>State control</h2>
         <Connector
