@@ -27,6 +27,7 @@ class Check extends React.PureComponent {
 
   render () {
     const { className, value, refHandler, onClick, onFocus, label, readOnly, ...passedProps } = this.props
+    const clearProps = _.omit(passedProps, ['numberColor'])
     return (
       <div className={className}>
         <input
@@ -36,11 +37,11 @@ class Check extends React.PureComponent {
           onClick={onClick(this)}
           onFocus={onFocus(this)}
           disabled={readOnly}
-          {...passedProps}
           style={{
             marginBottom: '0.8em',
             marginLeft: '1px',
           }}
+          {...clearProps}
         />
         <label htmlFor={this.props.id}>{label}</label>
       </div>

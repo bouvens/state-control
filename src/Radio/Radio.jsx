@@ -46,6 +46,7 @@ class Radio extends React.PureComponent {
       readOnly,
       ...passedProps
     } = this.props
+    const clearProps = _.omit(passedProps, ['numberColor'])
 
     return (
       <div className={className} id={id} style={{ marginBottom: '0.8em' }}>
@@ -66,7 +67,7 @@ class Radio extends React.PureComponent {
                 onFocus={onFocus(this)}
                 disabled={readOnly}
                 style={{ margin: '3px 3px 2px 5px' }}
-                {...passedProps}
+                {...clearProps}
               />
               <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
             </div>

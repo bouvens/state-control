@@ -158,6 +158,7 @@ const withControl = (Child) => class controlled extends React.Component {
       'numberColor',
       'thousandsSeparator',
       'alternateDecimalMark',
+      'trimOnPaste',
     ])
 
     return (
