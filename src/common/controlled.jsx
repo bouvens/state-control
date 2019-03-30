@@ -1,7 +1,6 @@
 /* eslint-disable react/require-default-props, comment: defaultProps comes from recompose library */
 import React from 'react'
 import PropTypes from 'prop-types'
-import compose from 'recompose/compose'
 import defaultProps from 'recompose/defaultProps'
 import { MARK_TYPE, NUMBER_COLOR_TYPE, VALUE_TYPE } from './constants'
 import { get, noop, trim } from './utils'
@@ -166,4 +165,4 @@ const withControl = (Child) => class controlled extends React.Component {
   }
 }
 
-export default compose(defaultProps(DEFAULT_PROPS), withControl)
+export default (component) => defaultProps(DEFAULT_PROPS)(withControl(component))
