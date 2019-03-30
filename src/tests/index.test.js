@@ -1,13 +1,4 @@
-import {
-  Check,
-  Connector,
-  extendConnection,
-  Input,
-  mapStateToIds,
-  Radio,
-  selectAll,
-  SettersBlock,
-} from '..'
+import { Check, Connector, Input, Radio, selectAll, SettersBlock } from '..'
 
 describe('Check', () => {
   it('is exported correctly', () => {
@@ -21,21 +12,9 @@ describe('Connector', () => {
   })
 })
 
-describe('extendConnection', () => {
-  it('is exported correctly', () => {
-    expect(extendConnection).toBeDefined()
-  })
-})
-
 describe('Input', () => {
   it('is exported correctly', () => {
     expect(Input).toBeDefined()
-  })
-})
-
-describe('mapStateToIds', () => {
-  it('is exported correctly', () => {
-    expect(mapStateToIds).toBeDefined()
   })
 })
 

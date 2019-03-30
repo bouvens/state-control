@@ -228,68 +228,13 @@ Array of available values.
 #### `suffix`: PropTypes.oneOfType(string, node)
 Text for showing after radio buttons.
 
-## Using with Redux
-
-This integration is not made very well but can be used.
-
-For the beginning create a mapping for identifiers and paths in store:
-```JSX
-const IDS = {
-  parameter: 'firstReducer.parameter',
-  anotherParameter: 'secondReducer.parameter',
-}
-```
-
-There's two new helpers:
-```JSX
-import { extendConnection, mapStateToIds } from 'state-control'
-```
-
-Use first helper to add mapped identifiers to connected props:
-```JSX
-mapStateToProps = extendConnection((state) => ({
-  thirdParam: state.firstReducer.anotherParameter,
-}), IDS)
-```
-
-And a second helper for pick out props:
-```JSX
-<Connector
-  state={mapStateToIds(this.props, IDS)}
-  onChange={this.changeHandler}
-/>
-```
-
-In addition, of course, you need appropriate actions and reducers. Example of action:
-```JSX
-export const setState = (name, value) => ({
-  type: types.SET_STATE,
-  data: { [name]: value },
-})
-```
-
-And reducer:
-```JSX
-export default function (state, action) {
-  switch (action.type) {
-    case types.SET_STATE:
-      return {
-        ...state,
-        ...action.data.firstReducer,
-      }
-    default:
-      return state
-  }
-}
-```
-
 ## How to run locally
 
 Run in bash:
 ```Shell
 git clone git@github.com:bouvens/state-control.git
 cd state-control
-yarn
+yarn install
 yarn run start
 ```
 

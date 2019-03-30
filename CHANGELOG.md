@@ -3,11 +3,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 2.0.0 (*, 2019)
 **Breaking:**
-* Default styles made inline, thus if you want to reset it, pass empty `style` property
+* Default styles made inline, thus if you want to reset it, pass empty `style` property.
+* Small redux helpers (`extendConnection` and `mapStateToIds`) were removed. These can be added directly to a project from [history](https://github.com/bouvens/state-control/blob/73e8e304b5cb331871e2246d26800a511f7bfd51/src/helpers.js) if needed.
 
 **Other:**
-* Setters looks like buttons because of they weren't real links ever
-* Size reduced by ~94% (from 78.32 KB to 4.56 KB) minified and gzipped
+* Setters looks like buttons because of they weren't real links ever.
+* Size reduced by ~94% (from 78.32 KB to 4.49 KB) minified and gzipped.
 
 ## 1.10.1 (December 15, 2018)
 * Just a readme updates

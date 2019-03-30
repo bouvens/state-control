@@ -7,10 +7,3 @@ export const selectAll = (control) => {
     control.setSelectionRange(0, control.value.length)
   }
 }
-
-export const extendConnection = (props, IDS) => (state) => ({
-  ...props(state),
-  ...Object.values(IDS).map((id) => get(state, id)),
-})
-
-export const mapStateToIds = (state, IDS) => Object.values(IDS).reverse().map((id) => state[id])
