@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 
 import { Check, Connector, Input, Radio, selectAll, SettersBlock } from '../../src'
 import './style.css'
@@ -87,6 +86,7 @@ export default class Demo extends Component {
         <SettersBlock
           setters={PRESETS}
           setHandler={this.handleSave}
+          tabIndexOffset={3}
         />
         <h2>State control</h2>
         <Connector
@@ -116,15 +116,17 @@ export default class Demo extends Component {
             readOnly={isReadonly}
           />
           <br />
-          {_.reduce(LABELS_FOR_ITERATIONS, (result, strings, id) => result.concat(<Input
-            key={id}
-            id={id}
-            label={strings.label}
-            suffix={strings.suffix}
-            readOnly={isReadonly}
-            onFocus={selectAllOnFocus ? selectAll : void 0}
-            className="inputs"
-          />), [])}
+          {Object.entries(LABELS_FOR_ITERATIONS).map(([id, strings]) => (
+            <Input
+              key={id}
+              id={id}
+              label={strings.label}
+              suffix={strings.suffix}
+              readOnly={isReadonly}
+              onFocus={selectAllOnFocus ? selectAll : void 0}
+              className="inputs"
+            />
+          ))}
           <Radio
             id={IDS.divider}
             label={LABELS.divider}
@@ -141,11 +143,11 @@ export default class Demo extends Component {
         </Connector>
         <h2>Result</h2>
         <Input
+          className="multiline"
           id="isReadonly"
           multiLine
           value={this.getResult()}
           readOnly
-          style={{ width: '300px' }}
         />
       </React.StrictMode>
     )

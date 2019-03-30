@@ -160,6 +160,9 @@ Sets read only of control.
 #### `className`: PropTypes.string
 Classname passed to wrapper div tag.
 
+#### `style`: PropTypes.object
+Overrides default styles or resets it on `style={{}}`.
+
 #### `onClick`: PropTypes.func
 Handler for onClick event.
 
@@ -259,8 +262,6 @@ And a second helper for pick out props:
 
 In addition, of course, you need appropriate actions and reducers. Example of action:
 ```JSX
-import _ from 'lodash'
-
 export const setState = (name, value) => ({
   type: types.SET_STATE,
   data: { [name]: value },
@@ -272,7 +273,10 @@ And reducer:
 export default function (state, action) {
   switch (action.type) {
     case types.SET_STATE:
-      return _.extend({}, state, action.data.firstReducer)
+      return {
+        ...state,
+        ...action.data.firstReducer,
+      }
     default:
       return state
   }
@@ -291,7 +295,7 @@ yarn run start
 
 Then open [http://localhost:3000](http://localhost:3000)
 
-For sure you can use npm instead of yarn. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
+For sure you can use `npm` instead of `yarn`. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
 
 ## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)

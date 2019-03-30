@@ -1,3 +1,6 @@
+# Change Log
+This project adheres to [Semantic Versioning](http://semver.org/).
+
 ## 1.10.1 (December 15, 2018)
 * Just a readme updates
 

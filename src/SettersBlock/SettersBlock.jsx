@@ -1,29 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
-import styled from 'styled-components'
-
-const Wrapper = styled.div`
-    margin-bottom: 0.6em;
-`
-
-const A = styled.a`
-    padding-bottom: 1px;
-    border-bottom: 1px dashed;
-    cursor: pointer;
-    color: blue;
-`
+import { noop } from '../common/utils'
 
 const Setter = ({ text, tabIndex, onClick }) => (
-  <Wrapper>
-    <A
-      role="button"
+  <div style={{ marginBottom: '0.6em' }}>
+    <button
+      type="button"
       onClick={onClick}
       tabIndex={tabIndex}
     >
       {text}
-    </A>
-  </Wrapper>
+    </button>
+  </div>
 )
 
 Setter.propTypes = {
@@ -35,38 +23,33 @@ Setter.propTypes = {
 Setter.defaultProps = {
   text: '',
   tabIndex: -1,
-  onClick: _.noop,
+  onClick: noop,
 }
 
 const setParams = (setHandler, params) => () => {
-  _.each(params, (value, name) => {
+  Object.entries(params).forEach(([name, value]) => {
     setHandler(name, value)
   })
 }
 
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
-  let index = 0
-  const settersArray = _.isArray(setters)
+  const settersArray = Array.isArray(setters)
     ? setters.map((setter) => [
       setter.text,
       setter.params,
     ])
-    : _.toPairs(setters)
+    : Object.entries(setters)
 
   return (
     <div className={className}>
-      {settersArray.map((setter) => {
-        index += 1
-
-        return (
-          <Setter
-            onClick={setParams(setHandler, setter[1])}
-            key={index}
-            tabIndex={index + tabIndexOffset}
-            text={setter[0]}
-          />
-        )
-      })}
+      {settersArray.map(([text, params], index) => (
+        <Setter
+          onClick={setParams(setHandler, params)}
+          key={text}
+          tabIndex={index + tabIndexOffset}
+          text={text}
+        />
+      ))}
     </div>
   )
 }

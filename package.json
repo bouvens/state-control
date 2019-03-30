@@ -10,10 +10,16 @@
     "lib",
     "umd"
   ],
+  "size-limit": [
+    {
+      "path": "lib/index.js"
+    }
+  ],
   "scripts": {
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
+    "size": "size-limit",
     "eslint": "node ./node_modules/eslint/bin/eslint.js --ext .js,.jsx -f checkstyle -o ./reports/js.checkstyle.xml ./src",
     "eslint:html": "node ./node_modules/eslint/bin/eslint.js --ext .js,.jsx -f html -o ./reports/eslint.checkstyle.html ./src",
     "eslint:fix": "node ./node_modules/eslint/bin/eslint.js --fix --ext .js,.jsx  ./src",
@@ -23,10 +29,8 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
-    "recompose": "^0.30.0",
-    "styled-components": "^4.1.2"
+    "recompose": "^0.30.0"
   },
   "peerDependencies": {
     "react": "16.x"
@@ -37,7 +41,7 @@
     "enzyme-adapter-react-16": "^1.7.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-import-resolver-webpack": "^0.10.1",
+    "eslint-import-resolver-webpack": "^0.11.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
@@ -46,10 +50,11 @@
     "karma-jasmine": "^2.0.1",
     "nwb": "0.23.0",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "size-limit": "^0.21.1"
   },
   "author": "Alexander Demin <bouvens@gmail.com> (https://bouvens.github.io/)",
-  "homepage": "https://bouvens.github.io/state-control/",
+  "homepage": "https://github.com/bouvens/state-control#readme",
   "license": "MIT",
   "repository": {
     "type": "git",

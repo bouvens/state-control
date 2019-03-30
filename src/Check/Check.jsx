@@ -1,13 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
-import styled from 'styled-components'
+import { NUMBER_COLOR_TYPE } from '../common/constants'
 import controlled from '../common/controlled'
-
-const Input = styled.input`
-    margin-bottom: 0.8em;
-    margin-left: 1px;
-`
+import { noop } from '../common/utils'
 
 class Check extends React.PureComponent {
   static propTypes = {
@@ -19,32 +14,37 @@ class Check extends React.PureComponent {
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
     readOnly: PropTypes.bool,
+    numberColor: NUMBER_COLOR_TYPE,
   }
 
   static defaultProps = {
     className: '',
     label: '',
     value: false,
-    refHandler: _.noop,
-    onClick: _.noop,
-    onFocus: _.noop,
+    refHandler: noop,
+    onClick: noop,
+    onFocus: noop,
     readOnly: false,
+    numberColor: false,
   }
 
   render () {
-    const { className, value, refHandler, onClick, onFocus, label, readOnly, ...passedProps } = this.props
+    const { className, value, refHandler, onClick, onFocus, label, readOnly, numberColor, ...passedProps } = this.props
     return (
       <div className={className}>
-        <Input
+        <input
           type="checkbox"
           checked={value}
           ref={refHandler(this)}
           onClick={onClick(this)}
           onFocus={onFocus(this)}
           disabled={readOnly}
+          style={{
+            marginBottom: '0.8em',
+            marginLeft: '1px',
+          }}
           {...passedProps}
         />
-        {/* eslint-disable jsx-a11y/label-has-for */}
         <label htmlFor={this.props.id}>{label}</label>
       </div>
     )
