@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'lodash'
 
 import { Check, Connector, Input, Radio, selectAll, SettersBlock } from '../../src'
 import './style.css'
@@ -117,15 +116,17 @@ export default class Demo extends Component {
             readOnly={isReadonly}
           />
           <br />
-          {_.reduce(LABELS_FOR_ITERATIONS, (result, strings, id) => result.concat(<Input
-            key={id}
-            id={id}
-            label={strings.label}
-            suffix={strings.suffix}
-            readOnly={isReadonly}
-            onFocus={selectAllOnFocus ? selectAll : void 0}
-            className="inputs"
-          />), [])}
+          {Object.entries(LABELS_FOR_ITERATIONS).map(([id, strings]) => (
+            <Input
+              key={id}
+              id={id}
+              label={strings.label}
+              suffix={strings.suffix}
+              readOnly={isReadonly}
+              onFocus={selectAllOnFocus ? selectAll : void 0}
+              className="inputs"
+            />
+          ))}
           <Radio
             id={IDS.divider}
             label={LABELS.divider}

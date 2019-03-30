@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import { NUMBER_COLOR_TYPE } from '../common/constants'
 import controlled from '../common/controlled'
+import { noop } from '../common/utils'
 
 const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
@@ -17,6 +18,7 @@ class Radio extends React.PureComponent {
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
     readOnly: PropTypes.bool,
+    numberColor: NUMBER_COLOR_TYPE,
   }
 
   static defaultProps = {
@@ -26,10 +28,11 @@ class Radio extends React.PureComponent {
     suffix: '',
     value: '',
     values: [],
-    refHandler: _.noop,
-    onClick: _.noop,
-    onFocus: _.noop,
+    refHandler: noop,
+    onClick: noop,
+    onFocus: noop,
     readOnly: false,
+    numberColor: false,
   }
 
   render () {
@@ -44,9 +47,9 @@ class Radio extends React.PureComponent {
       onClick,
       onFocus,
       readOnly,
+      numberColor,
       ...passedProps
     } = this.props
-    const clearProps = _.omit(passedProps, ['numberColor'])
 
     return (
       <div className={className} id={id} style={{ marginBottom: '0.8em' }}>
@@ -67,7 +70,7 @@ class Radio extends React.PureComponent {
                 onFocus={onFocus(this)}
                 disabled={readOnly}
                 style={{ margin: '3px 3px 2px 5px' }}
-                {...clearProps}
+                {...passedProps}
               />
               <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
             </div>

@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
 import { NUMBER_COLOR_TYPE, VALUE_TYPE } from '../common/constants'
-import { restoreSelection, saveSelection } from '../common/utils'
+import { noop, restoreSelection, saveSelection } from '../common/utils'
 import controlled from '../common/controlled'
 
 const defaultNumberColor = '#cfffcf'
@@ -27,10 +26,10 @@ class Input extends React.Component {
     className: '',
     label: '',
     suffix: '',
-    refHandler: _.noop,
-    onClick: _.noop,
-    onFocus: _.noop,
-    onChange: _.noop,
+    refHandler: noop,
+    onClick: noop,
+    onFocus: noop,
+    onChange: noop,
     value: '',
     multiLine: false,
     readOnly: false,

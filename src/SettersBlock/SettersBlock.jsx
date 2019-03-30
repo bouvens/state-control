@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
+import { noop } from '../common/utils'
 
 const Setter = ({ text, tabIndex, onClick }) => (
   <div style={{ marginBottom: '0.6em' }}>
@@ -23,22 +23,22 @@ Setter.propTypes = {
 Setter.defaultProps = {
   text: '',
   tabIndex: -1,
-  onClick: _.noop,
+  onClick: noop,
 }
 
 const setParams = (setHandler, params) => () => {
-  _.each(params, (value, name) => {
+  Object.entries(params).forEach(([name, value]) => {
     setHandler(name, value)
   })
 }
 
 export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
-  const settersArray = _.isArray(setters)
+  const settersArray = Array.isArray(setters)
     ? setters.map((setter) => [
       setter.text,
       setter.params,
     ])
-    : _.toPairs(setters)
+    : Object.entries(setters)
 
   return (
     <div className={className}>

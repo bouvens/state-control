@@ -1,4 +1,21 @@
-import _ from 'lodash'
+export const noop = () => void 0
+
+export function get (obj, path) {
+  const pathArray = path.split('.')
+  let objectByPath = obj
+
+  for (let i = 0; i < pathArray.length; i += 1) {
+    objectByPath = objectByPath[pathArray[i]]
+  }
+
+  return objectByPath
+}
+
+export function trim (str, chars) {
+  return str
+    .replace(new RegExp(`^[${chars}]+`, 'g'), '')
+    .replace(new RegExp(`[${chars}]+$`, 'g'), '')
+}
 
 export function saveSelection (target) {
   if (target.selectionStart !== void 0) {
@@ -24,7 +41,7 @@ export function saveSelection (target) {
 }
 
 export function restoreSelection (target, { start, end }) {
-  if (!target || _.isNil(start)
+  if (!target || start === void 0
     || (target === document.activeElement && target.selectionStart === start && target.selectionEnd === end)) {
     return
   }
