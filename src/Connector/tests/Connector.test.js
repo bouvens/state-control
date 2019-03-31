@@ -19,8 +19,7 @@ describe('Connector', () => {
     <Connector state={STATE}>
       <Check id={IDS.withDefault} />
       <Input id={IDS.number} />
-      {false &&
-      <Input id={IDS.plus} />}
+      {false && <Input id={IDS.plus} />}
     </Connector>
   )
   const wrapper = shallow(connector)
