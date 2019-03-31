@@ -43,10 +43,17 @@ module.exports = {
     'no-multiple-empty-lines': 'warn',
     'no-trailing-spaces': ['error', { skipBlankLines: true }],
     'no-undefined': 'error',
+    'no-unexpected-multiline': 'error',
     'no-void': 'off',
     'object-curly-newline': ['off'],
     'semi': ['warn', 'never'],
     'space-before-function-paren': ['error', 'always'],
+    'jsx-a11y/label-has-for': ['warn', {
+      'components': ['Label'],
+      'required': {
+        'every': [],
+      },
+    }],
     "react/destructuring-assignment": ['off', 'always'],
     'react/no-direct-mutation-state': 'error',
     'react/jsx-filename-extension': ['warn', { "extensions": [".js", ".jsx"] }],

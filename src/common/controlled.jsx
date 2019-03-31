@@ -1,15 +1,14 @@
 /* eslint-disable react/require-default-props, comment: defaultProps comes from recompose library */
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
-import compose from 'recompose/compose'
 import defaultProps from 'recompose/defaultProps'
 import { MARK_TYPE, NUMBER_COLOR_TYPE, VALUE_TYPE } from './constants'
+import { get, noop, trim } from './utils'
 
 const DEFAULT_PROPS = {
-  onChange: _.noop,
-  onClick: _.noop,
-  onFocus: _.noop,
+  onChange: noop,
+  onClick: noop,
+  onFocus: noop,
   decimalMark: '.',
   numberColor: false,
   alternateDecimalMark: ',',
@@ -49,9 +48,9 @@ const withControl = (Child) => class controlled extends React.Component {
   getPath = () => this.props.path || this.props.id
 
   getValue = () => (
-    !_.isUndefined(this.props.value)
+    this.props.value !== void 0
       ? this.props.value
-      : _.get(this.props.state, this.getPath())
+      : get(this.props.state, this.getPath())
   )
 
   getThousandsSeparator = () => (this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.props.decimalMark])
@@ -65,7 +64,7 @@ const withControl = (Child) => class controlled extends React.Component {
     .replace(this.props.decimalMark, '.')
 
   wasNumber = (valueForCheck, previousType) => (
-    !_.isNaN(Number(valueForCheck)) && valueForCheck.length
+    !Number.isNaN(parseFloat(valueForCheck)) && valueForCheck.length
   ) || (
     previousType === 'number'
     && !valueForCheck.length
@@ -112,7 +111,7 @@ const withControl = (Child) => class controlled extends React.Component {
     const { checked, type } = event.target
     let value = event.clipboardData.getData('Text')
     if (this.props.trimOnPaste) {
-      value = _.trim(value, ' \t\n')
+      value = trim(value, ' \\t\\n')
     }
 
     this.processNewValue({ value, checked, type }, this.props.trimOnPaste)
@@ -134,7 +133,7 @@ const withControl = (Child) => class controlled extends React.Component {
       case 'string':
         return value
       default:
-        return _.isUndefined(value) ? value : value.toString()
+        return value === void 0 ? value : value.toString()
     }
   }
 
@@ -145,20 +144,10 @@ const withControl = (Child) => class controlled extends React.Component {
   }
 
   render () {
-    const passedProps = _.omit(this.props, [
-      'id',
-      'state',
-      'path',
-      'value',
-      'defaultNum',
-      'onChange',
-      'onClick',
-      'onFocus',
-      'decimalMark',
-      'numberColor',
-      'thousandsSeparator',
-      'alternateDecimalMark',
-    ])
+    const {
+      id, state, path, value, defaultNum, onChange, onClick, onFocus, decimalMark, numberColor,
+      thousandsSeparator, alternateDecimalMark, trimOnPaste, ...passedProps
+    } = this.props
 
     return (
       <Child
@@ -176,4 +165,4 @@ const withControl = (Child) => class controlled extends React.Component {
   }
 }
 
-export default compose(defaultProps(DEFAULT_PROPS), withControl)
+export default (component) => defaultProps(DEFAULT_PROPS)(withControl(component))

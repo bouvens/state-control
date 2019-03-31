@@ -7,3 +7,7 @@ body {
 .inputs label {
   width: 0.8em;
 }
+
+.multiline textarea {
+  width: 300px;
+}

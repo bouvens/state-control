@@ -1,16 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash'
-import styled from 'styled-components'
+import { NUMBER_COLOR_TYPE } from '../common/constants'
 import controlled from '../common/controlled'
-
-const Wrapper = styled.div`
-    margin-bottom: 0.8em;
-`
-
-const Input = styled.input`
-    margin: 3px 3px 2px 5px;
-`
+import { noop } from '../common/utils'
 
 const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
@@ -26,6 +18,7 @@ class Radio extends React.PureComponent {
     onClick: PropTypes.func,
     onFocus: PropTypes.func,
     readOnly: PropTypes.bool,
+    numberColor: NUMBER_COLOR_TYPE,
   }
 
   static defaultProps = {
@@ -35,10 +28,11 @@ class Radio extends React.PureComponent {
     suffix: '',
     value: '',
     values: [],
-    refHandler: _.noop,
-    onClick: _.noop,
-    onFocus: _.noop,
+    refHandler: noop,
+    onClick: noop,
+    onFocus: noop,
     readOnly: false,
+    numberColor: false,
   }
 
   render () {
@@ -53,18 +47,19 @@ class Radio extends React.PureComponent {
       onClick,
       onFocus,
       readOnly,
+      numberColor,
       ...passedProps
     } = this.props
 
     return (
-      <Wrapper className={className} id={id}>
+      <div className={className} id={id} style={{ marginBottom: '0.8em' }}>
         {label}
         {values.map((currentValue) => {
           const variantId = `${id}-${currentValue}`
 
           return (
             <div key={variantId}>
-              <Input
+              <input
                 id={variantId}
                 name={id}
                 type="radio"
@@ -74,15 +69,15 @@ class Radio extends React.PureComponent {
                 onClick={onClick(this)}
                 onFocus={onFocus(this)}
                 disabled={readOnly}
+                style={{ margin: '3px 3px 2px 5px' }}
                 {...passedProps}
               />
-              {/* eslint-disable jsx-a11y/label-has-for */}
               <label htmlFor={variantId}>{currentValue.label || currentValue}</label>
             </div>
           )
         })}
         {suffix}
-      </Wrapper>
+      </div>
     )
   }
 }

@@ -1,7 +1,7 @@
 # React state-control
 [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
 
-A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
+A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. Complete library weights 4.4 KB gzipped with dependencies. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
 
 This package also provides a component for presets of values (`<SettersBlock />`) and a helper to simplify your source code (`<Connector />`). It can be even used with Redux in some way.
 
@@ -160,6 +160,9 @@ Sets read only of control.
 #### `className`: PropTypes.string
 Classname passed to wrapper div tag.
 
+#### `style`: PropTypes.object
+Overrides default styles or resets it on `style={{}}`.
+
 #### `onClick`: PropTypes.func
 Handler for onClick event.
 
@@ -225,73 +228,19 @@ Array of available values.
 #### `suffix`: PropTypes.oneOfType(string, node)
 Text for showing after radio buttons.
 
-## Using with Redux
-
-This integration is not made very well but can be used.
-
-For the beginning create a mapping for identifiers and paths in store:
-```JSX
-const IDS = {
-  parameter: 'firstReducer.parameter',
-  anotherParameter: 'secondReducer.parameter',
-}
-```
-
-There's two new helpers:
-```JSX
-import { extendConnection, mapStateToIds } from 'state-control'
-```
-
-Use first helper to add mapped identifiers to connected props:
-```JSX
-mapStateToProps = extendConnection((state) => ({
-  thirdParam: state.firstReducer.anotherParameter,
-}), IDS)
-```
-
-And a second helper for pick out props:
-```JSX
-<Connector
-  state={mapStateToIds(this.props, IDS)}
-  onChange={this.changeHandler}
-/>
-```
-
-In addition, of course, you need appropriate actions and reducers. Example of action:
-```JSX
-import _ from 'lodash'
-
-export const setState = (name, value) => ({
-  type: types.SET_STATE,
-  data: { [name]: value },
-})
-```
-
-And reducer:
-```JSX
-export default function (state, action) {
-  switch (action.type) {
-    case types.SET_STATE:
-      return _.extend({}, state, action.data.firstReducer)
-    default:
-      return state
-  }
-}
-```
-
 ## How to run locally
 
 Run in bash:
 ```Shell
 git clone git@github.com:bouvens/state-control.git
 cd state-control
-yarn
+yarn install
 yarn run start
 ```
 
 Then open [http://localhost:3000](http://localhost:3000)
 
-For sure you can use npm instead of yarn. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
+For sure you can use `npm` instead of `yarn`. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
 
 ## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
