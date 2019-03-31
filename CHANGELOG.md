@@ -1,7 +1,7 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.0.0 (*, 2019)
+## 2.0.0 (March 31, 2019)
 **Breaking:**
 * Default styles made inline, thus if you want to reset it, pass empty `style` property.
 * Small redux helpers (`extendConnection` and `mapStateToIds`) were removed. These can be added directly to a project from [history](https://github.com/bouvens/state-control/blob/73e8e304b5cb331871e2246d26800a511f7bfd51/src/helpers.js) if needed.
