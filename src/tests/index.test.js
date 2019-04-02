@@ -35,4 +35,3 @@ describe('SettersBlock', () => {
     expect(SettersBlock).toBeDefined()
   })
 })
-
