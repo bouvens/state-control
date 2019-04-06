@@ -1,10 +1,21 @@
 export const noop = () => void 0
 
-export function get (obj, path) {
-  const pathArray = path.split('.')
-  let objectByPath = obj
+function getPath (obj, path) {
+  if (obj[path] != null) {
+    return [path]
+  }
+  if (Array.isArray(path)) {
+    return path
+  }
+  return path.split('.')
+}
 
-  for (let i = 0; i < pathArray.length; i += 1) {
+export function get (obj, path) {
+  let objectByPath = obj
+  const pathArray = getPath(obj, path)
+  const { length } = pathArray
+
+  for (let i = 0; objectByPath !== null && i < length; i += 1) {
     objectByPath = objectByPath[pathArray[i]]
   }
 
