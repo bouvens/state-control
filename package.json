@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Small npm package for simple changing state of React components",
   "main": "lib/index.js",
   "module": "es/index.js",
