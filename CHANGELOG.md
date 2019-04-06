@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.1 (April 6, 2019)
+* String paths with dots and array paths are acceptable again.
+
 ## 2.0.0 (March 31, 2019)
 **Breaking:**
 * Default styles made inline, thus if you want to reset it, pass empty `style` property.
