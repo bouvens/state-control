@@ -29,7 +29,10 @@ class Check extends React.PureComponent {
   }
 
   render () {
-    const { className, value, refHandler, onClick, onFocus, label, readOnly, numberColor, ...passedProps } = this.props
+    const {
+      className, value, refHandler, onClick, onFocus, label, readOnly, numberColor,
+      ...passedProps
+    } = this.props
     return (
       <div className={className}>
         <input

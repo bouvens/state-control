@@ -75,7 +75,8 @@ class Input extends React.Component {
   }
 
   render () {
-    const { className, label, refHandler, onFocus, multiLine, numberColor, ...passedProps } = this.props
+    const { className, label, refHandler, onFocus, multiLine, numberColor,
+      ...passedProps } = this.props
     const Inner = multiLine ? 'textarea' : 'input'
 
     return (

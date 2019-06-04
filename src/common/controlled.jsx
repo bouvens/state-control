@@ -53,7 +53,8 @@ const withControl = (Child) => class controlled extends React.Component {
       : get(this.props.state, this.getPath())
   )
 
-  getThousandsSeparator = () => (this.props.thousandsSeparator || DEFAULT_SEPARATORS[this.props.decimalMark])
+  getThousandsSeparator = () => (this.props.thousandsSeparator
+    || DEFAULT_SEPARATORS[this.props.decimalMark])
     .join('')
 
   getColorIfNumber = () => (typeof this.getValue() === 'number' ? this.props.numberColor : void 0)

@@ -53,7 +53,8 @@ export function saveSelection (target) {
 
 export function restoreSelection (target, { start, end }) {
   if (!target || start === void 0
-    || (target === document.activeElement && target.selectionStart === start && target.selectionEnd === end)) {
+    || (target === document.activeElement && target.selectionStart === start
+      && target.selectionEnd === end)) {
     return
   }
 
