@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.2 (June 5, 2019)
+* Dependencies updated
+
 ## 2.0.1 (April 6, 2019)
 * String paths with dots and array paths are acceptable again.
 
