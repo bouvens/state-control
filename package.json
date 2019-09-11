@@ -58,10 +58,7 @@
   "author": "Alexander Demin <bouvens@gmail.com> (https://bouvens.github.io/)",
   "homepage": "https://github.com/bouvens/state-control#readme",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bouvens/state-control"
-  },
+  "repository": "github:bouvens/state-control",
   "keywords": [
     "react",
     "react-component",
