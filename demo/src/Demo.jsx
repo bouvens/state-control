@@ -25,7 +25,7 @@ const IDS = {
 
 const LABELS = {
   [IDS.divider]: '÷',
-  [IDS.decimalMark]: 'Decimal mark for inputs and the result',
+  [IDS.decimalMark]: 'Decimal mark for inputs and the result:',
 }
 
 const DEFAULT_NUMBER = 1
@@ -136,7 +136,7 @@ export default class Demo extends Component {
           <Radio
             id={IDS.decimalMark}
             label={LABELS.decimalMark}
-            suffix="Decimal mark is used for inputs and formatting in result"
+            suffix="Decimal mark is used for inputs and formatting in the result."
             values={DECIMAL_MARKS}
             readOnly={isReadonly}
           />
