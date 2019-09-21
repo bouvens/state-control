@@ -61,7 +61,10 @@ const PRESETS = {
 }
 
 export default class Demo extends Component {
-  state = PRESETS.Default
+  constructor (props) {
+    super(props)
+    this.state = PRESETS.Default
+  }
 
   getCalculated = () => this.formatNumber((this.state.number
     + (this.state.plus * this.state.multiplyTo)) / this.state.divider)
