@@ -45,6 +45,7 @@ module.exports = {
     "react/destructuring-assignment": ['off', 'always'],
     'react/no-direct-mutation-state': 'error',
     'react/jsx-filename-extension': ['warn', { "extensions": [".js", ".jsx"] }],
+    'react/jsx-props-no-spreading': 'off',
     'react/jsx-tag-spacing': 'warn',
     'react/no-multi-comp': 'off',
     'import/prefer-default-export': 'off',

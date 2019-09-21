@@ -7,34 +7,6 @@ import { noop } from '../common/utils'
 const valueType = PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 
 class Radio extends React.PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    id: PropTypes.string,
-    label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    suffix: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-    value: valueType,
-    values: PropTypes.arrayOf(valueType),
-    refHandler: PropTypes.func,
-    onClick: PropTypes.func,
-    onFocus: PropTypes.func,
-    readOnly: PropTypes.bool,
-    numberColor: NUMBER_COLOR_TYPE,
-  }
-
-  static defaultProps = {
-    className: '',
-    id: '',
-    label: '',
-    suffix: '',
-    value: '',
-    values: [],
-    refHandler: noop,
-    onClick: noop,
-    onFocus: noop,
-    readOnly: false,
-    numberColor: false,
-  }
-
   render () {
     const {
       className,
@@ -80,6 +52,34 @@ class Radio extends React.PureComponent {
       </div>
     )
   }
+}
+
+Radio.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  suffix: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  value: valueType,
+  values: PropTypes.arrayOf(valueType),
+  refHandler: PropTypes.func,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  readOnly: PropTypes.bool,
+  numberColor: NUMBER_COLOR_TYPE,
+}
+
+Radio.defaultProps = {
+  className: '',
+  id: '',
+  label: '',
+  suffix: '',
+  value: '',
+  values: [],
+  refHandler: noop,
+  onClick: noop,
+  onFocus: noop,
+  readOnly: false,
+  numberColor: false,
 }
 
 export default controlled(Radio)

@@ -7,35 +7,6 @@ import controlled from '../common/controlled'
 const defaultNumberColor = '#cfffcf'
 
 class Input extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    suffix: PropTypes.string,
-    refHandler: PropTypes.func,
-    onClick: PropTypes.func,
-    onFocus: PropTypes.func,
-    onChange: PropTypes.func,
-    value: VALUE_TYPE,
-    multiLine: PropTypes.bool,
-    readOnly: PropTypes.bool,
-    numberColor: NUMBER_COLOR_TYPE,
-  }
-
-  static defaultProps = {
-    className: '',
-    label: '',
-    suffix: '',
-    refHandler: noop,
-    onClick: noop,
-    onFocus: noop,
-    onChange: noop,
-    value: '',
-    multiLine: false,
-    readOnly: false,
-    numberColor: false,
-  }
-
   componentDidUpdate () {
     restoreSelection(this.target, this.selection)
   }
@@ -100,6 +71,35 @@ class Input extends React.Component {
       </div>
     )
   }
+}
+
+Input.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  suffix: PropTypes.string,
+  refHandler: PropTypes.func,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onChange: PropTypes.func,
+  value: VALUE_TYPE,
+  multiLine: PropTypes.bool,
+  readOnly: PropTypes.bool,
+  numberColor: NUMBER_COLOR_TYPE,
+}
+
+Input.defaultProps = {
+  className: '',
+  label: '',
+  suffix: '',
+  refHandler: noop,
+  onClick: noop,
+  onFocus: noop,
+  onChange: noop,
+  value: '',
+  multiLine: false,
+  readOnly: false,
+  numberColor: false,
 }
 
 export default controlled(Input)
