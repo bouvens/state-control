@@ -1,7 +1,7 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 2.0.3 (January 25, 2020)
+## 2.0.4 (January 25, 2020)
 * The input of not numbers like dates was fixed.
 
 ## 2.0.2 (June 5, 2019)
