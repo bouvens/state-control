@@ -27,7 +27,6 @@
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "preversion": "npm test",
     "postpublish": "git push --all origin && git push origin --tags"
   },
   "dependencies": {
