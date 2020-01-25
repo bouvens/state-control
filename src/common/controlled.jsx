@@ -50,7 +50,7 @@ const withControl = (Child) => {
       .replace(this.props.decimalMark, '.')
 
     wasNumber = (valueForCheck, previousType) => (
-      !Number.isNaN(parseFloat(valueForCheck)) && valueForCheck.length
+      !Number.isNaN(Number(valueForCheck)) && valueForCheck.length
     ) || (
       previousType === 'number'
       && !valueForCheck.length
