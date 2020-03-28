@@ -1,6 +1,6 @@
 {
   "name": "state-control",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "Small npm package for simple changing state of React components",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -27,7 +27,8 @@
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
-    "preversion": "npm test",
+    "preversion": "yarn run test && yarn run eslint",
+    "prepublish": "yarn run build",
     "postpublish": "git push --all origin && git push origin --tags"
   },
   "dependencies": {

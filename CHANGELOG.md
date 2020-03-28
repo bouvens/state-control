@@ -1,8 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.4 (January 25, 2020)
+* The input of not numbers like dates was fixed.
+
 ## 2.0.2 (June 5, 2019)
-* Dependencies updated
+* Dependencies updates.
 
 ## 2.0.1 (April 6, 2019)
 * String paths with dots and array paths are acceptable again.
@@ -14,7 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 **Other:**
 * Setters looks like buttons because of they weren't real links ever.
-* Size reduced by ~94% (from 78.32 KB to 4.42 KB) minified and gzipped.
+* Size was reduced by ~94% (from 78.32 KB to 4.42 KB) minified and gzipped.
 
 ## 1.10.1 (December 15, 2018)
 * Just a readme updates
