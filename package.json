@@ -3,12 +3,9 @@
   "version": "2.0.4",
   "description": "Small npm package for simple changing state of React components",
   "main": "lib/index.js",
-  "module": "es/index.js",
   "files": [
-    "css",
-    "es",
-    "lib",
-    "umd"
+    "src",
+    "lib"
   ],
   "size-limit": [
     {
@@ -16,10 +13,10 @@
     }
   ],
   "scripts": {
-    "start": "nwb serve-react-demo",
-    "build": "nwb build-react-component",
-    "deploy": "nwb build-react-component && gh-pages -d demo/dist",
-    "clean": "nwb clean-module && nwb clean-demo",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "build": "cross-env NODE_ENV=production webpack",
+    "build:watch": "webpack --watch",
+    "deploy": "yarn run build && gh-pages -d demo/dist",
     "size": "size-limit",
     "eslint": "eslint --ext .js,.jsx -f checkstyle -o ./reports/js.checkstyle.xml ./src ./demo/src",
     "eslint:html": "eslint --ext .js,.jsx -f html -o ./reports/eslint.checkstyle.html ./src ./demo/src",
@@ -39,8 +36,15 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^2.1.6",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@size-limit/preset-small-lib": "^4.4.2",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "eslint": "^6.4.0",
@@ -50,11 +54,15 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
     "gh-pages": "^2.0.1",
+    "html-webpack-plugin": "^4.0.2",
     "jasmine": "^3.3.0",
     "karma-jasmine": "^2.0.1",
-    "nwb": "0.23.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   },
   "author": "Alexander Demin <bouvens@gmail.com> (https://bouvens.github.io/)",
   "homepage": "https://github.com/bouvens/state-control#readme",
