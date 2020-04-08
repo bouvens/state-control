@@ -2,7 +2,6 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isProduction = process.env.NODE_ENV === 'production'
 const isDemo = process.env.NODE_ENV === 'demo'
@@ -57,7 +56,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    // new BundleAnalyzerPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

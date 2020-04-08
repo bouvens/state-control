@@ -9,7 +9,7 @@
   ],
   "size-limit": [
     {
-      "path": "lib/index.js"
+      "path": "lib/*.js"
     }
   ],
   "scripts": {
