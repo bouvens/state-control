@@ -4,9 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
-const isDemo = process.env.NODE_ENV === 'demo'
 
 module.exports = {
+  mode: 'production',
   entry: path.resolve(isProduction ? 'src/index.js' : 'demo/src/index.js'),
   output: isProduction ? {
     path: path.resolve('lib'),
@@ -16,10 +16,8 @@ module.exports = {
     path: path.resolve('demo/dist'),
     publicPath: '',
     filename: '[name].bundle.js',
-    globalObject: 'this',
   },
-  devtool: 'source-map',
-  externals: { react: 'commonjs react' },
+  ...isProduction && { externals: { react: 'commonjs react' } },
   module: {
     rules: [
       {
@@ -33,7 +31,7 @@ module.exports = {
         {
           test: /\.css$/,
           use: [
-            isDemo ? MiniCssExtractPlugin.loader : 'style-loader',
+            isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader',
               options: {
