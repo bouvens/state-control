@@ -8,10 +8,17 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
-  entry: path.resolve(isProduction ? 'src/index.js' : 'demo/src/index.js'),
+  entry: isProduction ? {
+    index: path.resolve('src/index.js'),
+    Check: path.resolve('src/Check/index.js'),
+    Connector: path.resolve('src/Connector/index.js'),
+    Input: path.resolve('src/Input/index.js'),
+    Radio: path.resolve('src/Radio/index.js'),
+    SettersBlock: path.resolve('src/SettersBlock/index.js'),
+  } : path.resolve('demo/src/index.js'),
   output: isProduction ? {
     path: path.resolve('lib'),
-    filename: 'index.js',
+    filename: '[name].js',
     libraryTarget: 'commonjs2',
   } : {
     path: path.resolve('demo/dist'),
@@ -56,7 +63,7 @@ module.exports = {
     ...isDevelopment ? [] : [new CleanWebpackPlugin()],
     ...isProduction ? [] : [
       new HtmlWebpackPlugin({
-        template: path.resolve('demo/src/index.html'),
+        template: 'demo/src/index.html',
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
