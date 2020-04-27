@@ -39,22 +39,23 @@
     "react": "16.x"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^2.1.6",
+    "@size-limit/preset-small-lib": "^4.4.5",
     "babel-eslint": "^10.0.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-import-resolver-webpack": "^0.11.0",
+    "eslint-import-resolver-webpack": "^0.12.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
     "gh-pages": "^2.0.1",
     "jasmine": "^3.3.0",
-    "karma-jasmine": "^2.0.1",
-    "nwb": "0.23.0",
+    "karma-jasmine": "^3.1.1",
+    "nwb": "0.24.5",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "size-limit": "^4.4.5"
   },
   "author": "Alexander Demin <bouvens@gmail.com> (https://bouvens.github.io/)",
   "homepage": "https://github.com/bouvens/state-control#readme",
