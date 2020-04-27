@@ -1,7 +1,7 @@
 # React state-control
 [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
 
-A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. Complete library weights 4.4 KB gzipped with dependencies. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
+A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. Complete library weights 5.2 KB gzipped with dependencies. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
 
 This package also provides a component for presets of values (`<SettersBlock />`) and a helper to simplify your source code (`<Connector />`).
 
