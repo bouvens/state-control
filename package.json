@@ -18,7 +18,8 @@
   "scripts": {
     "start": "nwb serve-react-demo",
     "build": "nwb build-react-component",
-    "deploy": "nwb build-react-component && gh-pages -d demo/dist",
+    "deploy": "yarn run build && yarn run deploy:upload",
+    "deploy:upload": "gh-pages -d demo/dist",
     "clean": "nwb clean-module && nwb clean-demo",
     "size": "size-limit",
     "eslint": "eslint --ext .js,.jsx -f checkstyle -o ./reports/js.checkstyle.xml ./src",
@@ -28,8 +29,8 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
     "preversion": "yarn run test && yarn run eslint",
-    "prepublish": "yarn run build",
-    "postpublish": "git push --all origin && git push origin --tags"
+    "prepare": "yarn run build",
+    "prepublishOnly": "git push --all origin && git push origin --tags && yarn run deploy:upload"
   },
   "dependencies": {
     "prop-types": "^15.6.0",
