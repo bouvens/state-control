@@ -18,13 +18,18 @@ const DEFAULT_PROPS = {
 }
 
 const DEFAULT_SEPARATORS = {
-  '.': [',', '\'', '’'],
-  ',': [' '],
+  '.': [',', '\'', '’', ' '],
+  ',': [' ', '.'],
+  '·': [','],
+  '\'': ['.'],
 }
 
-const makeRegexpForSeparators = (str) => new RegExp(`[${str
-  .replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-  .replace(' ', '\\s')}]`, 'g')
+const makeRegexpForSeparators = (arr) => new RegExp(`[${
+  arr
+    .join('')
+    .replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+    .replace(' ', '\\s')
+}]`, 'g')
 
 const withControl = (Child) => {
   class Controlled extends React.Component {
@@ -38,14 +43,15 @@ const withControl = (Child) => {
         : get(this.props.state, this.getPath())
     )
 
-    getThousandsSeparator = () => (this.props.thousandsSeparator
-      || DEFAULT_SEPARATORS[this.props.decimalMark])
-      .join('')
+    getThousandsSeparator = () => this.props.thousandsSeparator
+      || DEFAULT_SEPARATORS[this.props.decimalMark]
 
     getColorIfNumber = () => (typeof this.getValue() === 'number' ? this.props.numberColor : void 0)
 
-    prepareNum = (num) => num
-      .replace(makeRegexpForSeparators(this.getThousandsSeparator()), '')
+    prepareNum = (num) => (this.getThousandsSeparator()
+      ? num
+        .replace(makeRegexpForSeparators(this.getThousandsSeparator()), '')
+      : num)
       .replace(this.props.alternateDecimalMark, '.')
       .replace(this.props.decimalMark, '.')
 

@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.5 (April 30, 2020)
+* Fix for decimal separators which is absent in the default.
+* Decimal separators are extended.
+* Dependencies updates.
+* Updates and fixes in the packaging process.
+
 ## 2.0.4 (January 25, 2020)
 * The input of not numbers like dates was fixed.
 
