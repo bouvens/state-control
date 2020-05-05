@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, StrictMode } from 'react'
 
 import { Check, Connector, Input, Radio, selectAll, SettersBlock } from '../../src'
 import './style.css'
@@ -81,7 +81,7 @@ export default class Demo extends Component {
     const { withDefault, decimalMark, numberColor, isReadonly, selectAllOnFocus } = this.state
 
     return (
-      <React.StrictMode>
+      <StrictMode>
         <h2>Some presets</h2>
         <SettersBlock
           setters={PRESETS}
@@ -149,7 +149,7 @@ export default class Demo extends Component {
           value={this.getResult()}
           readOnly
         />
-      </React.StrictMode>
+      </StrictMode>
     )
   }
 }

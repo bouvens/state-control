@@ -33,6 +33,24 @@ const makeRegexpForSeparators = (arr) => new RegExp(`[${
 
 const withControl = (Child) => {
   class Controlled extends React.Component {
+    static propTypes = {
+      id: PropTypes.string.isRequired,
+      // state may contain not controlled parameters too
+      state: PropTypes.objectOf(PropTypes.any),
+      path: PropTypes.string,
+      value: VALUE_TYPE,
+      values: PropTypes.arrayOf(VALUE_TYPE),
+      defaultNum: PropTypes.number,
+      onChange: PropTypes.func,
+      onClick: PropTypes.func,
+      onFocus: PropTypes.func,
+      decimalMark: PropTypes.string,
+      numberColor: NUMBER_COLOR_TYPE,
+      thousandsSeparator: MARK_TYPE,
+      alternateDecimalMark: MARK_TYPE,
+      trimOnPaste: PropTypes.bool,
+    }
+
     getId = () => `labeled-control-${this.props.id}`
 
     getPath = () => this.props.path || this.props.id
@@ -156,24 +174,6 @@ const withControl = (Child) => {
         />
       )
     }
-  }
-
-  Controlled.propTypes = {
-    id: PropTypes.string.isRequired,
-    // state may contain not controlled parameters too
-    state: PropTypes.objectOf(PropTypes.any),
-    path: PropTypes.string,
-    value: VALUE_TYPE,
-    values: PropTypes.arrayOf(VALUE_TYPE),
-    defaultNum: PropTypes.number,
-    onChange: PropTypes.func,
-    onClick: PropTypes.func,
-    onFocus: PropTypes.func,
-    decimalMark: PropTypes.string,
-    numberColor: NUMBER_COLOR_TYPE,
-    thousandsSeparator: MARK_TYPE,
-    alternateDecimalMark: MARK_TYPE,
-    trimOnPaste: PropTypes.bool,
   }
 
   return Controlled
