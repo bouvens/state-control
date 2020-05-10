@@ -74,11 +74,11 @@ You can use `Connector` component for passing common props to all of its childre
 >
   <Input
     id={IDS.firstStateParameter}
-    label={'First state parameter'}
+    label="First state parameter"
   />
   <Input
     id={IDS.secondStateParameter}
-    label={'Second state parameter'}
+    label="Second state parameter"
   />
 </Connector>
 ```
@@ -106,7 +106,7 @@ const SETTERS = [
 ]
 ```
 
-It also accepts another shape of presets:
+It also accepts an alternative shape of presets:
 ```JSX
 const SETTERS = [
   {
@@ -131,7 +131,7 @@ const SETTERS = [
 > class Demo extends Component {
 >   state = SETTERS.Default
 >
->   // For another shape there will be
+>   // For the alternative shape there will be
 >   // state = SETTERS[0].params
 >
 >   ...
