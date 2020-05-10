@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.6 (May 10, 2020)
+* Fix for rewriting of input type in <Check />
+
 ## 2.0.5 (April 30, 2020)
 * Fix for decimal separators which is absent in the default.
 * Decimal separators are extended.
