@@ -30,7 +30,17 @@ class Check extends React.PureComponent {
 
   render () {
     const {
-      className, value, refHandler, onClick, onFocus, label, readOnly, numberColor, ...passedProps
+      className,
+      value,
+      refHandler,
+      onClick,
+      onFocus,
+      label,
+      readOnly,
+      numberColor,
+      // eslint-disable-next-line react/prop-types
+      type,
+      ...passedProps
     } = this.props
 
     return (
