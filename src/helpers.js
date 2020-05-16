@@ -1,7 +1,5 @@
-const ALLOW_SET_SELECTION_RANGE = ['text', 'search', 'URL', 'tel', 'password']
-
 export const selectAll = (control) => {
-  if (ALLOW_SET_SELECTION_RANGE.includes(control.type)) {
+  if (control.setSelectionRange) {
     control.setSelectionRange(0, control.value.length)
   }
 }
