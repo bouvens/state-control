@@ -51,6 +51,15 @@ const withControl = (Child) => {
       trimOnPaste: PropTypes.bool,
     }
 
+    afterUpdate = null
+
+    componentDidUpdate () {
+      if (this.afterUpdate) {
+        this.afterUpdate()
+        this.afterUpdate = null
+      }
+    }
+
     getId = () => `labeled-control-${this.props.id}`
 
     getPath = () => this.props.path || this.props.id
@@ -119,10 +128,29 @@ const withControl = (Child) => {
     pasteHandler = (event) => {
       event.preventDefault()
 
-      const { checked, type } = event.target
-      let value = event.clipboardData.getData('Text')
+      const { target, clipboardData } = event
+      const { selectionStart, selectionEnd, checked, type } = target
+      let value = clipboardData.getData('Text')
       if (this.props.trimOnPaste) {
         value = trim(value, ' \\t\\n')
+      }
+
+      let selectionPosition = selectionStart
+
+      if (value.toString) {
+        selectionPosition += value.toString().length
+      }
+
+      const currentValue = this.getValue()
+      if (currentValue && currentValue.toString) {
+        const selectionLength = selectionEnd - selectionStart
+        const newValue = currentValue.toString().split('')
+        newValue.splice(selectionStart, selectionLength, value)
+        value = newValue.join('')
+      }
+
+      this.afterUpdate = () => {
+        target.setSelectionRange(selectionPosition, selectionPosition)
       }
 
       this.processNewValue({ value, checked, type }, this.props.trimOnPaste)
