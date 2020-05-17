@@ -3,7 +3,7 @@
 
 A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. Complete library weights 4.6 KB gzipped with dependencies. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
 
-This package also provides a component for presets of values (`<SettersBlock />`) and a helper to simplify your source code (`<Connector />`).
+This package also provides a component for presets of values (`<PresetsBlock />`) and a helper to simplify your source code (`<Connector />`).
 
 ## [Demo](https://bouvens.github.io/state-control/)
 
@@ -21,7 +21,7 @@ npm i state-control
 
 Include required components and helpers to jsx:
 ```JSX
-import { Check, Connector, Input, Radio, SettersBlock, selectAll } from 'state-control'
+import { Check, Connector, Input, Radio, PresetsBlock, selectAll } from 'state-control'
 ```
 
 2nd. You may also need an object of identifiers:
@@ -83,10 +83,10 @@ You can use `Connector` component for passing common props to all of its childre
 </Connector>
 ```
 
-## <SettersBlock \/>
-This component generates elements (looks like link with a dashed underline) for activation of presets:
+## <PresetsBlock \/>
+This component generates elements that look like a button for activation of presets:
 ```JSX
-<SettersBlock
+<PresetsBlock
   setters={SETTERS}
   setHandler={this.changeHandler}
 />
