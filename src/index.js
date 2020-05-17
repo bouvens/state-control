@@ -1,4 +1,5 @@
-export { default as SettersBlock } from './SettersBlock'
+export { default as SettersBlock } from './PresetsBlock'
+export { default as PresetsBlock } from './PresetsBlock'
 export { default as Connector } from './Connector'
 export { default as Input } from './Input'
 export { default as Radio } from './Radio'

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { noop } from '../common/utils'
 
-const Setter = ({ text, tabIndex, onClick }) => (
+const Preset = ({ text, tabIndex, onClick }) => (
   <div style={{ marginBottom: '0.6em' }}>
     <button
       type="button"
@@ -14,13 +14,13 @@ const Setter = ({ text, tabIndex, onClick }) => (
   </div>
 )
 
-Setter.propTypes = {
+Preset.propTypes = {
   text: PropTypes.string,
   tabIndex: PropTypes.number,
   onClick: PropTypes.func,
 }
 
-Setter.defaultProps = {
+Preset.defaultProps = {
   text: '',
   tabIndex: -1,
   onClick: noop,
@@ -32,7 +32,7 @@ const setParams = (setHandler, params) => () => {
   })
 }
 
-export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
+export const PresetsBlock = ({ className, setters, setHandler, tabIndexOffset }) => {
   const settersArray = Array.isArray(setters)
     ? setters.map((setter) => [
       setter.text,
@@ -43,7 +43,7 @@ export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset })
   return (
     <div className={className}>
       {settersArray.map(([text, params], index) => (
-        <Setter
+        <Preset
           onClick={setParams(setHandler, params)}
           key={text}
           tabIndex={index + tabIndexOffset}
@@ -54,14 +54,14 @@ export const SettersBlock = ({ className, setters, setHandler, tabIndexOffset })
   )
 }
 
-SettersBlock.propTypes = {
+PresetsBlock.propTypes = {
   className: PropTypes.string,
   setters: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   setHandler: PropTypes.func.isRequired,
   tabIndexOffset: PropTypes.number,
 }
 
-SettersBlock.defaultProps = {
+PresetsBlock.defaultProps = {
   className: '',
   tabIndexOffset: 1,
 }

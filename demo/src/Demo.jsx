@@ -1,6 +1,6 @@
 import React, { Component, StrictMode } from 'react'
 
-import { Check, Connector, Input, Radio, selectAll, SettersBlock } from '../../src'
+import { Check, Connector, Input, Radio, selectAll, PresetsBlock } from '../../src'
 import './style.css'
 
 const LABELS_FOR_ITERATIONS = {
@@ -83,7 +83,7 @@ export default class Demo extends Component {
     return (
       <StrictMode>
         <h2>Some presets</h2>
-        <SettersBlock
+        <PresetsBlock
           setters={PRESETS}
           setHandler={this.handleSave}
           tabIndexOffset={3}
