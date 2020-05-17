@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.0 (May 17, 2020)
+* <SettersBlock /> has been renamed to <PresetsBlock />, old name is available as alias.
+* Paste now does not replace the whole value.
+* `selectAll` helper works with any input with `setSelectionRange` property.
+* Read me updates.
+
 ## 2.0.6 (May 10, 2020)
 * Fix for rewriting of input type in <Check />
 
