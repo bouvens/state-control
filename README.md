@@ -1,18 +1,18 @@
 # React state-control
 [![npm][npm-badge]][npm] [![npm][npm-dt-badge]][npm] [![GitHub issues][issues-badge]][issues]
 
-A bunch of lightweight components for updating model stored in React’s stateful components for fast prototyping. Complete library weights 4.6 KB gzipped with dependencies. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />` and sets of values as `<Radio />`.
+A bunch of lightweight components for updating the model stored in React's stateful components for fast prototyping. Complete library weights 4.6 KB gzipped with dependencies. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />`, and sets of values as `<Radio />`.
 
 This package also provides a component for presets of values (`<PresetsBlock />`) and a helper to simplify your source code (`<Connector />`).
 
 ## [Demo](https://bouvens.github.io/state-control/)
 
 You can see a live demo at [https://bouvens.github.io/state-control/](https://bouvens.github.io/state-control/)
-A source code of this demo is available in [the repository](https://github.com/bouvens/state-control/blob/master/demo/src).
+The source code of this demo is available in [the repository](https://github.com/bouvens/state-control/blob/master/demo/src).
 
 # Complete guide in 5 minutes
 
-## Quick start in 3 steps
+## Quickstart in 3 steps
 
 1st. Install the package to your project:
 ```Shell
@@ -143,7 +143,7 @@ const SETTERS = [
 ### Common for control components
 
 #### `id`: PropTypes.string.isRequired
-Name of property of state and identifier for element.
+Name of property in state and identifier for an element.
 
 #### `state`: PropTypes.object
 State object that we want to change.
@@ -152,13 +152,13 @@ State object that we want to change.
 Label for an element. It may be a node in `<Radio />`.
 
 #### `value`: PropTypes.oneOfType(string, number, bool)
-Value will be used instead of state[id] if passed.
+A value to be used instead of state[id] if passed.
 
 #### `readOnly`: PropTypes.bool
-Sets read only of control.
+Sets read-only of control.
 
 #### `className`: PropTypes.string
-Classname passed to wrapper div tag.
+Classname passed to a wrapping div tag.
 
 #### `style`: PropTypes.object
 Overrides default styles or resets it on `style={{}}`.
@@ -167,7 +167,7 @@ Overrides default styles or resets it on `style={{}}`.
 Handler for onClick event.
 
 #### `onFocus`: PropTypes.func
-Handler for an onFocus event. The handler will be called with an input component as an argument.
+Handler for an onFocus event. The function will be called with an input component as an argument.
 
 > Example for selecting all on focus:
 > ```JSX
@@ -189,25 +189,25 @@ Handler for an onFocus event. The handler will be called with an input component
 Text for showing after input field.
 
 #### `multiLine`: PropTypes.bool
-Flag changes input tag to textarea.
+Flag changes an `input` tag to a `textarea`.
 
 #### `defaultNum`: PropTypes.number
-Number replaces empty value if passed. Use it if you need default numeric values.
+Number replaces empty value if passed. Use it if you need to set default numeric values.
 
 #### `decimalMark`: PropTypes.string
-Symbol for using as decimal mark.
+Pass here a symbol for using as a decimal mark.
 
 #### `thousandsSeparator`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
-Symbol or array of symbols for using as thousands separators for removing.
+Symbol or array of symbols for using as digit group separators for removing.
 
 #### `alternateDecimalMark`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
-Symbol or array of symbols for replacing to decimal mark after removing all thousand separator symbols.
+Symbol or array of symbols for replacing to decimal mark after removing all thousands separators symbols.
 
 #### `numberColor`: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 String for background color or just flag for coloring fields where numbers had been parsed. It makes an implicit explicit.
 
 #### `trimOnPaste`: PropTypes.bool
-Flag turns on trimming spaces, tabs and newline characters on paste. It also removes trailing zeros (after decimal separator) on numbers pasting. True by default.
+Flag turns on trimming spaces, tabs, and newline characters on paste. It also removes trailing zeros (after a decimal separator) on numbers pasting. True by default.
 
 > All other props will be passed to an inner element, and specifically to `<input />`. So type may be passed for entering only integer numbers:
 > ```
@@ -223,7 +223,7 @@ No special properties.
 ### <Radio \/>
 
 #### `values`: PropTypes.array
-Array of available values.
+An array of available values.
 
 #### `suffix`: PropTypes.oneOfType(string, node)
 Text for showing after radio buttons.
@@ -240,7 +240,7 @@ yarn run start
 
 Then open [http://localhost:3000](http://localhost:3000)
 
-For sure you can use `npm` instead of `yarn`. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
+For sure, you can use `npm` instead of `yarn`. More scripts may be found in [package.json](https://github.com/bouvens/state-control/blob/master/package.json).
 
 ## More examples of state-control
 * [Zero Packer](https://github.com/bouvens/zero-packer)
