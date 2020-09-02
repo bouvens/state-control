@@ -194,11 +194,11 @@ Flag changes an `input` tag to a `textarea`.
 #### `defaultNum`: PropTypes.number
 Number replaces empty value if passed. Use it if you need to set default numeric values.
 
-#### `decimalMark`: PropTypes.string
-Pass here a symbol for using as a decimal mark.
-
 #### `thousandsSeparator`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
-Symbol or array of symbols for using as digit group separators for removing.
+Symbol or array of symbols for using as digit group separators for removing. I.e. `,` in `17,234.55`. All of them will be removed.
+
+#### `decimalMark`: PropTypes.string
+Pass here a symbol for using as a decimal mark. I.e. `.` in `17,234.55`. It will be replaced by `.` in state because of JS number format.
 
 #### `alternateDecimalMark`: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 Symbol or array of symbols for replacing to decimal mark after removing all thousands separators symbols.
