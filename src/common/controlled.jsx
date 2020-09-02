@@ -24,9 +24,8 @@ const DEFAULT_SEPARATORS = {
   '\'': ['.'],
 }
 
-const makeRegexpForSeparators = (arr) => new RegExp(`[${
-  arr
-    .join('')
+const makeRegexpForReplace = (symbols) => new RegExp(`[${
+  (Array.isArray(symbols) ? symbols.join('') : symbols)
     .replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
     .replace(' ', '\\s')
 }]`, 'g')
@@ -75,11 +74,12 @@ const withControl = (Child) => {
 
     getColorIfNumber = () => (typeof this.getValue() === 'number' ? this.props.numberColor : void 0)
 
-    prepareNum = (num) => (this.getThousandsSeparator()
-      ? num
-        .replace(makeRegexpForSeparators(this.getThousandsSeparator()), '')
-      : num)
-      .replace(this.props.alternateDecimalMark, '.')
+    prepareNum = (num) => num
+      .replace(
+        this.getThousandsSeparator() ? makeRegexpForReplace(this.getThousandsSeparator()) : null,
+        '',
+      )
+      .replace(makeRegexpForReplace(this.props.alternateDecimalMark), '.')
       .replace(this.props.decimalMark, '.')
 
     wasNumber = (valueForCheck, previousType) => (
