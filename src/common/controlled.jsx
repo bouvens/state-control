@@ -1,11 +1,10 @@
-// defaultProps comes from recompose library
+// defaultProps come from an HOC
 /* eslint-disable react/require-default-props */
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import defaultProps from 'recompose/defaultProps'
 import { MARK_TYPE, NUMBER_COLOR_TYPE, VALUE_TYPE } from './constants'
-import { get, noop, trim } from './utils'
+import { defaultProps, get, noop, trim } from './utils'
 
 const DEFAULT_PROPS = {
   onChange: noop,

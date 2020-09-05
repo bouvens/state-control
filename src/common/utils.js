@@ -1,4 +1,30 @@
+import { createElement } from 'react'
+
 export const noop = () => void 0
+
+function getDisplayName (WrappedComponent) {
+  if (typeof WrappedComponent === 'string') {
+    return WrappedComponent
+  }
+
+  if (!WrappedComponent) {
+    return void 0
+  }
+
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component'
+}
+
+export const defaultProps = (props) => (BaseComponent) => {
+  const DefaultProps = (ownerProps) => createElement(BaseComponent, ownerProps)
+
+  DefaultProps.defaultProps = props
+
+  if (process.env.NODE_ENV !== 'production') {
+    DefaultProps.displayName = `defaultProps(${getDisplayName(BaseComponent)})`
+  }
+
+  return DefaultProps
+}
 
 function getPath (obj, path) {
   if (obj[path] != null) {
