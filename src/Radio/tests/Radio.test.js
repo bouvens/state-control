@@ -35,8 +35,12 @@ describe('Radio', () => {
   const wrapper = mount(radio)
 
   it('render button', () => {
-    expect(wrapper.find(`input[value="${DECIMAL_MARKS[0]}"]`).length).toEqual(1)
-    expect(wrapper.find(`input[value="${DECIMAL_MARKS[1]}"]`).length).toEqual(1)
+    expect(wrapper.findWhere(
+      (field) => field.type() === 'input' && field.prop('value') === DECIMAL_MARKS[0],
+    ).length).toEqual(1)
+    expect(wrapper.findWhere(
+      (field) => field.type() === 'input' && field.prop('value') === DECIMAL_MARKS[1],
+    ).length).toEqual(1)
   })
 
   it('render text before', () => {
