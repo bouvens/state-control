@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.2 (September 7, 2020)
+* Getting rid of warning about `React.createFactory()` deprecation and one dependency.
+* Dependencies updates.
+
 ## 2.1.1 (September 2, 2020)
 * `alternateDecimalMark` and `thousandsSeparator` properties now work properly with strings and arrays.
 * The documentation updates.
