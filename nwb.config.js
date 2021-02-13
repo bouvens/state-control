@@ -10,6 +10,11 @@ module.exports = {
     html: {
       template: 'src/index.html',
     },
+    copy: [
+      {
+        from: 'demo/public',
+      },
+    ],
     rules: {
       babel: {
         test: /\.jsx?/,
