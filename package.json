@@ -32,10 +32,8 @@
     "prepare": "npm run build",
     "prepublishOnly": "git push --all origin && git push origin --tags && npm run deploy:upload"
   },
-  "dependencies": {
-    "prop-types": "^15.6.0"
-  },
   "peerDependencies": {
+    "prop-types": "^15.6.0",
     "react": "17.x"
   },
   "devDependencies": {
