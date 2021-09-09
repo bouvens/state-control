@@ -28,7 +28,7 @@ class Check extends React.PureComponent {
     numberColor: false,
   }
 
-  render () {
+  render() {
     const {
       className,
       value,

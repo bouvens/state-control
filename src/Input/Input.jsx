@@ -36,7 +36,7 @@ class Input extends React.Component {
     numberColor: false,
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     restoreSelection(this.target, this.selection)
   }
 
@@ -59,7 +59,7 @@ class Input extends React.Component {
     })(),
   })
 
-  getSnapshotBeforeUpdate () {
+  getSnapshotBeforeUpdate() {
     this.selection = saveSelection(this.target)
     return this.selection
   }
@@ -74,7 +74,7 @@ class Input extends React.Component {
     this.selection = saveSelection(this.target)
   }
 
-  render () {
+  render() {
     const { className, label, refHandler, onFocus, multiLine, numberColor,
       ...passedProps } = this.props
     const Inner = multiLine ? 'textarea' : 'input'

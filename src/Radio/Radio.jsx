@@ -35,7 +35,7 @@ class Radio extends React.PureComponent {
     numberColor: false,
   }
 
-  render () {
+  render() {
     const {
       className,
       id,

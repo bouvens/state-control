@@ -76,7 +76,7 @@ export default class Demo extends Component {
     this.setState({ [name]: value })
   }
 
-  render () {
+  render() {
     const { withDefault, decimalMark, numberColor, isReadonly, selectAllOnFocus } = this.state
 
     return (

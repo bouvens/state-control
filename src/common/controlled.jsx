@@ -51,7 +51,7 @@ const withControl = (Child) => {
 
     afterUpdate = null
 
-    componentDidUpdate () {
+    componentDidUpdate() {
       if (this.afterUpdate) {
         this.afterUpdate()
         this.afterUpdate = null
@@ -181,7 +181,7 @@ const withControl = (Child) => {
       that.control = control
     }
 
-    render () {
+    render() {
       const {
         id, state, path, value, defaultNum, onChange, onClick, onFocus, decimalMark, numberColor,
         thousandsSeparator, alternateDecimalMark, trimOnPaste, ...passedProps

@@ -2,7 +2,7 @@ import { createElement } from 'react'
 
 export const noop = () => void 0
 
-function getDisplayName (WrappedComponent) {
+function getDisplayName(WrappedComponent) {
   if (typeof WrappedComponent === 'string') {
     return WrappedComponent
   }
@@ -26,7 +26,7 @@ export const defaultProps = (props) => (BaseComponent) => {
   return DefaultProps
 }
 
-function getPath (obj, path) {
+function getPath(obj, path) {
   if (obj[path] != null) {
     return [path]
   }
@@ -36,7 +36,7 @@ function getPath (obj, path) {
   return path.split('.')
 }
 
-export function get (obj, path) {
+export function get(obj, path) {
   let objectByPath = obj
   const pathArray = getPath(obj, path)
   const { length } = pathArray
@@ -48,13 +48,13 @@ export function get (obj, path) {
   return objectByPath
 }
 
-export function trim (str, chars) {
+export function trim(str, chars) {
   return str
     .replace(new RegExp(`^[${chars}]+`, 'g'), '')
     .replace(new RegExp(`[${chars}]+$`, 'g'), '')
 }
 
-export function saveSelection (target) {
+export function saveSelection(target) {
   if (target.selectionStart !== void 0) {
     return {
       start: target.selectionStart,
@@ -77,7 +77,7 @@ export function saveSelection (target) {
   return { start: 0, end: 0 }
 }
 
-export function restoreSelection (target, { start, end }) {
+export function restoreSelection(target, { start, end }) {
   if (!target || start === void 0
     || (target === document.activeElement && target.selectionStart === start
       && target.selectionEnd === end)) {
