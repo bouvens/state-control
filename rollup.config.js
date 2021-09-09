@@ -3,9 +3,12 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import babel from '@rollup/plugin-babel'
 import { terser } from 'rollup-plugin-terser'
+import cleaner from 'rollup-plugin-cleaner'
 import replace from '@rollup/plugin-replace'
+import { makeDemoBuild } from './rollup.config.dev'
 import pkg from './package.json'
 
+const mode = 'production'
 const input = ['src/index.js']
 const extensions = ['.js', '.jsx', '.json']
 const commonPlugins = [
@@ -14,7 +17,7 @@ const commonPlugins = [
   babel({ babelHelpers: 'bundled' }),
   commonjs(),
   replace({
-    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.NODE_ENV': JSON.stringify(mode),
     preventAssignment: true,
   }),
 ]
@@ -26,6 +29,7 @@ export default [
     plugins: [
       ...commonPlugins,
       terser(),
+      cleaner({ targets: ['umd/'] }),
     ],
     output: {
       file: `umd/${pkg.name}.min.js`,
@@ -39,7 +43,10 @@ export default [
   // ESM
   {
     input,
-    plugins: commonPlugins,
+    plugins: [
+      ...commonPlugins,
+      cleaner({ targets: ['es/'] }),
+    ],
     output: {
       file: pkg.module,
       format: 'esm',
@@ -53,6 +60,7 @@ export default [
     plugins: [
       ...commonPlugins,
       terser(),
+      cleaner({ targets: ['lib/'] }),
     ],
     output: {
       file: pkg.main,
@@ -61,4 +69,8 @@ export default [
       sourcemap: true,
     },
   },
+  // Demo
+  makeDemoBuild(mode, [
+    cleaner({ targets: ['demo/dist/'] }),
+  ]),
 ]

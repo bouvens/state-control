@@ -1,7 +1,6 @@
 import React, { Component, StrictMode } from 'react'
 
 import { Check, Connector, Input, Radio, selectAll, PresetsBlock } from '../../src'
-import './style.css'
 
 const LABELS_FOR_ITERATIONS = {
   number: {
