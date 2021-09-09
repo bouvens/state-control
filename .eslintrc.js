@@ -4,5 +4,5 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-undefined': 'error',
     'no-void': 'off',
-  }
+  },
 }

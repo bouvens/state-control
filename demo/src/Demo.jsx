@@ -1,7 +1,6 @@
 import React, { Component, StrictMode } from 'react'
 
 import { Check, Connector, Input, Radio, selectAll, PresetsBlock } from '../../src'
-import './style.css'
 
 const LABELS_FOR_ITERATIONS = {
   number: {
@@ -77,7 +76,7 @@ export default class Demo extends Component {
     this.setState({ [name]: value })
   }
 
-  render () {
+  render() {
     const { withDefault, decimalMark, numberColor, isReadonly, selectAllOnFocus } = this.state
 
     return (
