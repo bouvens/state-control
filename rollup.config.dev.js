@@ -7,11 +7,13 @@ import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
 import pkg from './package.json'
 
-export function makeDemoBuild(mode = 'production', plugins = []) {
+const DEV_DEMO_PATH = 'demo/dev'
+
+export function makeDemoBuild(mode = 'production', dir = DEV_DEMO_PATH, plugins = []) {
   return {
     input: 'demo/src/index.js',
     output: {
-      dir: 'demo/dist',
+      dir,
       format: 'iife',
       sourcemap: true,
     },
@@ -35,12 +37,12 @@ export function makeDemoBuild(mode = 'production', plugins = []) {
   }
 }
 
-export default () => makeDemoBuild('development', [
+export default () => makeDemoBuild('development', DEV_DEMO_PATH, [
   serve({
     verbose: true,
-    contentBase: 'demo/dist',
+    contentBase: DEV_DEMO_PATH,
     host: 'localhost',
     port: 3000,
   }),
-  livereload({ watch: 'demo' }),
+  livereload({ watch: ['demo/src', 'demo/public', 'src'] }),
 ])

@@ -8,7 +8,8 @@ import replace from '@rollup/plugin-replace'
 import { makeDemoBuild } from './rollup.config.dev'
 import pkg from './package.json'
 
-const mode = 'production'
+const MODE = 'production'
+const PROD_DEMO_PATH = 'demo/dist'
 const input = ['src/index.js']
 const extensions = ['.js', '.jsx', '.json']
 const commonPlugins = [
@@ -17,7 +18,7 @@ const commonPlugins = [
   babel({ babelHelpers: 'bundled' }),
   commonjs(),
   replace({
-    'process.env.NODE_ENV': JSON.stringify(mode),
+    'process.env.NODE_ENV': JSON.stringify(MODE),
     preventAssignment: true,
   }),
 ]
@@ -70,7 +71,8 @@ export default [
     },
   },
   // Demo
-  makeDemoBuild(mode, [
-    cleaner({ targets: ['demo/dist/'] }),
+  makeDemoBuild(MODE, PROD_DEMO_PATH, [
+    terser(),
+    cleaner({ targets: [PROD_DEMO_PATH] }),
   ]),
 ]
