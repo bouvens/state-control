@@ -1,3 +1,4 @@
+/*
 import React from 'react'
 import { mount } from 'enzyme'
 import { Radio } from '../..'
@@ -57,3 +58,4 @@ describe('Radio', () => {
   xit('may be disabled', () => {
   })
 })
+*/
