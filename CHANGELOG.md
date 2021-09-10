@@ -1,6 +1,12 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.0 (September 10, 2021)
+* React peer dependency update to 17.x
+* Moving prop-types to peer dependencies
+* Moving from yarn to npm and from nwb to Rollup.js in building process
+* Small updates with style and tests
+
 ## 2.1.2 (September 7, 2020)
 * Getting rid of warning about `React.createFactory()` deprecation and one dependency.
 * Dependencies updates.
