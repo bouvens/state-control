@@ -57,7 +57,7 @@
     "size-limit": "^5.0.3"
   },
   "author": "Alexander Demin <bouvens@gmail.com> (https://bouvens.github.io/)",
-  "homepage": "https://github.com/bouvens/state-control#readme",
+  "homepage": "https://bouvens.github.io/state-control/",
   "license": "MIT",
   "repository": "github:bouvens/state-control",
   "keywords": [
