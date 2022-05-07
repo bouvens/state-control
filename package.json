@@ -21,9 +21,7 @@
     "deploy:upload": "gh-pages -d demo/dist",
     "size": "size-limit",
     "eslint": "eslint --ext .js,.jsx ./src ./demo/src",
-    "eslint:html": "eslint --ext .js,.jsx -f html -o ./reports/eslint.checkstyle.html ./src ./demo/src",
     "eslint:fix": "eslint --fix --ext .js,.jsx  ./src ./demo/src",
-    "test": "echo \"Error: no test specified\"",
     "preversion": "npm run test && npm run eslint",
     "prepare": "npm run build",
     "prepublishOnly": "git push --all origin && git push origin --tags && npm run deploy:upload"
