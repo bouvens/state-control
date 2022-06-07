@@ -22,6 +22,7 @@
     "size": "size-limit",
     "eslint": "eslint --ext .js,.jsx ./src ./demo/src",
     "eslint:fix": "eslint --fix --ext .js,.jsx  ./src ./demo/src",
+    "test": "",
     "preversion": "npm run test && npm run eslint",
     "prepare": "npm run build",
     "prepublishOnly": "git push --all origin && git push origin --tags && npm run deploy:upload"
