@@ -81,13 +81,13 @@ export default class Demo extends Component {
 
     return (
       <StrictMode>
-        <h2>Some presets</h2>
+        <h2>Presets</h2>
         <PresetsBlock
           setters={PRESETS}
           setHandler={this.handleSave}
           tabIndexOffset={3}
         />
-        <h2>State control</h2>
+        <h2>Two Way State Binding</h2>
         <Connector
           state={this.state}
           onChange={this.handleSave}
