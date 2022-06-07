@@ -28,7 +28,7 @@
   },
   "peerDependencies": {
     "prop-types": "^15.6.0",
-    "react": "17.x"
+    "react": "^18.x"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.15.4",
