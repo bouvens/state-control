@@ -111,7 +111,7 @@ export default class Demo extends Component {
           />
           <Check
             id="selectAllOnFocus"
-            label="Select all the text on focus"
+            label="Select all on focus"
             readOnly={isReadonly}
           />
           <br />
