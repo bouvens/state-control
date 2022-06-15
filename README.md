@@ -3,7 +3,7 @@
 
 A bunch of lightweight components for updating the model stored in React's stateful components for fast prototyping. Complete library weights 4.62 kB gzipped with dependencies. It fits strings, numbers (automatically detected) as `<Input />`, booleans as `<Check />`, and sets of values as `<Radio />`.
 
-This package also provides a component for presets of values (`<PresetsBlock />`) and a helper to simplify your source code (`<Connector />`).
+This package also provides a component for presets of values (`<PresetsBlock />`) and a helper to reduce repeats (`<Connector />`).
 
 ## [Demo](https://bouvens.github.io/state-control/)
 
