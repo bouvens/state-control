@@ -85,7 +85,6 @@ export default class Demo extends Component {
         <PresetsBlock
           setters={PRESETS}
           setHandler={this.handleSave}
-          tabIndexOffset={3}
         />
         <h2>Two Way State Binding</h2>
         <Connector
