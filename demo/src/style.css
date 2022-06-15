@@ -4,6 +4,10 @@ body {
   margin: 1em 2em;
 }
 
+p {
+  line-height: 1.4;
+}
+
 .inputs label {
   width: 0.8em;
 }
